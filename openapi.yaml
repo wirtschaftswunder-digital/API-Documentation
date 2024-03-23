@@ -7,7 +7,7 @@ servers:
   - url: https://my.camps.digital
     description: Production server for subdomain *my*
 info:
-  version: 1.0.0
+  version: 1.0.1
   title: CADI API Dokumentation
   license:
     name: Apache 2.0
