@@ -30,6 +30,11 @@ jobs:
 
       - name: Build Redoc HTML
         run: npx @redocly/cli build-docs openapi.yaml
+
+      # Rename redoc-static.html to index.html
+      - name: Rename output HTML file
+        run: mv redoc-static.html index.html
+
   deploy:
     environment:
       name: github-pages
