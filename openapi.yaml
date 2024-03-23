@@ -1,9 +1,11 @@
 openapi: 3.0.0
 servers:
-  - url: //petstore.swagger.io/v2
-    description: Default server
-  - url: //petstore.swagger.io/sandbox
-    description: Sandbox server
+  #  - url: //petstore.swagger.io/v2
+  #    description: Default server
+  #  - url: //petstore.swagger.io/sandbox
+  #    description: Sandbox server
+  - url: https://my.camps.digital
+    description: Production server for subdomain *my*
 info:
   version: 1.0.0
   title: CADI API Dokumentation
@@ -11,38 +13,37 @@ info:
     name: Apache 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
 externalDocs:
-  description: Find out how to create Github repo for your OpenAPI spec.
-  url: 'https://github.com/Rebilly/generator-openapi-repo'
-# tags:
-#   - name: pet
-#     description: Everything about your Pets
-#   - name: store
-#     description: Access to Petstore orders
-#   - name: user
-#     description: Operations about user
-#   - name: pet_model
-#     x-displayName: The Pet Model
-#     description: |
-#       <SchemaDefinition schemaRef="#/components/schemas/Pet" />
-#   - name: store_model
-#     x-displayName: The Order Model
-#     description: |
-#       <SchemaDefinition schemaRef="#/components/schemas/Order" exampleRef="#/components/examples/Order" showReadOnly={true} showWriteOnly={true} />
-x-tagGroups:
-  - name: General
-    tags:
-      - pet
-      - store
-  - name: User Management
-    tags:
-      - user
-  - name: Models
-    tags:
-      - pet_model
-      - store_model
+  description: Dokumentation für die Integration von CADI Frontend Komponenten
+  url: 'https://leon-1207.github.io/CADI-Documentation/'
 security:
   - {}
 paths:
+  /api/open_v1/products/index:
+    parameters:
+      - name: anbieter_id
+        in: query
+        description: ID des Anbieters
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: locale
+        in: query
+        description: Sprache
+        required: false
+        schema:
+          type: string
+          example: de
+          default: en
+    get:
+      tags:
+        - "Destinationen"
+        - Produkte
+      summary: "Test"
+      description: "Öffentliche API die Destinationen / Produkte eines Anbieters und ihre Basisinformationen abzurufen."
+      responses:
+        '200':
+          description: "Erfolgreiche Anfrage"          
   /pet:
     parameters:
       - name: Accept-Language
