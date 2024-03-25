@@ -223,6 +223,10 @@ paths:
                     availability:
                       type: string
                       description: Availability status of the event
+                      enum:
+                        - "0"
+                        - "<= 10"
+                        - "> 10"
                     waitlist:
                       type: boolean
                       description: Indicates if event has a waitlist
