@@ -104,10 +104,9 @@ paths:
                     additional_values:
                       type: array
                       items:
-                        oneOf:
-                          - type: string
-                          - type: null
-                      description: Zusätzliche Werte
+                        nullable: true
+                        type: string
+                      description: In CADI angegebene zusätzliche Werte
                     daycamp:
                       type: boolean
                       description: Dieser Wert gibt an, ob angeben wurde, dass es sich bei der Destination um ein Daycamp handelt
@@ -222,25 +221,26 @@ paths:
                       nullable: false
                       description: Grundpreis für den Termin (vor Rabatt)
                     discount:
-                      type: integer
-                      description: Rabatt für den Termin
+                      type: string
+                      description: Rabatt für den Termin (in Euro) mit "." als Dezimaltrennzeichen
+                      example: "100.0"
                       nullable: true
                     availability:
                       type: string
-                      description: Availability status of the event
+                      description: Verfügbarkeit an Plätzen im Termin
                       enum:
                         - "0"
                         - "<= 10"
                         - "> 10"
                     waitlist:
                       type: boolean
-                      description: Indicates if event has a waitlist
+                      description: Dieser Wert gibt an, ob der Termin für den Termin die Warteliste aktiviert wurde
                     additional_values:
                       type: array
                       items:
                         nullable: true
                         type: string
-                      description: Additional values for the event
+                      description: In CADI angegebene zusätzliche Werte
               example:
                 - id: "24-151-01"
                   termin_id: 29239
