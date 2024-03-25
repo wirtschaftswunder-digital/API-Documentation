@@ -38,7 +38,7 @@ paths:
           default: de
     get:
       tags:
-        - "Destinationen"
+        - "Öffentliche API"
       summary: "Destinationen (öffentlich)"
       description: "Öffentliche API die Destinationen eines Anbieters und ihre Basisinformationen abzurufen."
       responses:
@@ -144,3 +144,18 @@ paths:
                   event_count: 4
                   additional_values: [null, null]
                   daycamp: false
+  /api/open_v1/events/index:   # ?destination_id=151&host_id=57&locale=de
+    description: "TODO"
+    summary: "TODO summary"
+    get:
+      tags:
+        - "Öffentliche API"
+      responses:
+        '200':
+          description: "Erfolgreiche Anfrage"
+          content:
+            application/json:
+              schema:
+                # TODO
+            example:
+              # TODO
