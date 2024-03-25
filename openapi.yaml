@@ -12,6 +12,9 @@ info:
   license:
     name: Apache 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+  x-logo:
+    url: 'https://wirtschaftswunder-digital.github.io/API-Documentation/logo.png'
+    altText: 'CADI API Logo'
 externalDocs:
   description: Dokumentation für die Integration von CADI Frontend Komponenten
   url: 'https://leon-1207.github.io/CADI-Documentation/'
