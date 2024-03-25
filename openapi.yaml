@@ -179,7 +179,7 @@ paths:
         - "Öffentliche API"
       responses:
         '200':
-          description: "Successful response"
+          description: "Erfolgreiche Anfrage"
           content:
             application/json:
               schema:
@@ -189,37 +189,42 @@ paths:
                   properties:
                     id:
                       type: string
-                      description: Unique identifier for the event
+                      description: Termin-ID die dem Kunden angezeigt wird (kann in CADI geändert werden)
                     termin_id:
                       type: integer
-                      description: ID of the event termin
+                      description: Interne Termin-ID (wird in der Datenbank verwendet und dem Kunden nicht angezeigt)
                     destination_id:
                       type: integer
-                      description: ID of the destination
+                      description: ID der Destination
                     booking_url:
                       type: string
+                      nullable: true
                       format: uri
-                      description: URL for booking the event
+                      description: URL zur Buchungsmaske des Termins
                     start:
                       type: string
                       format: date
-                      description: Start
+                      description: Startdatum im Format dd.mm.yyyy
                     end:
                       type: string
                       format: date
-                      description: Ende
+                      description: Enddatum im Format dd.mm.yyyy
                     nights:
                       type: integer
-                      description: Number of nights
+                      nullable: true
+                      description: Anzahl an Nächten (falls in CADI angegeben)
                     days:
                       type: integer
-                      description: Number of days
+                      nullable: false
+                      description: Anzahl an Tagen
                     price:
                       type: integer
-                      description: Price of the event
+                      nullable: false
+                      description: Grundpreis für den Termin (vor Rabatt)
                     discount:
                       type: integer
-                      description: Discount for the event
+                      description: Rabatt für den Termin
+                      nullable: true
                     availability:
                       type: string
                       description: Availability status of the event
@@ -233,9 +238,8 @@ paths:
                     additional_values:
                       type: array
                       items:
-                        oneOf:
-                          - type: string
-                          - type: null
+                        nullable: true
+                        type: string
                       description: Additional values for the event
               example:
                 - id: "24-151-01"
