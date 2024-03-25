@@ -63,28 +63,29 @@ paths:
                       items:
                         type: string
                       description: Saisons der Destination
+                      example: ["Sommer", "Herbst"]
                     min_age:
                       type: integer
                       description: Mindestalter
                     exception_min_age:
                       type: integer
-                      description: Ausnahmemindestalter
+                      description: Maximal erlaubte Unterschreitung des Mindestalters
                     max_age:
                       type: integer
                       description: Höchstalter
                     exception_max_age:
                       type: integer
-                      description: Ausnahmehöchstalter
+                      description: Maximal erlaubte Überschreitung des Höchstalters
                     restrictive_age:
-                      type: integer
-                      description: Restriktives Alter
+                      type: boolean
+                      description: Gibt an ob bei der Buchung nur Teilnehmer mit einem Alter innerhalb des definierten Bereichs erlaubt werden
                     location:
                       type: string
                       description: Standort der Destination
                     img_url:
                       type: string
                       format: uri
-                      description: URL des Bildes der Destination
+                      description: URL des Titelbildes, welches für die Destination festgelegt wurde
                     description:
                       type: string
                       description: Beschreibung der Destination
@@ -99,7 +100,7 @@ paths:
                       description: Tags der Destination
                     event_count:
                       type: integer
-                      description: Anzahl der Ereignisse
+                      description: Anzahl der Termine, die online gestellt sind
                     additional_values:
                       type: array
                       items:
@@ -109,7 +110,7 @@ paths:
                       description: Zusätzliche Werte
                     daycamp:
                       type: boolean
-                      description: Tagescamp
+                      description: Dieser Wert gibt an, ob angeben wurde, dass es sich bei der Destination um ein Daycamp handelt
               example:
                 - id: 163
                   title: Actioncamp Alpensommer Zell am See 11-13 Jahre
@@ -143,4 +144,3 @@ paths:
                   event_count: 4
                   additional_values: [null, null]
                   daycamp: false
-                # Repeat the same structure for other items in the example response
