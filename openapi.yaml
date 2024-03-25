@@ -40,7 +40,7 @@ paths:
       tags:
         - "Öffentliche API"
       summary: "Destinationen (öffentlich)"
-      description: "Öffentliche API die Destinationen eines Anbieters und ihre Basisinformationen abzurufen."
+      description: "API zum laden der Destinationen eines Anbieters und ihrer Basisinformationen"
       responses:
         '200':
           description: "Erfolgreiche Anfrage"
@@ -144,18 +144,146 @@ paths:
                   event_count: 4
                   additional_values: [null, null]
                   daycamp: false
-  /api/open_v1/events/index:   # ?destination_id=151&host_id=57&locale=de
-    description: "TODO"
-    summary: "TODO summary"
+  /api/open_v1/events/index:  # ?destination_id=151&host_id=57&locale=de
+    parameters:
+      - name: destination_id
+        in: query
+        description: ID der Destination
+        required: true
+        schema:
+          type: integer
+          format: int64
+          example: 151
+      - name: host_id
+        in: query
+        description: Host ID des Anbieters
+        required: true
+        schema:
+          type: integer
+          format: int64
+          example: 57
+      - name: locale
+        in: query
+        description: Sprache
+        required: false
+        schema:
+          type: string
+          example: en
+          default: de
     get:
+      description: "Termine einer Destination abrufen"
+      summary: "Termine einer Destination (öffentlich)"
+      security:
+        - {}
       tags:
         - "Öffentliche API"
       responses:
         '200':
-          description: "Erfolgreiche Anfrage"
+          description: "Successful response"
           content:
             application/json:
               schema:
-                # TODO
-            example:
-              # TODO
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: Unique identifier for the event
+                    termin_id:
+                      type: integer
+                      description: ID of the event termin
+                    destination_id:
+                      type: integer
+                      description: ID of the destination
+                    booking_url:
+                      type: string
+                      format: uri
+                      description: URL for booking the event
+                    start:
+                      type: string
+                      format: date
+                      description: Start
+                    end:
+                      type: string
+                      format: date
+                      description: Ende
+                    nights:
+                      type: integer
+                      description: Number of nights
+                    days:
+                      type: integer
+                      description: Number of days
+                    price:
+                      type: integer
+                      description: Price of the event
+                    discount:
+                      type: integer
+                      description: Discount for the event
+                    availability:
+                      type: string
+                      description: Availability status of the event
+                    waitlist:
+                      type: boolean
+                      description: Indicates if event has a waitlist
+                    additional_values:
+                      type: array
+                      items:
+                        oneOf:
+                          - type: string
+                          - type: null
+                      description: Additional values for the event
+              example:
+                - id: "24-151-01"
+                  termin_id: 29239
+                  destination_id: 151
+                  booking_url: "https://foxsummit.de/buchungsmaske-fox?vendor=Fox&destination_id=151&termin_id=29239&host=57&extern=true&locale=de"
+                  start: "27.12.2023"
+                  end: "03.01.2024"
+                  nights: 5
+                  days: 8
+                  price: 569
+                  discount: null
+                  availability: "<= 10"
+                  waitlist: true
+                  additional_values: [null, null]
+                - id: "24-151-02"
+                  termin_id: 29240
+                  destination_id: 151
+                  booking_url: "https://foxsummit.de/buchungsmaske-fox?vendor=Fox&destination_id=151&termin_id=29240&host=57&extern=true&locale=de"
+                  start: "01.01.2024"
+                  end: "07.01.2024"
+                  nights: 4
+                  days: 7
+                  price: 449
+                  discount: null
+                  availability: "<= 10"
+                  waitlist: true
+                  additional_values: [null, null]
+                - id: "24-151-L1"
+                  termin_id: 29241
+                  destination_id: 151
+                  booking_url: "https://foxsummit.de/buchungsmaske-fox?vendor=Fox&destination_id=151&termin_id=29241&host=57&extern=true&locale=de"
+                  start: "27.12.2023"
+                  end: "07.01.2024"
+                  nights: 9
+                  days: 12
+                  price: 899
+                  discount: null
+                  availability: "0"
+                  waitlist: true
+                  additional_values: [null, null]
+                - id: "24-151-P1"
+                  termin_id: 29242
+                  destination_id: 151
+                  booking_url: "https://foxsummit.de/buchungsmaske-fox?vendor=Fox&destination_id=151&termin_id=29242&host=57&extern=true&locale=de"
+                  start: "26.12.2023"
+                  end: "02.01.2024"
+                  nights: 7
+                  days: 8
+                  price: 1099
+                  discount: null
+                  availability: "0"
+                  waitlist: false
+                  additional_values: [null, null]
+
