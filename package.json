@@ -4,6 +4,7 @@
   "private": false,
   "scripts": {
     "build": "npx @redocly/cli build-docs openapi.yaml --output dist/index.html",
+    "preview": "npx @redocly/cli preview-docs openapi.yaml",
     "deploy-dist": "gh-pages -d dist -t true",
     "deploy": "npx @redocly/cli build-docs openapi.yaml --output dist/index.html && gh-pages -d dist -t true"
   },
