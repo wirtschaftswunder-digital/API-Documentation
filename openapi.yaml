@@ -599,3 +599,318 @@ paths:
                             type: "reiserabatt"
       security:
         - CORS: []
+  /api/v1/destinationen/show:
+    parameters:
+      - $ref: '#/components/parameters/locale'
+      - $ref: '#/components/parameters/destination-id'
+    get:
+      summary: "Destinationen Details abrufen"
+      description: "Abrufen von detaillierten Informationen zu einer Destination."
+      responses:
+        '200':
+          description: "Erfolgreiche Anfrage"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: ID der Destination
+                      type:
+                        type: string
+                        description: Typ der Destination
+                      attributes:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            description: ID der Destination
+                          anlagenname:
+                            type: string
+                            description: Name der Anlage
+                          strasse:
+                            type: string
+                            description: Straße der Anlage
+                          plz:
+                            type: string
+                            description: Postleitzahl der Anlage
+                          stadt:
+                            type: string
+                            description: Stadt der Anlage
+                          latitude:
+                            type: string
+                            description: Breitengrad der Anlage
+                          longitude:
+                            type: string
+                            description: Längengrad der Anlage
+                          geo_url:
+                            type: string
+                            description: URL zur Geolokalisierung
+                          saisons:
+                            type: array
+                            description: Saisons der Destination
+                            items:
+                              type: string
+                          daycamp:
+                            type: boolean
+                            description: Gibt an, ob es sich um ein Daycamp handelt
+                          titel:
+                            type: string
+                            description: Titel der Destination
+                          ort:
+                            type: string
+                            description: Ort der Destination
+                          zahlungsmethoden:
+                            type: array
+                            description: Akzeptierte Zahlungsmethoden
+                            items:
+                              type: string
+                          alter_von:
+                            type: integer
+                            description: Mindestalter für die Destination
+                          ausnahme_alter_von:
+                            type: integer
+                            description: Ausnahme für das Mindestalter
+                          alter_bis:
+                            type: integer
+                            description: Höchstalter für die Destination
+                          ausnahme_alter_bis:
+                            type: integer
+                            description: Ausnahme für das Höchstalter
+                          alter_restriktiv:
+                            type: boolean
+                            description: Gibt an, ob das Alter restriktiv ist
+                          hm_versicherung:
+                            type: boolean
+                            description: Gibt an, ob eine Haftpflichtversicherung besteht
+                          anreise_filter:
+                            type: boolean
+                            description: Gibt an, ob ein Anreise-Filter vorhanden ist
+                          ferien_filter:
+                            type: boolean
+                            description: Gibt an, ob ein Ferien-Filter vorhanden ist
+                          reisedauer_filter:
+                            type: boolean
+                            description: Gibt an, ob ein Reisedauer-Filter vorhanden ist
+                          zusatz_1_online:
+                            type: string
+                            description: Zusatzinformation 1 online
+                          zusatz_2_online:
+                            type: string
+                            description: Zusatzinformation 2 online
+                          zusatz_titel_1:
+                            type: string
+                            description: Titel der Zusatzinformation 1
+                          zusatz_titel_2:
+                            type: string
+                            description: Titel der Zusatzinformation 2
+                          anreise_spalte_online:
+                            type: boolean
+                            description: Gibt an, ob die Anreise-Spalte online ist
+                          tage_spalte_online:
+                            type: boolean
+                            description: Gibt an, ob die Tages-Spalte online ist
+                          skitage_online:
+                            type: boolean
+                            description: Gibt an, ob Skitage online sind
+                          wintersport:
+                            type: string
+                            description: Art des Wintersports
+                          golflevel:
+                            type: string
+                            description: Golf-Level
+                          schwimmlevel:
+                            type: string
+                            description: Schwimm-Level
+                          shirt:
+                            type: string
+                            description: T-Shirt-Größe
+                          medikation:
+                            type: string
+                            description: Medikation
+                          krankheiten:
+                            type: string
+                            description: Krankheiten
+                          allergien:
+                            type: string
+                            description: Allergien
+                          verpflegungswunsch:
+                            type: string
+                            description: Verpflegungswunsch
+                          verpflegung_abfragen:
+                            type: boolean
+                            description: Gibt an, ob Verpflegung abgefragt wird
+                          gekoppelte_an_abreise:
+                            type: boolean
+                            description: Gibt an, ob An- und Abreise gekoppelt sind
+                          divers_anzeigen:
+                            type: boolean
+                            description: Gibt an, ob Diverses angezeigt wird
+                          share_button_anzeigen:
+                            type: boolean
+                            description: Gibt an, ob der Share-Button angezeigt wird
+                          bestpreis_anzeigen:
+                            type: boolean
+                            description: Gibt an, ob der Bestpreis angezeigt wird
+                          termin_wechseln_erlauben:
+                            type: boolean
+                            description: Gibt an, ob der Terminwechsel erlaubt ist
+                          mitfahrer_abfragen:
+                            type: boolean
+                            description: Gibt an, ob Mitfahrer abgefragt werden
+                          bezahlungsoptionen_ausblenden:
+                            type: boolean
+                            description: Gibt an, ob Bezahlungsoptionen ausgeblendet werden
+                          eltern_abfragen:
+                            type: boolean
+                            description: Gibt an, ob Eltern abgefragt werden
+                          anreise_abfragen:
+                            type: boolean
+                            description: Gibt an, ob die Anreise abgefragt wird
+                          eigeneanreise_text:
+                            type: string
+                            description: Text zur eigenen Anreise
+                          eigeneabreise_text:
+                            type: string
+                            description: Text zur eigenen Abreise
+                          unterkunft_abfragen:
+                            type: boolean
+                            description: Gibt an, ob die Unterkunft abgefragt wird
+                          festnetz_abfragen:
+                            type: string
+                            description: Festnetz abfragen
+                          geburtsort_abfragen:
+                            type: string
+                            description: Geburtsort abfragen
+                          ausweisnummer_abfragen:
+                            type: string
+                            description: Ausweisnummer abfragen
+                          schulform_abfragen:
+                            type: string
+                            description: Schulform abfragen
+                          schulform_auswahl:
+                            type: array
+                            description: Auswahloptionen für Schulform
+                            items:
+                              type: array
+                              items:
+                                type: string
+                          zusatzbedingung_abfragen:
+                            type: boolean
+                            description: Gibt an, ob Zusatzbedingungen abgefragt werden
+                          zusatzbedingung:
+                            type: string
+                            description: Zusatzbedingung
+                          englischkenntnisse_abfragen:
+                            type: string
+                            description: Abfrage der Englischkenntnisse
+                          woher_abfragen:
+                            type: string
+                            description: Abfrage der Herkunft
+                          woher_auswahl:
+                            type: string
+                            description: Auswahlmöglichkeiten für die Herkunft
+                          alter_pruefen:
+                            type: boolean
+                            description: Gibt an, ob das Alter überprüft wird
+                          buchungsbewertung_abfragen:
+                            type: string
+                            description: Abfrage der Buchungsbewertung
+                          googlebewertung_abfragen:
+                            type: string
+                            description: Abfrage der Google-Bewertung
+                          rechnungsadresse_abfragen:
+                            type: string
+                            description: Abfrage der Rechnungsadresse
+                          belegungswunsch_abfragen:
+                            type: boolean
+                            description: Gibt an, ob Belegungswünsche abgefragt werden
+                          gutscheincode_abfragen:
+                            type: boolean
+                            description: Gibt an, ob Gutscheincodes abgefragt werden
+                          gallery_webp:
+                            type: string
+                            description: URL zur Galerie im WebP-Format
+                          detail_big_webp:
+                            type: string
+                            description: URL zum großen Detailbild im WebP-Format
+                          hauptsprache:
+                            type: string
+                            description: Hauptsprache der Destination
+                          zusatz_sprachen:
+                            type: string
+                            description: Zusatzsprachen der Destination
+                          keyfeatures:
+                            type: array
+                            description: Schlüsselfunktionen der Destination
+                            items:
+                              type: string
+                          termin_ids:
+                            type: array
+                            description: IDs der Termine
+                            items:
+                              type: integer
+                          individuelle_tabs_online:
+                            type: boolean
+                            description: Gibt an, ob individuelle Tabs online sind
+                          individuelle_tabs:
+                            type: array
+                            description: Individuelle Tabs
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                  description: ID des Tabs
+                                name:
+                                  type: string
+                                  description: Name des Tabs
+                                termin_ids:
+                                  type: array
+                                  description: IDs der Termine für den Tab
+                                  items:
+                                    type: string
+                                reihenfolge:
+                                  type: string
+                                  description: Reihenfolge des Tabs
+                                destination_id:
+                                  type: integer
+                                  description: ID der Destination des Tabs
+                                aktiv:
+                                  type: boolean
+                                  description: Gibt an, ob der Tab aktiv ist
+                          original_url:
+                            type: string
+                            description: Originale URL der Destination
+                      links:
+                        type: object
+                        description: Links zu weiteren API-Abfragen
+                        properties:
+                          anbieter_url:
+                            type: string
+                            description: URL zur Anbieterinformation
+                          url:
+                            type: string
+                            description: URL zur Terminübersicht der Destination
+                example:
+                  data:
+                    id: "496"
+                    type: "destination"
+                    attributes:
+                      id: 496
+                      anlagenname: "Club Kitzsteinhorn"
+                      strasse: "Gletschermoosstr. 12"
+                      plz: "5700"
+                      stadt: "Zell am See"
+                      latitude: "47.297"
+                      longitude: "12.7911"
+                      ... # Add other attributes as in the example response provided
+                    links:
+                      anbieter_url: "https://my.camps.digital/api/v1/anbieter/show?destination_id=496&anbieter_id=2"
+                      url: "https://my.camps.digital/api/v1/termine/index?destination_id=496"
+      security:
+        - CORS: []
