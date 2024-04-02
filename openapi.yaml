@@ -146,7 +146,7 @@ paths:
                   event_count: 4
                   additional_values: [null, null]
                   daycamp: false
-  /api/open_v1/events/index:  # ?destination_id=151&host_id=57&locale=de
+  /api/open_v1/events/index:
     parameters:
       - name: destination_id
         in: query
@@ -297,4 +297,67 @@ paths:
                   availability: "0"
                   waitlist: false
                   additional_values: [null, null]
-
+  /api/v1/reiserabatte/index?user=CORS:
+    parameters:
+      - name: termin_id
+        in: query
+        description: ID des Termins
+        required: true
+        schema:
+          type: integer
+          format: int64
+          example: 29239
+    get:
+      description: Rabatte für einen Termin abrufen
+      summary: Rabatte für einen Termin
+      security:
+        - CORS: [CORS]
+      tags:
+        - "Produkt-Daten abrufen"
+      responses:
+        '200':
+          description: "Erfolgreiche Anfrage"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: ID des Rabatts
+                        type:
+                          type: string
+                          description: Typ des Rabatts
+                        attributes:
+                          type: object
+                          properties:
+                            startdatum:
+                              type: string
+                              format: date (YYYY-MM-DD)
+                              nullable: true
+                              description: Startdatum des Rabatts (falls vorhanden) 
+                            enddatum:
+                              type: string
+                              format: date (YYYY-MM-DD)
+                              nullable: true
+                              description: Enddatum des Rabatts (falls vorhanden)
+                            name:
+                              type: string
+                              description: Name des Rabatts
+                            summe:
+                              type: string
+                              description: Rabattsumme (in Euro) mit "." als Dezimaltrennzeichen
+                example:
+                  data:
+                    - id: "1724605"
+                      type: "reiserabatt"
+                      attributes:
+                        startdatum: "2023-11-03"
+                        enddatum: null
+                        name: "Frühbucher"
+                        summe: "50.0"
