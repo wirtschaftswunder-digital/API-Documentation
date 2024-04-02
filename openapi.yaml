@@ -18,8 +18,13 @@ info:
 externalDocs:
   description: Dokumentation für die Integration von CADI Frontend Komponenten
   url: 'https://leon-1207.github.io/CADI-Documentation/'
-security:
-  - {}
+components:
+  securitySchemes:
+    CORS:
+      type: apiKey
+      in: header
+      name: Origin
+      description: Nur Anfragen von registrierten Domains werden akzeptiert.
 paths:
   /api/open_v1/products/index:
     parameters:
@@ -311,7 +316,7 @@ paths:
       description: Rabatte für einen Termin abrufen
       summary: Rabatte für einen Termin
       security:
-        - CORS: [CORS]
+        - CORS: []
       tags:
         - "Produkt-Daten abrufen"
       responses:
