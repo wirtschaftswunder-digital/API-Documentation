@@ -654,7 +654,7 @@ paths:
                             description: Längengrad der Anlage
                           geo_url:
                             type: string
-                            description: URL zur Geolokalisierung
+                            description: URL zur online Karte mit Standort der Anlage
                           saisons:
                             type: array
                             description: Saisons der Destination
@@ -676,55 +676,86 @@ paths:
                               type: string
                           alter_von:
                             type: integer
+                            nullable: true
                             description: Mindestalter für die Destination
                           ausnahme_alter_von:
                             type: integer
+                            nullable: true
                             description: Ausnahme für das Mindestalter
                           alter_bis:
                             type: integer
+                            nullable: true
                             description: Höchstalter für die Destination
                           ausnahme_alter_bis:
                             type: integer
+                            nullable: true
                             description: Ausnahme für das Höchstalter
                           alter_restriktiv:
                             type: boolean
                             description: Gibt an, ob das Alter restriktiv ist
                           hm_versicherung:
                             type: boolean
-                            description: Gibt an, ob eine Haftpflichtversicherung besteht
+                            description: Gibt an, ob in der CADI Buchungsmaske Versicherungen über die Schnittstelle der Hanse Merkur angeboten werden
                           anreise_filter:
                             type: boolean
-                            description: Gibt an, ob ein Anreise-Filter vorhanden ist
+                            description: Gibt an, ob ein Anreise-Filter angezeigt werden soll. Dieser Wert wird beispielsweise von unserer Termin Tabelle verwendet.
                           ferien_filter:
                             type: boolean
-                            description: Gibt an, ob ein Ferien-Filter vorhanden ist
+                            description: Gibt an, ob ein Ferien-Filter angezeigt werden soll. Dieser Wert wird beispielsweise von unserer Termin Tabelle verwendet.
                           reisedauer_filter:
                             type: boolean
-                            description: Gibt an, ob ein Reisedauer-Filter vorhanden ist
+                            description: Gibt an, ob ein Reisedauer-Filter angezeigt werden soll. Dieser Wert wird beispielsweise von unserer Termin Tabelle verwendet.
                           zusatz_1_online:
-                            type: string
-                            description: Zusatzinformation 1 online
+                            type: boolean
+                            nullable: true
+                            description: Gibt an, ob Zusatzinformation 1 online ist und angezeigt werden soll
                           zusatz_2_online:
-                            type: string
-                            description: Zusatzinformation 2 online
+                            type: boolean
+                            nullable: true
+                            description: Gibt an, ob Zusatzinformation 2 online ist und angezeigt werden soll
                           zusatz_titel_1:
                             type: string
+                            nullable: true
                             description: Titel der Zusatzinformation 1
                           zusatz_titel_2:
                             type: string
+                            nullable: true
                             description: Titel der Zusatzinformation 2
                           anreise_spalte_online:
                             type: boolean
-                            description: Gibt an, ob die Anreise-Spalte online ist
+                            description: Gibt an, ob die Anreise-Spalte angezeigt werden soll. Dieser Wert wird beispielsweise von unserer Termin Tabelle verwendet.
                           tage_spalte_online:
                             type: boolean
-                            description: Gibt an, ob die Tages-Spalte online ist
+                            description: Gibt an, ob die Tages-Spalte angezeigt werden soll. Dieser Wert wird beispielsweise von unserer Termin Tabelle verwendet.
                           skitage_online:
                             type: boolean
-                            description: Gibt an, ob Skitage online sind
+                            description: Gibt an, ob Skitage online sind bzw. in der Travel App eine Angabe für die Anzahl der Skitage gemacht wurde. Dieser Wert wird beispielsweise von unserer Termin Tabelle verwendet.
                           wintersport:
-                            type: string
-                            description: Art des Wintersports
+                            type: object
+                            properties:
+                              sportaten_titel:
+                                type: string
+                                description: Titel für die Sportarten
+                              sportarten:
+                                type: array
+                                items:
+                                  type: string
+                                description: Liste der verfügbaren Sportarten
+                              stufen_titel:
+                                type: string
+                                description: Titel für die Stufen
+                              stufen:
+                                type: array
+                                items:
+                                  type: string
+                                description: Liste der verfügbaren Stufen
+                              stufen_info_titel:
+                                type: string
+                                description: Titel für die Informationen zu den Stufen
+                              stufen_info:
+                                type: string
+                                description: Informationen (Beischreibungen) zu den verschiedenen Stufen
+                          # TODO von hier
                           golflevel:
                             type: string
                             description: Golf-Level
