@@ -607,6 +607,14 @@ paths:
         description: Die ID der Destination
         schema:
           type: integer
+      - name: simple
+        in: query
+        description: Gibt an, ob nur die einfachen Daten abgerufen werden sollen. Dadurch ist eine schnellere Antwortzeit möglich.
+        required: false
+        schema:
+          example: true
+          default: false
+          type: boolean
       - $ref: '#/components/parameters/locale'
     get:
       summary: "Destinationen Details"
