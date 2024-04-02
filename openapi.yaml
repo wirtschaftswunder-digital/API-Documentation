@@ -602,6 +602,27 @@ paths:
           $ref: '#/components/responses/termin-show-200'
       security:
         - CORS: []
+  /api/v1/termine/show?user=CORS (bulk request):
+    get:
+      summary: Termin Details (Bulk Request)
+      description: Abrufen von Informationen zu mehreren Termin in einer gesammelten Anfrage.
+      parameters:
+        - in: query
+          name: id[]
+          required: true
+          description: Liste aller Termin IDs, deren Informationen abgerufen werden sollen.
+          schema:
+            type: array
+            items:
+              type: integer
+            example: [29239, 29240, 29241]
+        - $ref: '#/components/parameters/destination-id'
+        - $ref: '#/components/parameters/locale'
+      responses:
+        '200':
+          $ref: '#/components/responses/termin-show-200'
+      security:
+        - CORS: []
   /api/v1/destinationen/show?user=CORS:
     parameters:
       - in: query
