@@ -318,7 +318,7 @@ paths:
       security:
         - CORS: []
       tags:
-        - "Produkt-Daten abrufen"
+        - "Geschlossene API"
       responses:
         '200':
           description: "Erfolgreiche Anfrage"
