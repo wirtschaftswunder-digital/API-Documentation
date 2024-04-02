@@ -756,171 +756,234 @@ paths:
                                 type: string
                                 description: Informationen (Beischreibungen) zu den verschiedenen Stufen
                           golflevel:
-                            type: string
-                            description: Golf-Level
+                            type: object
+                            description: Informationen zum Eingabefeld zum Golf-Level
+                            properties:
+                              titel:
+                                type: string
+                                description: Der Titel des Feldes für das Golf-Level
+                              info:
+                                type: string
+                                description: Zusätzliche Informationen zum Golf-Level (Beischreibungen zu den Stufen)
+                              optionen:
+                                type: array
+                                description: Die verfügbaren Optionen für das Golf-Level (Handicap)
+                                items:
+                                  type: string
                           schwimmlevel:
-                            type: string
-                            description: Schwimm-Level
+                            type: object
+                            description: Informationen zum Eingabefeld zum Schwimm-Level
+                            properties:
+                              titel:
+                                type: string
+                                description: Der Titel für das Schwimm-Level-Feld
+                              info:
+                                type: string
+                                description: Zusätzliche Informationen zum Schwimm-Level (Beischreibungen zu den Stufen)
+                              optionen:
+                                type: array
+                                description: Die verfügbaren Optionen für das Schwimm-Level
+                                items:
+                                  type: string
+                              hilfe_titel:
+                                type: string
+                                description: Der Titel für die Hilfe zum Schwimm-Level (wird im Info-Tooltip der Buchungsmaske angezeigt)
+                              hilfe_info:
+                                type: string
+                                description: Zusätzliche Informationen zur Hilfe für das Schwimm-Level (wird im Info-Tooltip der Buchungsmaske angezeigt)
                           shirt:
-                            type: string
-                            description: T-Shirt-Größe
+                            type: object
+                            description: Informationen zum Eingabefeld zu den T-Shirt-Größen
+                            properties:
+                              titel:
+                                type: string
+                                description: Der Titel für die T-Shirt-Größen
+                              optionen:
+                                type: array
+                                description: Die verfügbaren Optionen für T-Shirt-Größen
+                                items:
+                                  type: string
                           medikation:
-                            type: string
-                            description: Medikation
+                            type: object
+                            description: Informationen zum Eingabefeld zur Dauermedikation
+                            properties:
+                              titel:
+                                type: string
+                                description: Der Titel für die Dauermedikation
+                              info:
+                                type: string
+                                description: Zusätzliche Informationen zur Dauermedikation
+                              id:
+                                type: integer
+                                description: Die ID für die Dauermedikation
                           krankheiten:
-                            type: string
-                            description: Krankheiten
-                          allergien:
-                            type: string
-                            description: Allergien
+                            type: object
+                            description: Informationen zum Eingabefeld zu Krankheiten und Störungen
+                            properties:
+                              titel:
+                                type: string
+                                description: Der Titel für Krankheiten und Störungen
+                              info:
+                                type: string
+                                description: Zusätzliche Informationen zu Krankheiten und Störungen
+                              id:
+                                type: integer
+                                description: Die ID für Krankheiten und Störungen
                           verpflegungswunsch:
-                            type: string
-                            description: Verpflegungswunsch
+                            type: object
+                            description: Informationen zu Verpflegungswünschen
+                            properties:
+                              titel:
+                                type: string
+                                description: Der Titel für Verpflegungswünsche
+                              optionen:
+                                type: array
+                                description: Die verfügbaren Optionen für Verpflegungswünsche
+                                items:
+                                  type: string
                           verpflegung_abfragen:
                             type: boolean
-                            description: Gibt an, ob Verpflegung abgefragt wird
+                            description: Angabe, ob Verpflegungswünsche abgefragt werden
                           gekoppelte_an_abreise:
                             type: boolean
-                            description: Gibt an, ob An- und Abreise gekoppelt sind
+                            description: Angabe, ob gekoppelte An- und Abreise abgefragt werden. Falls ja, ist es bei der Buchung beispielsweise nicht möglich mit dem Bus anzureisen und mit dem Flugzeug abzureisen.
                           divers_anzeigen:
                             type: boolean
-                            description: Gibt an, ob Diverses angezeigt wird
+                            description: Angabe, ob Divers als Option bei der Wahl der Anrede angezeigt werden soll.
                           share_button_anzeigen:
                             type: boolean
-                            description: Gibt an, ob der Share-Button angezeigt wird
+                            description: Angabe, ob der Share-Button angezeigt wird (in der Buchungsmaske)
                           bestpreis_anzeigen:
                             type: boolean
-                            description: Gibt an, ob der Bestpreis angezeigt wird
+                            description: Angabe, ob der Bestpreis angezeigt wird
                           termin_wechseln_erlauben:
                             type: boolean
-                            description: Gibt an, ob der Terminwechsel erlaubt ist
+                            description: Angabe, ob ein Terminwechsel während des Buchungsprozesses erlaubt ist
                           mitfahrer_abfragen:
                             type: boolean
-                            description: Gibt an, ob Mitfahrer abgefragt werden
+                            description: Angabe, ob Mitfahrer abgefragt werden. Falls ja, können bei der Buchung Mitfahrer hinzugefügt werden. Auf diese Weise können mehrere Personen gleichzeitig gebucht werden.
                           bezahlungsoptionen_ausblenden:
                             type: boolean
-                            description: Gibt an, ob Bezahlungsoptionen ausgeblendet werden
+                            description: Angabe, ob Bezahlungsoptionen ausgeblendet werden.
                           eltern_abfragen:
                             type: boolean
-                            description: Gibt an, ob Eltern abgefragt werden
+                            description: Angabe, ob immer nach den Erziehungsberichtigten gefragt wird
                           anreise_abfragen:
                             type: boolean
-                            description: Gibt an, ob die Anreise abgefragt wird
+                            description: Angabe, ob Anreise abgefragt wird
                           eigeneanreise_text:
                             type: string
-                            description: Text zur eigenen Anreise
+                            description: Text für eigene Anreise
                           eigeneabreise_text:
                             type: string
-                            description: Text zur eigenen Abreise
+                            description: Text für eigene Abreise
                           unterkunft_abfragen:
                             type: boolean
-                            description: Gibt an, ob die Unterkunft abgefragt wird
+                            description: Angabe, ob Unterkunft abgefragt wird
                           festnetz_abfragen:
-                            type: string
-                            description: Festnetz abfragen
+                            type: boolean
+                            description: Angabe, ob Festnetznummer abgefragt wird
                           geburtsort_abfragen:
-                            type: string
-                            description: Geburtsort abfragen
+                            type: boolean
+                            description: Angabe, ob Geburtsort abgefragt wird
                           ausweisnummer_abfragen:
-                            type: string
-                            description: Ausweisnummer abfragen
+                            type: boolean
+                            description: Angabe, ob Ausweisnummer abgefragt wird
                           schulform_abfragen:
-                            type: string
-                            description: Schulform abfragen
-                          schulform_auswahl:
-                            type: array
-                            description: Auswahloptionen für Schulform
-                            items:
-                              type: array
-                              items:
-                                type: string
+                            type: boolean
+                            description: Angabe, ob Schulform abgefragt wird
                           zusatzbedingung_abfragen:
                             type: boolean
-                            description: Gibt an, ob Zusatzbedingungen abgefragt werden
+                            description: Angabe, ob Zusatzbedingungen abgefragt werden
                           zusatzbedingung:
                             type: string
-                            description: Zusatzbedingung
+                            nullable: true
+                            description: Zusätzliche Bedingungen. Falls vorhanden muss der Kunde vor Abschluss der Buchung bei den AGBs diesen Zusatzbedingungen zustimmen.
                           englischkenntnisse_abfragen:
-                            type: string
-                            description: Abfrage der Englischkenntnisse
+                            type: boolean
+                            description: Angabe, ob Englischkenntnisse abgefragt werden
                           woher_abfragen:
-                            type: string
-                            description: Abfrage der Herkunft
-                          woher_auswahl:
-                            type: string
-                            description: Auswahlmöglichkeiten für die Herkunft
+                            type: boolean
+                            description: Angabe, ob nach der Buchung abgefragt werden soll, wie der Kunde auf die Reise aufmerksam geworden ist.
                           alter_pruefen:
                             type: boolean
-                            description: Gibt an, ob das Alter überprüft wird
+                            description: Angabe, ob Alter geprüft wird. Dem Kunden wird während der Buchung Feedback gegeben, ob das Alter für die Reise geeignet ist.
                           buchungsbewertung_abfragen:
-                            type: string
-                            description: Abfrage der Buchungsbewertung
+                            type: boolean
+                            description: Angabe, ob Buchungsbewertung abgefragt wird. Falls ja, wird diese nach Abschluss der Buchung abgefragt.
                           googlebewertung_abfragen:
-                            type: string
-                            description: Abfrage der Google-Bewertung
+                            type: boolean
+                            description: Angabe, ob Google-Bewertung abgefragt wird (nach Buchungsabschluss)
                           rechnungsadresse_abfragen:
-                            type: string
-                            description: Abfrage der Rechnungsadresse
+                            type: boolean
+                            description: Angabe, ob Rechnungsadresse abgefragt wird
                           belegungswunsch_abfragen:
                             type: boolean
-                            description: Gibt an, ob Belegungswünsche abgefragt werden
+                            description: Angabe, ob Belegungswunsch abgefragt wird
                           gutscheincode_abfragen:
                             type: boolean
-                            description: Gibt an, ob Gutscheincodes abgefragt werden
+                            description: Angabe, ob Gutscheincode abgefragt wird
                           gallery_webp:
                             type: string
-                            description: URL zur Galerie im WebP-Format
+                            nullable: true
+                            description: URL für die WebP-Galerie
                           detail_big_webp:
                             type: string
-                            description: URL zum großen Detailbild im WebP-Format
+                            nullable: true
+                            description: URL für das WebP-Detailbild
                           hauptsprache:
                             type: string
-                            description: Hauptsprache der Destination
+                            example: "de"
+                            nullable: false
+                            description: Die Hauptsprache
                           zusatz_sprachen:
-                            type: string
-                            description: Zusatzsprachen der Destination
+                            type: array
+                            description: Die zusätzlichen Sprachen. Zum Beispiel Englisch ("en")
+                            items:
+                              type: string
                           keyfeatures:
                             type: array
-                            description: Schlüsselfunktionen der Destination
+                            description: Die Key Features der Destination
                             items:
                               type: string
                           termin_ids:
                             type: array
-                            description: IDs der Termine
+                            description: Die IDs der Termine
                             items:
                               type: integer
                           individuelle_tabs_online:
                             type: boolean
-                            description: Gibt an, ob individuelle Tabs online sind
+                            description: Angabe, ob individuelle Tabs online sind. Diese werden zur Darstellung der CADI Termin Tabellen verwendet.
                           individuelle_tabs:
                             type: array
-                            description: Individuelle Tabs
+                            description: Die individuellen Tabs
                             items:
                               type: object
                               properties:
                                 id:
                                   type: integer
-                                  description: ID des Tabs
+                                  description: Die ID des Tabs
                                 name:
                                   type: string
-                                  description: Name des Tabs
+                                  description: Der Name des Tabs
                                 termin_ids:
                                   type: array
-                                  description: IDs der Termine für den Tab
+                                  description: Die IDs der Termine des Tabs
                                   items:
-                                    type: string
+                                    type: integer
                                 reihenfolge:
-                                  type: string
-                                  description: Reihenfolge des Tabs
+                                  type: integer
+                                  description: Die Reihenfolge des Tabs
                                 destination_id:
                                   type: integer
-                                  description: ID der Destination des Tabs
+                                  description: Die ID der Destination des Tabs
                                 aktiv:
                                   type: boolean
-                                  description: Gibt an, ob der Tab aktiv ist
+                                  description: Angabe, ob der Tab aktiv ist
                           original_url:
                             type: string
-                            description: Originale URL der Destination
+                            nullable: false
+                            description: Die Original-URL (Reiseausschreibung) der Destination
                       links:
                         type: object
                         description: Links zu weiteren API-Abfragen
