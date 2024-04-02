@@ -71,6 +71,218 @@ components:
         type: integer
         format: int64
         example: 29239
+  responses:
+    termin-show-200:
+      description: Erfolgreiche Abfrage der Termininformationen.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: Die ID des Termins.
+                    type:
+                      type: string
+                      description: Der Typ des Termins.
+                    attributes:
+                      type: object
+                      description: Die Attribute des Termins.
+                      properties:
+                        id:
+                          type: integer
+                          description: Die ID des Termins.
+                        kurzform:
+                          type: string
+                          description: Die Kurzform des Termins. Diese ID wird dem Kunden angezeigt.
+                        von:
+                          type: string
+                          description: Das Startdatum des Termins.
+                        bis:
+                          type: string
+                          description: Das Enddatum des Termins.
+                        naechte:
+                          type: integer
+                          nullable: true
+                          description: Die Anzahl der Übernachtungen.
+                        plaetze:
+                          type: string
+                          description: Die Anzahl der verfügbaren Plätze.
+                        warteliste:
+                          type: boolean
+                          description: Gibt an, ob eine Warteliste aktiviert ist.
+                        preis:
+                          type: string
+                          description: Der Preis des Termins.
+                        alter_von:
+                          type: integer
+                          nullable: true
+                          description: Das Mindestalter für den Termin.
+                        alter_bis:
+                          type: integer
+                          nullable: true
+                          description: Das Höchstalter für den Termin.
+                        rabattiert:
+                          type: boolean
+                          description: Gibt an, ob der Termin rabattiert ist.
+                        skitage:
+                          type: integer
+                          nullable: true
+                          description: Die Anzahl der Skitage für den Termin.
+                        zusatz_info_1:
+                          type: string
+                          nullable: true
+                          description: Zusätzliche Information 1.
+                        zusatz_info_2:
+                          type: string
+                          nullable: true
+                          description: Zusätzliche Information 2.
+                        gruppierungen:
+                          type: array
+                          description: Gruppierungen von Buchungsoptionen im Termin.
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                description: Die ID der Gruppierung.
+                              name:
+                                type: string
+                                description: Der Name der Gruppierung.
+                              titel:
+                                type: string
+                                description: Der Titel der Gruppierung.
+                              label:
+                                type: string
+                                description: Das Label der Gruppierung.
+                              placeholder:
+                                type: string
+                                description: Der Placeholder-Text der Gruppierung. Dieser Text wird beispielsweise in der Buchungsmaske in einem Dropdown-Menü angezeigt, wenn derzeit keine Option ausgewählt wurde.
+                              info:
+                                type: string
+                                description: Die Informationen zur Gruppierung. Dieser Text wird in der Buchungsmaske in einem Info-Tooltip angezeigt.
+                              obligatorisch:
+                                type: boolean
+                                description: Gibt an, ob die Gruppierung obligatorisch ist. Falls ja, muss der Kunde bei der Buchung eine Optionen bzw. die Optionen auswählen.
+                              reihenfolge:
+                                type: integer
+                                description: Die Reihenfolge der Gruppierung.
+                    links:
+                      type: object
+                      description: Links weitere API Abfragen.
+                      properties:
+                        reiserabatte_url:
+                          type: string
+                          description: Die URL zum Abrufen der Reiserabatte des Termins.
+                        destination_url:
+                          type: string
+                          description: Die URL das Abrufen der Destinations-Daten der Destination des Termins.
+                    relationships:
+                      type: object
+                      description: Relationships zu anderen Objekten.
+                      properties:
+                        verpflegungsoptionen:
+                          type: object
+                          description: Verpflegungsoptionen für den Termin.
+                        unterbringungsoptionen:
+                          type: object
+                          description: Unterbringungsoptionen für den Termin.
+                        zubuchbareleistungen:
+                          type: object
+                          description: Zubuchbare Leistungen für den Termin.
+                        abfahrten:
+                          type: object
+                          description: An- Abreiseoptionen für den Termin.
+                        reiserabatte:
+                          type: object
+                          description: Reiserabatte für den Termin.
+              included:
+                type: array
+                description: Inkludierte Objekte.
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: Die ID des inkludierten Objekts.
+                    type:
+                      type: string
+                      description: Der Typ des inkludierten Objekts.
+                    attributes:
+                      type: object
+                      description: Die Attribute des inkludierten Objekts.
+                      properties:
+                        name:
+                          type: string
+                          description: Der Name des inkludierten Objekts.
+                        beschreibung:
+                          type: string
+                          description: Die Beschreibung des inkludierten Objekts.
+                        zimmerart:
+                          type: string
+                          description: Die Zimmerart des inkludierten Objekts.
+                        preis:
+                          type: string
+                          description: Der Preis des inkludierten Objekts.
+                    meta:
+                      type: object
+                      description: Metadaten des inkludierten Objekts.
+                      properties:
+                        updated_at:
+                          type: string
+                          description: Das Datum der letzten Aktualisierung des Objekts.
+                        type:
+                          type: string
+                          description: Der Typ des Objekts.
+          example:
+            data:
+              - id: "29447"
+                type: "termin"
+                attributes:
+                  id: 29447
+                  kurzform: "24-496-06"
+                  von: "09.08.2024"
+                  bis: "18.08.2024"
+                  naechte: 7
+                  plaetze: "> 10"
+                  warteliste: false
+                  preis: "629.0"
+                  alter_von: null
+                  alter_bis: null
+                  rabattiert: true
+                  skitage: null
+                  zusatz_info_1: null
+                  zusatz_info_2: null
+                  gruppierungen: null
+                links:
+                  reiserabatte_url: "https://my.camps.digital/api/v1/reiserabatte/index?termin_id=29447"
+                  destination_url: "https://my.camps.digital/api/v1/destinationen/show?id=496"
+                relationships:
+                  verpflegungsoptionen:
+                    data:
+                      - id: "34127"
+                        type: "verpflegungsoption"
+                  unterbringungsoptionen:
+                    data:
+                      - id: "43625"
+                        type: "unterbringungsoption"
+                  zubuchbareleistungen:
+                    data: []
+                  abfahrten:
+                    data:
+                      - id: "84251888"
+                        type: "abfahrt"
+                      - id: "84251889"
+                        type: "abfahrt"
+                  reiserabatte:
+                    data:
+                      - id: "1724605"
+                        type: "reiserabatt"
 
 paths:
   /api/open_v1/products/index:
@@ -387,216 +599,7 @@ paths:
         - $ref: '#/components/parameters/locale'
       responses:
         '200':
-          description: Erfolgreiche Abfrage der Termininformationen.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: string
-                          description: Die ID des Termins.
-                        type:
-                          type: string
-                          description: Der Typ des Termins.
-                        attributes:
-                          type: object
-                          description: Die Attribute des Termins.
-                          properties:
-                            id:
-                              type: integer
-                              description: Die ID des Termins.
-                            kurzform:
-                              type: string
-                              description: Die Kurzform des Termins. Diese ID wird dem Kunden angezeigt.
-                            von:
-                              type: string
-                              description: Das Startdatum des Termins.
-                            bis:
-                              type: string
-                              description: Das Enddatum des Termins.
-                            naechte:
-                              type: integer
-                              nullable: true
-                              description: Die Anzahl der Übernachtungen.
-                            plaetze:
-                              type: string
-                              description: Die Anzahl der verfügbaren Plätze.
-                            warteliste:
-                              type: boolean
-                              description: Gibt an, ob eine Warteliste aktiviert ist.
-                            preis:
-                              type: string
-                              description: Der Preis des Termins.
-                            alter_von:
-                              type: integer
-                              nullable: true
-                              description: Das Mindestalter für den Termin.
-                            alter_bis:
-                              type: integer
-                              nullable: true
-                              description: Das Höchstalter für den Termin.
-                            rabattiert:
-                              type: boolean
-                              description: Gibt an, ob der Termin rabattiert ist.
-                            skitage:
-                              type: integer
-                              nullable: true
-                              description: Die Anzahl der Skitage für den Termin.
-                            zusatz_info_1:
-                              type: string
-                              nullable: true
-                              description: Zusätzliche Information 1.
-                            zusatz_info_2:
-                              type: string
-                              nullable: true
-                              description: Zusätzliche Information 2.
-                            gruppierungen:
-                              type: array
-                              description: Gruppierungen von Buchungsoptionen im Termin.
-                              items:
-                                type: object
-                                properties:
-                                  id:
-                                    type: integer
-                                    description: Die ID der Gruppierung.
-                                  name:
-                                    type: string
-                                    description: Der Name der Gruppierung.
-                                  titel:
-                                    type: string
-                                    description: Der Titel der Gruppierung.
-                                  label:
-                                    type: string
-                                    description: Das Label der Gruppierung.
-                                  placeholder:
-                                    type: string
-                                    description: Der Placeholder-Text der Gruppierung. Dieser Text wird beispielsweise in der Buchungsmaske in einem Dropdown-Menü angezeigt, wenn derzeit keine Option ausgewählt wurde.
-                                  info:
-                                    type: string
-                                    description: Die Informationen zur Gruppierung. Dieser Text wird in der Buchungsmaske in einem Info-Tooltip angezeigt.
-                                  obligatorisch:
-                                    type: boolean
-                                    description: Gibt an, ob die Gruppierung obligatorisch ist. Falls ja, muss der Kunde bei der Buchung eine Optionen bzw. die Optionen auswählen.
-                                  reihenfolge:
-                                    type: integer
-                                    description: Die Reihenfolge der Gruppierung.
-                        links:
-                          type: object
-                          description: Links weitere API Abfragen.
-                          properties:
-                            reiserabatte_url:
-                              type: string
-                              description: Die URL zum Abrufen der Reiserabatte des Termins.
-                            destination_url:
-                              type: string
-                              description: Die URL das Abrufen der Destinations-Daten der Destination des Termins.
-                        relationships:
-                          type: object
-                          description: Relationships zu anderen Objekten.
-                          properties:
-                            verpflegungsoptionen:
-                              type: object
-                              description: Verpflegungsoptionen für den Termin.
-                            unterbringungsoptionen:
-                              type: object
-                              description: Unterbringungsoptionen für den Termin.
-                            zubuchbareleistungen:
-                              type: object
-                              description: Zubuchbare Leistungen für den Termin.
-                            abfahrten:
-                              type: object
-                              description: An- Abreiseoptionen für den Termin.
-                            reiserabatte:
-                              type: object
-                              description: Reiserabatte für den Termin.
-                  included:
-                    type: array
-                    description: Inkludierte Objekte.
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: string
-                          description: Die ID des inkludierten Objekts.
-                        type:
-                          type: string
-                          description: Der Typ des inkludierten Objekts.
-                        attributes:
-                          type: object
-                          description: Die Attribute des inkludierten Objekts.
-                          properties:
-                            name:
-                              type: string
-                              description: Der Name des inkludierten Objekts.
-                            beschreibung:
-                              type: string
-                              description: Die Beschreibung des inkludierten Objekts.
-                            zimmerart:
-                              type: string
-                              description: Die Zimmerart des inkludierten Objekts.
-                            preis:
-                              type: string
-                              description: Der Preis des inkludierten Objekts.
-                        meta:
-                          type: object
-                          description: Metadaten des inkludierten Objekts.
-                          properties:
-                            updated_at:
-                              type: string
-                              description: Das Datum der letzten Aktualisierung des Objekts.
-                            type:
-                              type: string
-                              description: Der Typ des Objekts.
-              example:
-                data:
-                  - id: "29447"
-                    type: "termin"
-                    attributes:
-                      id: 29447
-                      kurzform: "24-496-06"
-                      von: "09.08.2024"
-                      bis: "18.08.2024"
-                      naechte: 7
-                      plaetze: "> 10"
-                      warteliste: false
-                      preis: "629.0"
-                      alter_von: null
-                      alter_bis: null
-                      rabattiert: true
-                      skitage: null
-                      zusatz_info_1: null
-                      zusatz_info_2: null
-                      gruppierungen: null
-                    links:
-                      reiserabatte_url: "https://my.camps.digital/api/v1/reiserabatte/index?termin_id=29447"
-                      destination_url: "https://my.camps.digital/api/v1/destinationen/show?id=496"
-                    relationships:
-                      verpflegungsoptionen:
-                        data:
-                          - id: "34127"
-                            type: "verpflegungsoption"
-                      unterbringungsoptionen:
-                        data:
-                          - id: "43625"
-                            type: "unterbringungsoption"
-                      zubuchbareleistungen:
-                        data: []
-                      abfahrten:
-                        data:
-                          - id: "84251888"
-                            type: "abfahrt"
-                          - id: "84251889"
-                            type: "abfahrt"
-                      reiserabatte:
-                        data:
-                          - id: "1724605"
-                            type: "reiserabatt"
+          $ref: '#/components/responses/termin-show-200'
       security:
         - CORS: []
   /api/v1/destinationen/show?user=CORS:
