@@ -374,7 +374,7 @@ paths:
                         summe: "50.0"
   /api/v1/termine/show?user=CORS:
     get:
-      summary: Daten eines Termins abrufen
+      summary: Termin Details
       description: Abrufen von detaillierten Informationen zu einem Termin.
       parameters:
         - in: query
@@ -599,12 +599,17 @@ paths:
                             type: "reiserabatt"
       security:
         - CORS: []
-  /api/v1/destinationen/show:
+  /api/v1/destinationen/show?user=CORS:
     parameters:
+      - in: query
+        name: id
+        required: true
+        description: Die ID der Destination
+        schema:
+          type: integer
       - $ref: '#/components/parameters/locale'
-      - $ref: '#/components/parameters/destination-id'
     get:
-      summary: "Destinationen Details abrufen"
+      summary: "Destinationen Details"
       description: "Abrufen von detaillierten Informationen zu einer Destination."
       responses:
         '200':
@@ -908,9 +913,137 @@ paths:
                       stadt: "Zell am See"
                       latitude: "47.297"
                       longitude: "12.7911"
-                      ... # Add other attributes as in the example response provided
+                      geo_url: null
+                      saisons:
+                        - "Sommer"
+                      daycamp: false
+                      titel: "Actioncamp Alpensommer Zell am See 8-10 Jahre"
+                      ort: "Zell am See"
+                      zahlungsmethoden:
+                        - "Rechnung"
+                      alter_von: 8
+                      ausnahme_alter_von: null
+                      alter_bis: 10
+                      ausnahme_alter_bis: 1
+                      alter_restriktiv: null
+                      hm_versicherung: true
+                      anreise_filter: true
+                      ferien_filter: true
+                      reisedauer_filter: true
+                      zusatz_1_online: null
+                      zusatz_2_online: null
+                      zusatz_titel_1: null
+                      zusatz_titel_2: null
+                      anreise_spalte_online: true
+                      tage_spalte_online: true
+                      skitage_online: false
+                      wintersport: null
+                      golflevel: null
+                      schwimmlevel: null
+                      shirt: null
+                      medikation: null
+                      krankheiten: null
+                      allergien: null
+                      verpflegungswunsch: null
+                      verpflegung_abfragen: true
+                      gekoppelte_an_abreise: true
+                      divers_anzeigen: false
+                      share_button_anzeigen: true
+                      bestpreis_anzeigen: true
+                      termin_wechseln_erlauben: true
+                      mitfahrer_abfragen: true
+                      bezahlungsoptionen_ausblenden: false
+                      eltern_abfragen: true
+                      anreise_abfragen: true
+                      eigeneanreise_text: "Zwischen 8:30 Uhr - 9:30 Uhr oder zwischen 15:00 Uhr und 16:00 Uhr"
+                      eigeneabreise_text: "Ganztägig möglich, spätestens um 19 Uhr - wir bitten um kurze Abmeldung"
+                      unterkunft_abfragen: true
+                      festnetz_abfragen: null
+                      geburtsort_abfragen: null
+                      ausweisnummer_abfragen: null
+                      schulform_abfragen: null
+                      schulform_auswahl: [[]]
+                      zusatzbedingung_abfragen: false
+                      zusatzbedingung: null
+                      englischkenntnisse_abfragen: null
+                      woher_abfragen: null
+                      woher_auswahl: null
+                      alter_pruefen: true
+                      buchungsbewertung_abfragen: null
+                      googlebewertung_abfragen: null
+                      rechnungsadresse_abfragen: null
+                      belegungswunsch_abfragen: true
+                      gutscheincode_abfragen: true
+                      gallery_webp: "https://s3-eu-central-1.amazonaws.com/wwdig-images/reisebilder/bilds/000/009/630/gallery_webp/sommer_freunde_wandern.webp?1638356191"
+                      detail_big_webp: "https://s3-eu-central-1.amazonaws.com/wwdig-images/reisebilder/bilds/000/009/056/detail_big_webp/jugendreise-sommer-oesterreich-bananaboot.webp?1546861889"
+                      hauptsprache: "de"
+                      zusatz_sprachen: null
+                      keyfeatures:
+                        - "Hochseilgarten"
+                        - "Obst Flatrate"
+                        - "FreeFall-Rutsche"
+                        - "Beachsoccer und Beachvolleyball"
+                      termin_ids:
+                        - 29424
+                        - 29429
+                        - 29437
+                        - 29442
+                        - 29443
+                        - 29447
+                        - 29451
+                        - 29457
+                        - 29459
+                        - 29460
+                        - 29461
+                        - 29462
+                        - 29463
+                        - 29464
+                        - 29465
+                        - 29498
+                        - 29499
+                      individuelle_tabs_online: true
+                      individuelle_tabs:
+                        - id: 215
+                          name: "1 Woche"
+                          termin_ids:
+                            - "28988"
+                            - "28990"
+                            - "28992"
+                            - "28993"
+                            - "28994"
+                            - "28995"
+                            - "29424"
+                            - "29429"
+                            - "29437"
+                            - "29442"
+                            - "29443"
+                            - "29447"
+                            - "29451"
+                            - "29457"
+                            - "29498"
+                          reihenfolge: null
+                          destination_id: 496
+                          aktiv: true
+                        - id: 217
+                          name: "2 Wochen"
+                          termin_ids:
+                            - "29026"
+                            - "29027"
+                            - "29032"
+                            - "29459"
+                            - "29460"
+                            - "29461"
+                            - "29462"
+                            - "29463"
+                            - "29464"
+                            - "29465"
+                            - "29499"
+                          reihenfolge: null
+                          destination_id: 496
+                          aktiv: false
                     links:
                       anbieter_url: "https://my.camps.digital/api/v1/anbieter/show?destination_id=496&anbieter_id=2"
                       url: "https://my.camps.digital/api/v1/termine/index?destination_id=496"
+
       security:
         - CORS: []
