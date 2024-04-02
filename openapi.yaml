@@ -994,149 +994,429 @@ paths:
                           url:
                             type: string
                             description: URL zur Terminübersicht der Destination
-                example:
-                  data:
-                    id: "496"
-                    type: "destination"
-                    attributes:
-                      id: 496
-                      anlagenname: "Club Kitzsteinhorn"
-                      strasse: "Gletschermoosstr. 12"
-                      plz: "5700"
-                      stadt: "Zell am See"
-                      latitude: "47.297"
-                      longitude: "12.7911"
-                      geo_url: null
-                      saisons:
-                        - "Sommer"
-                      daycamp: false
-                      titel: "Actioncamp Alpensommer Zell am See 8-10 Jahre"
-                      ort: "Zell am See"
-                      zahlungsmethoden:
-                        - "Rechnung"
-                      alter_von: 8
-                      ausnahme_alter_von: null
-                      alter_bis: 10
-                      ausnahme_alter_bis: 1
-                      alter_restriktiv: null
-                      hm_versicherung: true
-                      anreise_filter: true
-                      ferien_filter: true
-                      reisedauer_filter: true
-                      zusatz_1_online: null
-                      zusatz_2_online: null
-                      zusatz_titel_1: null
-                      zusatz_titel_2: null
-                      anreise_spalte_online: true
-                      tage_spalte_online: true
-                      skitage_online: false
-                      wintersport: null
-                      golflevel: null
-                      schwimmlevel: null
-                      shirt: null
-                      medikation: null
-                      krankheiten: null
-                      allergien: null
-                      verpflegungswunsch: null
-                      verpflegung_abfragen: true
-                      gekoppelte_an_abreise: true
-                      divers_anzeigen: false
-                      share_button_anzeigen: true
-                      bestpreis_anzeigen: true
-                      termin_wechseln_erlauben: true
-                      mitfahrer_abfragen: true
-                      bezahlungsoptionen_ausblenden: false
-                      eltern_abfragen: true
-                      anreise_abfragen: true
-                      eigeneanreise_text: "Zwischen 8:30 Uhr - 9:30 Uhr oder zwischen 15:00 Uhr und 16:00 Uhr"
-                      eigeneabreise_text: "Ganztägig möglich, spätestens um 19 Uhr - wir bitten um kurze Abmeldung"
-                      unterkunft_abfragen: true
-                      festnetz_abfragen: null
-                      geburtsort_abfragen: null
-                      ausweisnummer_abfragen: null
-                      schulform_abfragen: null
-                      schulform_auswahl: [[]]
-                      zusatzbedingung_abfragen: false
-                      zusatzbedingung: null
-                      englischkenntnisse_abfragen: null
-                      woher_abfragen: null
-                      woher_auswahl: null
-                      alter_pruefen: true
-                      buchungsbewertung_abfragen: null
-                      googlebewertung_abfragen: null
-                      rechnungsadresse_abfragen: null
-                      belegungswunsch_abfragen: true
-                      gutscheincode_abfragen: true
-                      gallery_webp: "https://s3-eu-central-1.amazonaws.com/wwdig-images/reisebilder/bilds/000/009/630/gallery_webp/sommer_freunde_wandern.webp?1638356191"
-                      detail_big_webp: "https://s3-eu-central-1.amazonaws.com/wwdig-images/reisebilder/bilds/000/009/056/detail_big_webp/jugendreise-sommer-oesterreich-bananaboot.webp?1546861889"
-                      hauptsprache: "de"
-                      zusatz_sprachen: null
-                      keyfeatures:
-                        - "Hochseilgarten"
-                        - "Obst Flatrate"
-                        - "FreeFall-Rutsche"
-                        - "Beachsoccer und Beachvolleyball"
-                      termin_ids:
-                        - 29424
-                        - 29429
-                        - 29437
-                        - 29442
-                        - 29443
-                        - 29447
-                        - 29451
-                        - 29457
-                        - 29459
-                        - 29460
-                        - 29461
-                        - 29462
-                        - 29463
-                        - 29464
-                        - 29465
-                        - 29498
-                        - 29499
-                      individuelle_tabs_online: true
-                      individuelle_tabs:
-                        - id: 215
-                          name: "1 Woche"
-                          termin_ids:
-                            - "28988"
-                            - "28990"
-                            - "28992"
-                            - "28993"
-                            - "28994"
-                            - "28995"
-                            - "29424"
-                            - "29429"
-                            - "29437"
-                            - "29442"
-                            - "29443"
-                            - "29447"
-                            - "29451"
-                            - "29457"
-                            - "29498"
-                          reihenfolge: null
-                          destination_id: 496
-                          aktiv: true
-                        - id: 217
-                          name: "2 Wochen"
-                          termin_ids:
-                            - "29026"
-                            - "29027"
-                            - "29032"
-                            - "29459"
-                            - "29460"
-                            - "29461"
-                            - "29462"
-                            - "29463"
-                            - "29464"
-                            - "29465"
-                            - "29499"
-                          reihenfolge: null
-                          destination_id: 496
-                          aktiv: false
-                    links:
-                      anbieter_url: "https://my.camps.digital/api/v1/anbieter/show?destination_id=496&anbieter_id=2"
-                      url: "https://my.camps.digital/api/v1/termine/index?destination_id=496"
-
+              examples:
+                Beispiel-1:
+                  summary: "Beispiel 1"
+                  value:
+                    data:
+                      id: "496"
+                      type: "destination"
+                      attributes:
+                        id: 496
+                        anlagenname: "Club Kitzsteinhorn"
+                        strasse: "Gletschermoosstr. 12"
+                        plz: "5700"
+                        stadt: "Zell am See"
+                        latitude: "47.297"
+                        longitude: "12.7911"
+                        geo_url: null
+                        saisons:
+                          - "Sommer"
+                        daycamp: false
+                        titel: "Actioncamp Alpensommer Zell am See 8-10 Jahre"
+                        ort: "Zell am See"
+                        zahlungsmethoden:
+                          - "Rechnung"
+                        alter_von: 8
+                        ausnahme_alter_von: null
+                        alter_bis: 10
+                        ausnahme_alter_bis: 1
+                        alter_restriktiv: null
+                        hm_versicherung: true
+                        anreise_filter: true
+                        ferien_filter: true
+                        reisedauer_filter: true
+                        zusatz_1_online: null
+                        zusatz_2_online: null
+                        zusatz_titel_1: null
+                        zusatz_titel_2: null
+                        anreise_spalte_online: true
+                        tage_spalte_online: true
+                        skitage_online: false
+                        wintersport: null
+                        golflevel: null
+                        schwimmlevel: null
+                        shirt: null
+                        medikation: null
+                        krankheiten: null
+                        allergien: null
+                        verpflegungswunsch: null
+                        verpflegung_abfragen: true
+                        gekoppelte_an_abreise: true
+                        divers_anzeigen: false
+                        share_button_anzeigen: true
+                        bestpreis_anzeigen: true
+                        termin_wechseln_erlauben: true
+                        mitfahrer_abfragen: true
+                        bezahlungsoptionen_ausblenden: false
+                        eltern_abfragen: true
+                        anreise_abfragen: true
+                        eigeneanreise_text: "Zwischen 8:30 Uhr - 9:30 Uhr oder zwischen 15:00 Uhr und 16:00 Uhr"
+                        eigeneabreise_text: "Ganztägig möglich, spätestens um 19 Uhr - wir bitten um kurze Abmeldung"
+                        unterkunft_abfragen: true
+                        festnetz_abfragen: null
+                        geburtsort_abfragen: null
+                        ausweisnummer_abfragen: null
+                        schulform_abfragen: null
+                        schulform_auswahl: [[]]
+                        zusatzbedingung_abfragen: false
+                        zusatzbedingung: null
+                        englischkenntnisse_abfragen: null
+                        woher_abfragen: null
+                        woher_auswahl: null
+                        alter_pruefen: true
+                        buchungsbewertung_abfragen: null
+                        googlebewertung_abfragen: null
+                        rechnungsadresse_abfragen: null
+                        belegungswunsch_abfragen: true
+                        gutscheincode_abfragen: true
+                        gallery_webp: "https://s3-eu-central-1.amazonaws.com/wwdig-images/reisebilder/bilds/000/009/630/gallery_webp/sommer_freunde_wandern.webp?1638356191"
+                        detail_big_webp: "https://s3-eu-central-1.amazonaws.com/wwdig-images/reisebilder/bilds/000/009/056/detail_big_webp/jugendreise-sommer-oesterreich-bananaboot.webp?1546861889"
+                        hauptsprache: "de"
+                        zusatz_sprachen: null
+                        keyfeatures:
+                          - "Hochseilgarten"
+                          - "Obst Flatrate"
+                          - "FreeFall-Rutsche"
+                          - "Beachsoccer und Beachvolleyball"
+                        termin_ids:
+                          - 29424
+                          - 29429
+                          - 29437
+                          - 29442
+                          - 29443
+                          - 29447
+                          - 29451
+                          - 29457
+                          - 29459
+                          - 29460
+                          - 29461
+                          - 29462
+                          - 29463
+                          - 29464
+                          - 29465
+                          - 29498
+                          - 29499
+                        individuelle_tabs_online: true
+                        individuelle_tabs:
+                          - id: 215
+                            name: "1 Woche"
+                            termin_ids:
+                              - "28988"
+                              - "28990"
+                              - "28992"
+                              - "28993"
+                              - "28994"
+                              - "28995"
+                              - "29424"
+                              - "29429"
+                              - "29437"
+                              - "29442"
+                              - "29443"
+                              - "29447"
+                              - "29451"
+                              - "29457"
+                              - "29498"
+                            reihenfolge: null
+                            destination_id: 496
+                            aktiv: true
+                          - id: 217
+                            name: "2 Wochen"
+                            termin_ids:
+                              - "29026"
+                              - "29027"
+                              - "29032"
+                              - "29459"
+                              - "29460"
+                              - "29461"
+                              - "29462"
+                              - "29463"
+                              - "29464"
+                              - "29465"
+                              - "29499"
+                            reihenfolge: null
+                            destination_id: 496
+                            aktiv: false
+                      links:
+                        anbieter_url: "https://my.camps.digital/api/v1/anbieter/show?destination_id=496&anbieter_id=2"
+                        url: "https://my.camps.digital/api/v1/termine/index?destination_id=496"
+                Beispiel-2:
+                  summary: "Beispiel 2"
+                  value:
+                    data:
+                      id: '260'
+                      type: destination
+                      attributes:
+                        id: 260
+                        anlagenname: St. Peter Ording Nordsee
+                        strasse: Barcelona 11
+                        plz: '1111'
+                        stadt: Haltern
+                        latitude: '41.3641'
+                        longitude: '2.1562'
+                        geo_url: 'https://goo.gl/maps/RjURCSPCXaitEoKb8'
+                        saisons:
+                          - Sommer
+                        daycamp: false
+                        titel: 'TanzCamp Haltern Niederrhein, NRW'
+                        ort: Haltern
+                        zahlungsmethoden:
+                          - Überweisung
+                          - SepaManuell
+                          - StripeCcard
+                          - StripeGiropay
+                          - StripeSofort
+                          - PaypalNativ
+                          - Rechnung
+                        alter_von: 10
+                        ausnahme_alter_von: -1
+                        alter_bis: 14
+                        ausnahme_alter_bis: 1
+                        alter_restriktiv: false
+                        hm_versicherung: true
+                        anreise_filter: true
+                        ferien_filter: true
+                        reisedauer_filter: true
+                        zusatz_1_online: false
+                        zusatz_2_online: null
+                        zusatz_titel_1: null
+                        zusatz_titel_2: null
+                        anreise_spalte_online: true
+                        tage_spalte_online: true
+                        skitage_online: false
+                        wintersport:
+                          sportaten_titel: 'Sportart:'
+                          sportarten:
+                            - Ski
+                            - Snowboard
+                          stufen_titel: 'Level:'
+                          stufen:
+                            - Stufe Weiß (Anfänger 1)
+                            - Stufe Grün (Anfänger 2)
+                            - Stufe Blau (Fortgeschrittener 1)
+                            - Stufe Rot (Fortgeschrittener 2)
+                            - Stufe Schwarz (Fortgeschritten 3)
+                            - Stufe Tiefschwarz (Profi)
+                          stufen_info_titel: Was ist mein Level?
+                          stufen_info: >-
+                            Wie ist dein Fahrkönnen?<br><br><b>Stufe Weiß (Anfänger 1)</b><br>Du
+                            wirst zum ersten Mal auf Skiern bzw. einem Snowboard
+                            stehen!<br><br><b>Stufe Grün (Anfänger 2)</b><br>Du hast schonmal auf
+                            Skiern bzw. einem Snowboard gestanden. Du weißt, wie man einen Lift
+                            benutzt, kannst in Pflugstellung leichte Abfahrten machen und kommst
+                            sicher zum Stehen. (Snowboard: Zick-Zack-Rutschen)<br><br><b>Stufe Blau
+                            (Fortgeschrittener 1)</b><br>Du fährst blaue Pisten sicher runter und
+                            kannst teilweise schon parallel fahren. (Snowboard: Gewicht verlagern
+                            und Driftschwünge)<br><br><b>Stufe Rot (Fortgeschrittener 2)</b><br>Du
+                            fährst rote Pisten sicher runter und hast eine parallele Skiführung.
+                            (Snowboard: Kippschwung und Carven)<br><br><b>Stufe Schwarz
+                            (Fortgeschritten 3)</b><br>Du fährst schwarze Pisten sicher runter und
+                            hast eine saubere Technik.<br><br><b>Stufe Tiefschwarz (Profi)</b><br>Du
+                            fährst alle Pisten sicher runter- egal, ob Tiefschnee oder frisch
+                            präpariert.<br>
+                        golflevel:
+                          titel: 'Handicap:'
+                          info: >-
+                            Bei uns sind Teilnehmer mit jedem Handicap, egal ob Profi oder Anfänger
+                            herzlich willkommen! Bitte nenne uns dein Handicap, damit wir dein Kurs
+                            richtig vorbereiten können.
+                          optionen:
+                            - Anfänger ohne Handicap
+                            - 0 - 9
+                            - 10 - 18
+                            - 19 - 36
+                            - 37+
+                        schwimmlevel:
+                          titel: 'Schwimmen:'
+                          info: >-
+                            Bitte teile uns dein Schwimmlevel mit. Es ist nicht erfoderlich die DLRG
+                            Prüfungen absolviert zu haben, sondern es geht um eine Einschätzung des
+                            Levels gemäß der DLRG Richtlinie.
+                          optionen:
+                            - Nichtschwimmer
+                            - Seepferdchen (Frühschwimmer)
+                            - Bronze (Freischwimmer)
+                            - Silber (Guter Schwimmer)
+                            - Gold (Sehr guter Schwimmer)
+                          hilfe_titel: Was ist dein Schwimmlevel?
+                          hilfe_info: >-
+                            Wie schätzt du dein Schwimmlevel nach DLRG Richtlinien
+                            ein?<br><br><b>Seepferdchen (Frühschwimmer)</b><br>Sprung vom Beckenrand
+                            mit anschließendem 25 m Schwimmen in einer Schwimmart in Bauch- oder
+                            Rückenlage. Heraufholen eines Gegenstandes mit den Händen aus
+                            schultertiefem Wasser.<br><br><b>Bronze (Freischwimmer)</b><br>Einmal
+                            ca. 2 m Tieftauchen von der Wasseroberfläche mit Heraufholen eines
+                            Gegenstandes. Ein Sprung von 1 m-Brett, ein Sprung kopfwärts vom
+                            Beckenrand und 15 Minuten Schwimmen. In dieser Zeit sind mindestens 200
+                            m zurückzulegen.<br><br><b>Silber (Guter Schwimmer)</b><br>Sprung
+                            kopfwärts vom Beckenrand und 20 Minuten Schwimmen, in dieser Zeit sind
+                            mindestens 400 m zurückzulegen. 10 m Streckentauchen mit Abstoßen vom
+                            Beckenrand im Wasser. Zweimal ca. 2 m Tieftauchen von der
+                            Wasseroberfläche mit Heraufholen je eines Gegenstandes. Sprung aus 3 m
+                            Höhe oder zwei verschiedene Sprünge aus 1 m Höhe. <br><br><b>Gold (Sehr
+                            guter Schwimmer)</b><br>Sprung kopfwärts vom Beckenrand und 30 Minuten
+                            Schwimmen, in dieser Zeit sind mindestens 800 m zurückzulegen.
+                            Startsprung und 25 m Kraulschwimmen, 50 m Rückenschwimmen mit
+                            Grätschschwung ohne Armtätigkeit oder Rückenkraulschwimmen. 10 m
+                            Streckentauchen. Dreimal 2 m Tieftauchen mit Heraufholen je eines
+                            Gegenstandes innerhalb von 3 Minuten. Ein Sprung aus 3 m Höhe. 50 m
+                            Transportschwimmen.
+                        shirt:
+                          titel: 'T-Shirt:'
+                          optionen:
+                            - '116'
+                            - '128'
+                            - '140'
+                            - '152'
+                            - '164'
+                            - Men XS
+                            - Men S
+                            - Men M
+                            - Men L
+                            - Men XL
+                            - Men XXL
+                            - Woman XS
+                            - Woman S
+                            - Woman M
+                            - Woman L
+                            - Woman XL
+                            - Woman XXL
+                        medikation:
+                          titel: 'Dauermedikation:'
+                          info: >-
+                            Bitte gib hier die Medikamente an, welche dauerhaft eingenommen werden.
+                            Diese Informationen sind sehr wichtig und werden von uns besonders
+                            sensibel und verantwortungsbewusst behandelt.
+                          id: 701
+                        krankheiten:
+                          titel: 'Krankheiten und Störungen:'
+                          info: >-
+                            Bitte gib hier Krankenheiten und Störungen an. Diese Informationen sind
+                            sehr wichtig und werden von uns besonders sensibel und
+                            verantwortungsbewusst behandelt.
+                          id: 705
+                        allergien: null
+                        verpflegungswunsch:
+                          titel: 'Verpflegungswunsch:'
+                          optionen:
+                            - - - kein_verpflegungswunsch
+                                - Keine Verpflegungswünsche
+                              - - vegetarisch
+                                - Vegetarisch
+                              - - vegan
+                                - Vegan
+                              - - laktosefrei
+                                - Laktosefrei
+                              - - keine_milchprodukte
+                                - Keine Milchprodukte
+                              - - glutenfrei
+                                - Glutenfrei
+                              - - fructose
+                                - Fructose
+                              - - nussfrei
+                                - Nussfrei
+                              - - kein_schweinefleisch
+                                - Kein Schweinefleisch
+                        verpflegung_abfragen: true
+                        gekoppelte_an_abreise: true
+                        divers_anzeigen: false
+                        share_button_anzeigen: true
+                        bestpreis_anzeigen: true
+                        termin_wechseln_erlauben: true
+                        mitfahrer_abfragen: true
+                        bezahlungsoptionen_ausblenden: false
+                        eltern_abfragen: true
+                        anreise_abfragen: true
+                        eigeneanreise_text: Bitte um 14 Uhr anreisen
+                        eigeneabreise_text: Bitte um 10 Uhr abholen
+                        unterkunft_abfragen: true
+                        festnetz_abfragen: false
+                        geburtsort_abfragen: true
+                        ausweisnummer_abfragen: true
+                        schulform_abfragen: true
+                        schulform_auswahl:
+                          - - - grundschule
+                              - Grundschule
+                            - - realschule
+                              - Realschule
+                            - - gymnasium
+                              - Gymnasium
+                            - - internationale
+                              - Internationale Schule
+                            - - sonstige
+                              - Sonstige
+                        zusatzbedingung_abfragen: true
+                        zusatzbedingung: >-
+                          Ich habe die <a href="https://www.google.de/">Zusatzvereinbarung</a>
+                          verstanden. 
+                        englischkenntnisse_abfragen: true
+                        woher_abfragen: true
+                        woher_auswahl: |
+                          ---
+                          - bestandkunde
+                          - newsletter
+                          - empfehlung
+                          - googel_werbeanzeige
+                          - google_suchtreffer
+                          - instagram
+                          - facebook
+                          - printwerbung
+                          - sonstiges
+                        alter_pruefen: true
+                        buchungsbewertung_abfragen: true
+                        googlebewertung_abfragen: true
+                        rechnungsadresse_abfragen: true
+                        belegungswunsch_abfragen: true
+                        gutscheincode_abfragen: true
+                        gallery_webp: >-
+                          https://s3-eu-central-1.amazonaws.com/wwdig-images/reisebilder/bilds/000/009/754/gallery_webp/Englischcamps_camps_for_friends_2019_%2813%29.webp?1669131249
+                        detail_big_webp: >-
+                          https://s3-eu-central-1.amazonaws.com/wwdig-images/reisebilder/bilds/000/009/163/detail_big_webp/Klettern_01.webp?1553529308
+                        hauptsprache: de
+                        zusatz_sprachen:
+                          - en
+                        keyfeatures:
+                          - Fußballtunier
+                          - Eigener Pool
+                          - Beachsoccer
+                          - 25 Std. Training
+                          - Camptrikot
+                          - Barcelona Citytour Option
+                          - Ski
+                        termin_ids:
+                          - 29222
+                          - 29512
+                          - 30616
+                          - 30617
+                        individuelle_tabs_online: true
+                        individuelle_tabs:
+                          - id: 236
+                            name: 1 Woche
+                            termin_ids:
+                              - '12911'
+                              - '12912'
+                              - '12913'
+                              - '12914'
+                              - '28938'
+                              - '29222'
+                              - '29512'
+                              - '30617'
+                            reihenfolge: 1
+                            destination_id: 260
+                            aktiv: true
+                          - id: 237
+                            name: 2 Wochen
+                            termin_ids:
+                              - '12910'
+                              - '30616'
+                            reihenfolge: 2
+                            destination_id: 260
+                            aktiv: false
+                        original_url: 'https://www.oskar-lernt-englisch.de/sprachcamps/haltern-tanzcamp'
+                      links:
+                        anbieter_url: >-
+                          https://dev.wirtschaftswunder.digital/api/v1/anbieter/show?destination_id=260&anbieter_id=13
+                        url: >-
+                          https://dev.wirtschaftswunder.digital/api/v1/termine/index?destination_id=260
       security:
         - CORS: []
