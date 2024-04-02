@@ -755,7 +755,6 @@ paths:
                               stufen_info:
                                 type: string
                                 description: Informationen (Beischreibungen) zu den verschiedenen Stufen
-                          # TODO von hier
                           golflevel:
                             type: string
                             description: Golf-Level
