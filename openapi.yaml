@@ -142,7 +142,7 @@ components:
       schema:
         type: boolean
         example: true
-    _abfahrt:
+    _abfahrt_id:
       in: query
       name: user[hauptperson_attributes][buchungen_attributes][0][abfahrt_id]
       required: true
@@ -340,8 +340,9 @@ components:
       in: query
       name: hauptperson_attributes[strasse]
       required: true
-      description: Die Straße der Adresse des Reisenden.
+      description: Die Straße und Hausnummer der Adresse des Reisenden.
       schema:
+        example: "Musterstraße 1"
         type: string
     _land:
       in: query
@@ -496,8 +497,9 @@ components:
       in: query
       name: hauptperson_attributes[sonderadressen_attributes][0][strasse]
       required: false
-      description: Die Straße der Sonderadresse.
+      description: Die Straße und Hausnummer der Sonderadresse.
       schema:
+        example: "Teststraße 123"
         type: string
     _sonder_land:
       in: query
@@ -1940,63 +1942,239 @@ paths:
       tags:
         - "Geschlossene API"
       summary: "Buchung erstellen"
-      description: "Erstellt eine Buchung für eine Destination."
+      description: "Erstellt eine Buchung für eine Destination. **Wichtig: die Buchung wird mit einer Fahrt-ID angelegt, aber noch nicht als abgeschlossene Buchung gespeichert. Um sie als abgeschlossene Buchung zu speichern ist ein weiterer API Call notwendig.**"
       parameters:
+        # Hauptperson 
         - $ref: "#/components/parameters/_termin-id"
         - $ref: "#/components/parameters/_vendor"
         - $ref: "#/components/parameters/_vendor-quelle"
-        - $ref: "#components/parameters/_zbbl"
-        - $ref: "#components/parameters/_anfrage"
-        - $ref: "#components/parameters/_rabatte_attributes_name"
-        - $ref: "#components/parameters/_rabatte_attributes_summe"
-        - $ref: "#components/parameters/_rabatte_attributes_gutschein"
-        - $ref: "#components/parameters/_abfahrt_id"
-        - $ref: "#components/parameters/_rueckfahrt_id"
-        - $ref: "#components/parameters/_unterbringungsoption_id"
-        - $ref: "#components/parameters/_verpflegungsoption_id"
-        - $ref: "#components/parameters/_sportart"
-        - $ref: "#components/parameters/_stufe"
-        - $ref: "#components/parameters/_golflevel"
-        - $ref: "#components/parameters/_schwimmlevel"
-        - $ref: "#components/parameters/_shirt"
-        - $ref: "#components/parameters/_verpflegungswunsch"
-        - $ref: "#components/parameters/_woher"
-        - $ref: "#components/parameters/_notice_id"
-        - $ref: "#components/parameters/_notice_text"
-        - $ref: "#components/parameters/_vorname"
-        - $ref: "#components/parameters/_name"
-        - $ref: "#components/parameters/_geburtstag"
-        - $ref: "#components/parameters/_anrede_id"
-        - $ref: "#components/parameters/_divers"
-        - $ref: "#components/parameters/_nation"
-        - $ref: "#components/parameters/_freunde"
-        - $ref: "#components/parameters/_vorname_eltern"
-        - $ref: "#components/parameters/_name_eltern"
-        - $ref: "#components/parameters/_anrede_eltern_id"
-        - $ref: "#components/parameters/_strasse"
-        - $ref: "#components/parameters/_land"
-        - $ref: "#components/parameters/_plz"
-        - $ref: "#components/parameters/_ort"
-        - $ref: "#components/parameters/_mobil"
-        - $ref: "#components/parameters/_telefon"
-        - $ref: "#components/parameters/_englischkenntnisse_jahre"
-        - $ref: "#components/parameters/_englischkenntnisse_bedarf"
-        - $ref: "#components/parameters/_englischkenntnisse_note"
-        - $ref: "#components/parameters/_schulform"
-        - $ref: "#components/parameters/_schulklasse"
-        - $ref: "#components/parameters/_geburtsort"
-        - $ref: "#components/parameters/_ausweisnummer"
-        - $ref: "#components/parameters/_abw_rechnungsadresse"
-        - $ref: "#components/parameters/_art"
-        - $ref: "#components/parameters/_firma"
-        - $ref: "#components/parameters/_sonder_anrede_id"
-        - $ref: "#components/parameters/_sonder_vorname"
-        - $ref: "#components/parameters/_sonder_name"
-        - $ref: "#components/parameters/_sonder_strasse"
-        - $ref: "#components/parameters/_sonder_land"
-        - $ref: "#components/parameters/_sonder_plz"
-        - $ref: "#components/parameters/_sonder_ort"
-        - $ref: "#components/parameters/_sonder_email"
+        - $ref: "#/components/parameters/_zbbl"
+        - $ref: "#/components/parameters/_anfrage"
+        - $ref: "#/components/parameters/_rabatte_attributes_name"
+        - $ref: "#/components/parameters/_rabatte_attributes_summe"
+        - $ref: "#/components/parameters/_rabatte_attributes_gutschein"
+        - $ref: "#/components/parameters/_abfahrt_id"
+        - $ref: "#/components/parameters/_rueckfahrt_id"
+        - $ref: "#/components/parameters/_unterbringungsoption_id"
+        - $ref: "#/components/parameters/_verpflegungsoption_id"
+        - $ref: "#/components/parameters/_sportart"
+        - $ref: "#/components/parameters/_stufe"
+        - $ref: "#/components/parameters/_golflevel"
+        - $ref: "#/components/parameters/_schwimmlevel"
+        - $ref: "#/components/parameters/_shirt"
+        - $ref: "#/components/parameters/_verpflegungswunsch"
+        - $ref: "#/components/parameters/_woher"
+        - $ref: "#/components/parameters/_notice_id"
+        - $ref: "#/components/parameters/_notice_text"
+        - $ref: "#/components/parameters/_vorname"
+        - $ref: "#/components/parameters/_name"
+        - $ref: "#/components/parameters/_geburtstag"
+        - $ref: "#/components/parameters/_anrede_id"
+        - $ref: "#/components/parameters/_divers"
+        - $ref: "#/components/parameters/_nation"
+        - $ref: "#/components/parameters/_freunde"
+        - $ref: "#/components/parameters/_vorname_eltern"
+        - $ref: "#/components/parameters/_name_eltern"
+        - $ref: "#/components/parameters/_anrede_eltern_id"
+        - $ref: "#/components/parameters/_strasse"
+        - $ref: "#/components/parameters/_land"
+        - $ref: "#/components/parameters/_plz"
+        - $ref: "#/components/parameters/_ort"
+        - $ref: "#/components/parameters/_mobil"
+        - $ref: "#/components/parameters/_telefon"
+        - $ref: "#/components/parameters/_englischkenntnisse_jahre"
+        - $ref: "#/components/parameters/_englischkenntnisse_bedarf"
+        - $ref: "#/components/parameters/_englischkenntnisse_note"
+        - $ref: "#/components/parameters/_schulform"
+        - $ref: "#/components/parameters/_schulklasse"
+        - $ref: "#/components/parameters/_geburtsort"
+        - $ref: "#/components/parameters/_ausweisnummer"
+        - $ref: "#/components/parameters/_abw_rechnungsadresse"
+        - $ref: "#/components/parameters/_art"
+        - $ref: "#/components/parameters/_firma"
+        - $ref: "#/components/parameters/_sonder_anrede_id"
+        - $ref: "#/components/parameters/_sonder_vorname"
+        - $ref: "#/components/parameters/_sonder_name"
+        - $ref: "#/components/parameters/_sonder_strasse"
+        - $ref: "#/components/parameters/_sonder_land"
+        - $ref: "#/components/parameters/_sonder_plz"
+        - $ref: "#/components/parameters/_sonder_ort"
+        - $ref: "#/components/parameters/_sonder_email"
+        # Mitfahrer
+        - in: query
+          name: user[personen_attributes][0][_destroy]
+          required: false
+          description: Plflichtfeld für Mitfahrer. Muss für jeden Mitfahrer gesetzt werden.
+          schema:
+            enum:
+              - false
+            type: boolean
+        - $ref: "#/components/parameters/_termin-id"
+          name: user[personen_attributes][0][buchungen_attributes][0][termin_id]
+          required: false
+        - $ref: "#/components/parameters/_vendor"
+          name: user[personen_attributes][0][buchungen_attributes][0][vendor]
+          required: false
+        - $ref: "#/components/parameters/_vendor-quelle"
+          name: user[personen_attributes][0][buchungen_attributes][0][vendor_quelle]
+          required: false
+        - $ref: "#/components/parameters/_zbbl"
+          name: user[personen_attributes][0][buchungen_attributes][0][zubuchbareleistung_ids[]]
+          required: false
+        - $ref: "#/components/parameters/_anfrage"
+          name: user[personen_attributes][0][buchungen_attributes][0][anfrage]
+          required: false
+        - $ref: "#/components/parameters/_rabatte_attributes_name"
+          name: user[personen_attributes][0][buchungen_attributes][0][rabatte_attributes][0][name]
+          required: false
+        - $ref: "#/components/parameters/_rabatte_attributes_summe"
+          name: user[personen_attributes][0][buchungen_attributes][0][rabatte_attributes][0][summe]
+          required: false
+        - $ref: "#/components/parameters/_rabatte_attributes_gutschein"
+          name: user[personen_attributes][0][buchungen_attributes][0][rabatte_attributes][0][gutschein]
+          required: false
+        - $ref: "#/components/parameters/_abfahrt_id"
+          name: user[personen_attributes][0][buchungen_attributes][0][abfahrt_id]
+          required: false
+        - $ref: "#/components/parameters/_rueckfahrt_id"
+          name: user[personen_attributes][0][buchungen_attributes][0][rueckfahrt_id]
+          required: false
+        - $ref: "#/components/parameters/_unterbringungsoption_id"
+          name: user[personen_attributes][0][buchungen_attributes][0][unterbringungsoption_id]
+          required: false
+        - $ref: "#/components/parameters/_verpflegungsoption_id"
+          name: user[personen_attributes][0][buchungen_attributes][0][verpflegungsoption_id]
+          required: false
+        - $ref: "#/components/parameters/_sportart"
+          name: user[personen_attributes][0][buchungen_attributes][0][sportart]
+          required: false
+        - $ref: "#/components/parameters/_stufe"
+          name: user[personen_attributes][0][buchungen_attributes][0][stufe]
+          required: false
+        - $ref: "#/components/parameters/_golflevel"
+          name: user[personen_attributes][0][buchungen_attributes][0][golflevel]
+          required: false
+        - $ref: "#/components/parameters/_schwimmlevel"
+          name: user[personen_attributes][0][buchungen_attributes][0][schwimmlevel]
+          required: false
+        - $ref: "#/components/parameters/_shirt"
+          name: user[personen_attributes][0][buchungen_attributes][0][shirt]
+          required: false
+        - $ref: "#/components/parameters/_verpflegungswunsch"
+          name: user[personen_attributes][0][buchungen_attributes][0][verpflegungswunsch[]]
+          required: false
+        - $ref: "#/components/parameters/_woher"
+          name: user[personen_attributes][0][buchungen_attributes][0][woher[]]
+          required: false
+        - $ref: "#/components/parameters/_notice_id"
+          name: user[personen_attributes][0][buchungen_attributes][0][notice_answers_attributes][0][notice_id]
+          required: false
+        - $ref: "#/components/parameters/_notice_text"
+          name: user[personen_attributes][0][buchungen_attributes][0][notice_answers_attributes][0][text]
+          required: false
+        - $ref: "#/components/parameters/_vorname"
+          name: user[personen_attributes][0][vorname]
+          required: false
+        - $ref: "#/components/parameters/_name"
+          name: user[personen_attributes][0][name]
+          required: false
+        - $ref: "#/components/parameters/_geburtstag"
+          name: user[personen_attributes][0][geburtstag]
+          required: false
+        - $ref: "#/components/parameters/_anrede_id"
+          name: user[personen_attributes][0][anrede_id]
+          required: false
+        - $ref: "#/components/parameters/_divers"
+          name: user[personen_attributes][0][divers]
+          required: false
+        - $ref: "#/components/parameters/_nation"
+          name: user[personen_attributes][0][nation_attributes][iso]
+          required: false
+        - $ref: "#/components/parameters/_freunde"
+          name: user[personen_attributes][0][freunde]
+          required: false
+        - $ref: "#/components/parameters/_vorname_eltern"
+          name: user[personen_attributes][0][vorname_eltern]
+          required: false
+        - $ref: "#/components/parameters/_name_eltern"
+          name: user[personen_attributes][0][name_eltern]
+          required: false
+        - $ref: "#/components/parameters/_anrede_eltern_id"
+          name: user[personen_attributes][0][anrede_eltern_id]
+          required: false
+        - $ref: "#/components/parameters/_strasse"
+          name: user[personen_attributes][0][strasse]
+          required: false
+        - $ref: "#/components/parameters/_land"
+          name: user[personen_attributes][0][land_attributes][iso]
+          required: false
+        - $ref: "#/components/parameters/_plz"
+          name: user[personen_attributes][0][plz]
+          required: false
+        - $ref: "#/components/parameters/_ort"
+          name: user[personen_attributes][0][ort]
+          required: false
+        - $ref: "#/components/parameters/_mobil"
+          name: user[personen_attributes][0][mobil]
+          required: false
+        - $ref: "#/components/parameters/_telefon"
+          name: user[personen_attributes][0][telefon]
+          required: false
+        - $ref: "#/components/parameters/_englischkenntnisse_jahre"
+          name: user[personen_attributes][0][englischkenntnisse_jahre]
+          required: false
+        - $ref: "#/components/parameters/_englischkenntnisse_bedarf"
+          name: user[personen_attributes][0][englischkenntnisse_bedarf]
+          required: false
+        - $ref: "#/components/parameters/_englischkenntnisse_note"
+          name: user[personen_attributes][0][englischkenntnisse_note]
+          required: false
+        - $ref: "#/components/parameters/_schulform"
+          name: user[personen_attributes][0][schulform]
+          required: false
+        - $ref: "#/components/parameters/_schulklasse"
+          name: user[personen_attributes][0][schulklasse]
+          required: false
+        - $ref: "#/components/parameters/_geburtsort"
+          name: user[personen_attributes][0][geburtsort]
+          required: false
+        - $ref: "#/components/parameters/_ausweisnummer"
+          name: user[personen_attributes][0][ausweisnummer]
+          required: false
+        - $ref: "#/components/parameters/_abw_rechnungsadresse"
+          name: user[personen_attributes][0][sonderadressen_attributes][0][abw_rechnungsadresse]
+          required: false
+        - $ref: "#/components/parameters/_art"
+          name: user[personen_attributes][0][sonderadressen_attributes][0][art]
+          required: false
+        - $ref: "#/components/parameters/_firma"
+          name: user[personen_attributes][0][sonderadressen_attributes][0][firma]
+          required: false
+        - $ref: "#/components/parameters/_sonder_anrede_id"
+          name: user[personen_attributes][0][sonderadressen_attributes][0][anrede_id]
+          required: false
+        - $ref: "#/components/parameters/_sonder_vorname"
+          name: user[personen_attributes][0][sonderadressen_attributes][0][vorname]
+          required: false
+        - $ref: "#/components/parameters/_sonder_name"
+          name: user[personen_attributes][0][sonderadressen_attributes][0][name]
+          required: false
+        - $ref: "#/components/parameters/_sonder_strasse"
+          name: user[personen_attributes][0][sonderadressen_attributes][0][strasse]
+          required: false
+        - $ref: "#/components/parameters/_sonder_land"
+          name: user[personen_attributes][0][sonderadressen_attributes][0][land][iso]
+          required: false
+        - $ref: "#/components/parameters/_sonder_plz"
+          name: user[personen_attributes][0][sonderadressen_attributes][0][plz]
+          required: false
+        - $ref: "#/components/parameters/_sonder_ort"
+          name: user[personen_attributes][0][sonderadressen_attributes][0][ort]
+          required: false
+        - $ref: "#/components/parameters/_sonder_email"
+          name: user[personen_attributes][0][sonderadressen_attributes][0][email]
+          required: false
+        # Sonstige (für alle TN)
         - in: query
           name: user[email]
           required: true
