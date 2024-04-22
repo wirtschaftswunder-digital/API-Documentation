@@ -285,7 +285,7 @@ components:
                         type: "reiserabatt"
 
 paths:
-  /api/open_v1/products/index:
+  /api/open_v1/products/index?anbieter_id={ANBIETER_ID}:
     parameters:
       - $ref: '#/components/parameters/anbieter-id'
       - $ref: '#/components/parameters/locale'
@@ -397,7 +397,7 @@ paths:
                   event_count: 4
                   additional_values: [null, null]
                   daycamp: false
-  /api/open_v1/events/index:
+  /api/open_v1/events/index?destination_id={DESTINATION_ID}&host_id={HOST_ID}:
     parameters:
       - $ref: '#/components/parameters/destination-id'
       - $ref: '#/components/parameters/host-id'
@@ -527,7 +527,7 @@ paths:
                   availability: "0"
                   waitlist: false
                   additional_values: [null, null]
-  /api/v1/reiserabatte/index?user=CORS:
+  /api/v1/reiserabatte/index?user=CORS&termin_id={TERMIN_ID}:
     parameters:
       - $ref: '#/components/parameters/termin-id'
     get:
@@ -584,7 +584,7 @@ paths:
                         enddatum: null
                         name: "Frühbucher"
                         summe: "50.0"
-  /api/v1/termine/show?user=CORS:
+  /api/v1/termine/show?user=CORS&id={TERMIN_ID}&destination_id={DESTINATION_ID}:
     get:
       summary: Termin Details
       description: Abrufen von detaillierten Informationen zu einem Termin.
@@ -602,7 +602,7 @@ paths:
           $ref: '#/components/responses/termin-show-200'
       security:
         - CORS: []
-  /api/v1/termine/show?user=CORS (bulk request):
+  /api/v1/termine/show?user=CORS&id[]={TERMIN_ID}&destination_id={DESTINATION_ID}:
     get:
       summary: Termin Details (Bulk Request)
       description: Abrufen von Informationen zu mehreren Termin in einer gesammelten Anfrage.
@@ -623,7 +623,7 @@ paths:
           $ref: '#/components/responses/termin-show-200'
       security:
         - CORS: []
-  /api/v1/destinationen/show?user=CORS:
+  /api/v1/destinationen/show?user=CORS&id={DESTINATION_ID}:
     parameters:
       - in: query
         name: id
