@@ -6,6 +6,8 @@ servers:
   #    description: Sandbox server
   - url: https://my.camps.digital
     description: Production server for subdomain *my*
+stylesheets:
+  - './static/custom.css'
 info:
   version: 1.0.1
   title: CADI API Dokumentation
@@ -1558,6 +1560,90 @@ paths:
           schema:
             type: integer
             example: 84114059
+        - in: query
+          name: user[hauptperson_attributes][buchungen_attributes][0][unterbringungsoption_id]
+          required: true
+          description: ID der Unterbringungsoption
+          schema:
+            type: integer
+            example: 44388
+        - in: query
+          name: user[hauptperson_attributes][buchungen_attributes][0][verpflegungsoption_id]
+          required: true
+          description: ID der Verpflegungsoption
+          schema:
+            type: integer
+            example: 34185
+        - in: query
+          name: user[hauptperson_attributes][buchungen_attributes][0][sportart]
+          required: true
+          description: Gewählte Sportart
+          schema:
+            type: string
+            enum: [Ski, Snowboard]
+            example: Ski
+        - in: query
+          name: user[hauptperson_attributes][buchungen_attributes][0][stufe]
+          required: true
+          description: Angenes Level für die gewählte Wintersportart.
+          schema:
+            type: string
+            example: Stufe Rot (Fortgeschrittener 2)
+
+        - in: query
+          name: user[hauptperson_attributes][buchungen_attributes][0][golflevel]
+          required: true
+          description: Golflevel der Hauptperson
+          schema:
+            type: string
+            example: 10 - 18
+
+        - in: query
+          name: user[hauptperson_attributes][buchungen_attributes][0][schwimmlevel]
+          required: true
+          description: Schwimmlevel der Hauptperson
+          schema:
+            type: string
+            example: Seepferdchen (Frühschwimmer)
+
+        - in: query
+          name: user[hauptperson_attributes][buchungen_attributes][0][shirt]
+          required: true
+          description: T-Shirt-Größe der Hauptperson
+          schema:
+            type: string
+            example: Woman S
+
+        - in: query
+          name: user[hauptperson_attributes][buchungen_attributes][0][verpflegungswunsch[]]
+          required: true
+          description: Verpflegungswunsch der Hauptperson
+          schema:
+            type: array
+            items:
+              type: string
+              enum: [vegan, laktosefrei]
+            example: [vegan, laktosefrei]
+
+        - in: query
+          name: user[hauptperson_attributes][buchungen_attributes][0][woher[]]
+          required: true
+          description: Herkunftsinformationen zur Buchung
+          schema:
+            type: array
+            items:
+              type: string
+              enum: [newsletter]
+            example: [newsletter]
+
+        - in: query
+          name: user[hauptperson_attributes][buchungen_attributes][0][notice_answers_attributes][0][notice_id]
+          required: true
+          description: ID der Benachrichtigung
+          schema:
+            type: integer
+            example: 701
+
       responses:
         '201':
           description: "Buchung erstellt"

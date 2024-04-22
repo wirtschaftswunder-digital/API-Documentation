@@ -1,0 +1,4 @@
+theme:
+  openapi:
+    expandResponses: '200,201'
+    # schemaExpansionLevel: all

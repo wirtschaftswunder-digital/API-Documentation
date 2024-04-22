@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "private": false,
   "scripts": {
-    "build": "npx @redocly/cli@latest build-docs openapi.yaml --output dist/index.html",
-    "preview": "npx @redocly/cli@latest preview-docs openapi.yaml",
+    "build": "npx @redocly/cli@latest build-docs openapi.yaml --output dist/index.html --template template.html",
+    "preview": "npx @redocly/cli@latest preview-docs openapi.yaml --config ./redocly.yaml",
     "deploy-dist": "gh-pages -d dist -t true",
-    "deploy": "npx @redocly/cli@latest build-docs openapi.yaml --output dist/index.html && gh-pages -d dist -t true"
+    "deploy": "npx @redocly/cli@latest build-docs openapi.yaml --output dist/index.html --config ./redocly.yaml --template template.html && gh-pages -d dist -t true"
   },
   "devDependencies": {
     "gh-pages": "^6.0.0",
