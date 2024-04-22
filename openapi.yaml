@@ -259,7 +259,7 @@ components:
         example: "Mein Kind neigt dazu ihr Asthmaspray zu verlegen."
     _vorname:
       in: query
-      name: hauptperson_attributes[vorname]
+      name: user[hauptperson_attributes][vorname]
       required: true
       description: Der Vorname des Reisenden.
       schema:
@@ -267,7 +267,7 @@ components:
         example: "Max"
     _name:
       in: query
-      name: hauptperson_attributes[name]
+      name: user[hauptperson_attributes][name]
       required: true
       description: Der Nachname des Reisenden.
       schema:
@@ -275,7 +275,7 @@ components:
         example: "Mustermann"
     _geburtstag:
       in: query
-      name: hauptperson_attributes[geburtstag]
+      name: user[hauptperson_attributes][geburtstag]
       required: true
       description: Das Geburtsdatum des Reisenden.
       schema:
@@ -284,7 +284,7 @@ components:
         example: "01.01.2005"
     _anrede_id:
       in: query
-      name: hauptperson_attributes[anrede_id]
+      name: user[hauptperson_attributes][anrede_id]
       required: true
       description: Die Anrede-ID des Reisenden. 0 = Herr, 1 = Frau.
       schema:
@@ -294,14 +294,14 @@ components:
         type: integer
     _divers:
       in: query
-      name: hauptperson_attributes[divers]
+      name: user[hauptperson_attributes][divers]
       required: false
       description: Angabe, ob sich der Teilnehmer als divers identifiziert ist.
       schema:
         type: boolean
     _nation:
       in: query
-      name: hauptperson_attributes[nation_attributes][iso]
+      name: user[hauptperson_attributes][nation_attributes][iso]
       required: true
       description: Der ISO-Code des Nationalitätslandes des Reisenden. **Wichtig:** Der ISO-Code muss in Großbuchstaben angegeben werden.
       schema:
@@ -309,7 +309,7 @@ components:
         example: DE
     _freunde:
       in: query
-      name: hauptperson_attributes[freunde]
+      name: user[hauptperson_attributes][freunde]
       required: false
       description: Eine Liste der Freunde des Reisenden. Diese Angaben können für Zimmerbelegungen relevant sein.
       schema:
@@ -317,28 +317,28 @@ components:
         example: "Laura Mustermann, Tina Tester"
     _vorname_eltern:
       in: query
-      name: hauptperson_attributes[vorname_eltern]
+      name: user[hauptperson_attributes][vorname_eltern]
       required: false
       description: Der Vorname des Elternteils des Reisenden.
       schema:
         type: string
     _name_eltern:
       in: query
-      name: hauptperson_attributes[name_eltern]
+      name: user[hauptperson_attributes][name_eltern]
       required: false
       description: Der Nachname des Elternteils des Reisenden.
       schema:
         type: string
     _anrede_eltern_id:
       in: query
-      name: hauptperson_attributes[anrede_eltern_id]
+      name: user[hauptperson_attributes][anrede_eltern_id]
       required: false
       description: Die Anrede-ID des Elternteils des Reisenden. 0 = Herr, 1 = Frau.
       schema:
         type: integer
     _strasse:
       in: query
-      name: hauptperson_attributes[strasse]
+      name: user[hauptperson_attributes][strasse]
       required: true
       description: Die Straße und Hausnummer der Adresse des Reisenden.
       schema:
@@ -346,7 +346,7 @@ components:
         type: string
     _land:
       in: query
-      name: hauptperson_attributes[land_attributes][iso]
+      name: user[hauptperson_attributes][land_attributes][iso]
       required: true
       description: Der ISO-Code des Landes der Adresse des Reisenden. **Wichtig:** Der ISO-Code muss in Großbuchstaben angegeben werden.
       schema:
@@ -354,14 +354,14 @@ components:
         example: DE
     _plz:
       in: query
-      name: hauptperson_attributes[plz]
+      name: user[hauptperson_attributes][plz]
       required: true
       description: Die Postleitzahl der Adresse des Reisenden.
       schema:
         type: string
     _ort:
       in: query
-      name: hauptperson_attributes[ort]
+      name: user[hauptperson_attributes][ort]
       required: true
       description: Die Stadt der Adresse des Reisenden.
       schema:
@@ -369,7 +369,7 @@ components:
         example: Berlin
     _mobil:
       in: query
-      name: hauptperson_attributes[mobil]
+      name: user[hauptperson_attributes][mobil]
       required: false
       description: Die Mobiltelefonnummer des Reisenden.
       schema:
@@ -377,7 +377,7 @@ components:
         example: "+49123546"
     _telefon:  
       in: query
-      name: hauptperson_attributes[telefon]
+      name: user[hauptperson_attributes][telefon]
       required: false
       description: Die Telefonnummer des Reisenden.
       schema:
@@ -385,14 +385,14 @@ components:
         example: "+49987654"
     _englischkenntnisse_jahre:
       in: query
-      name: hauptperson_attributes[englischkenntnisse_jahre]
+      name: user[hauptperson_attributes][englischkenntnisse_jahre]
       required: false
       description: Die Anzahl der Jahre, die der Teilnehmer Englischunterricht erhält.
       schema:
         type: integer
     _englischkenntnisse_bedarf:
       in: query
-      name: hauptperson_attributes[englischkenntnisse_bedarf]
+      name: user[hauptperson_attributes][englischkenntnisse_bedarf]
       required: false
       description: Der Bedarf des Reisenden an Englischkenntnissen.
       schema:
@@ -405,7 +405,7 @@ components:
         example: "sprechen"
     _englischkenntnisse_note:
       in: query
-      name: hauptperson_attributes[englischkenntnisse_note]
+      name: user[hauptperson_attributes][englischkenntnisse_note]
       required: false
       description: Die Note der Englischkenntnisse des Reisenden.
       schema:
@@ -422,21 +422,21 @@ components:
           ]
     _schulform:
       in: query
-      name: hauptperson_attributes[schulform]
+      name: user[hauptperson_attributes][schulform]
       required: false
       description: Die Schulform des Reisenden. Die möglichen Werte können aus den geschlossenen API Endpunkt für die Destination entnommen werden (`data.attributes.schulform_auswahl[0]`).
       schema:
         type: string
     _schulklasse:
       in: query
-      name: hauptperson_attributes[schulklasse]
+      name: user[hauptperson_attributes][schulklasse]
       required: false
       description: Die Schulklasse des Reisenden.
       schema:
         type: integer
     _geburtsort:
       in: query
-      name: hauptperson_attributes[geburtsort]
+      name: user[hauptperson_attributes][geburtsort]
       required: false
       description: Der Geburtsort des Reisenden.
       schema:
@@ -444,21 +444,21 @@ components:
         example: Köln
     _ausweisnummer:
       in: query
-      name: hauptperson_attributes[ausweisnummer]
+      name: user[hauptperson_attributes][ausweisnummer]
       required: false
       description: Die Ausweisnummer des Reisenden.
       schema:
         type: string
     _abw_rechnungsadresse:
       in: query
-      name: hauptperson_attributes[sonderadressen_attributes][0][abw_rechnungsadresse]
+      name: user[hauptperson_attributes][sonderadressen_attributes][0][abw_rechnungsadresse]
       required: false
       description: Gibt an, ob eine abweichende Rechnungsadresse verwendet wird.
       schema:
         type: boolean
     _art:
       in: query
-      name: hauptperson_attributes[sonderadressen_attributes][0][art]
+      name: user[hauptperson_attributes][sonderadressen_attributes][0][art]
       required: false
       description: Die Art der Sonderadresse (wird für abweichende Rechnungsadressen verwendet).
       schema:
@@ -467,35 +467,35 @@ components:
         type: string
     _firma:
       in: query
-      name: hauptperson_attributes[sonderadressen_attributes][0][firma]
+      name: user[hauptperson_attributes][sonderadressen_attributes][0][firma]
       required: false
       description: Der Name der Firma in der Sonderadresse.
       schema:
         type: string
     _sonder_anrede_id:
       in: query
-      name: hauptperson_attributes[sonderadressen_attributes][0][anrede_id]
+      name: user[hauptperson_attributes][sonderadressen_attributes][0][anrede_id]
       required: false
       description: Die Anrede-ID für die Person in der Sonderadresse. 0 = Herr, 1 = Frau.
       schema:
         type: integer
     _sonder_vorname:
       in: query
-      name: hauptperson_attributes[sonderadressen_attributes][0][vorname]
+      name: user[hauptperson_attributes][sonderadressen_attributes][0][vorname]
       required: false
       description: Der Vorname der Person in der Sonderadresse.
       schema:
         type: string
     _sonder_name:
       in: query
-      name: hauptperson_attributes[sonderadressen_attributes][0][name]
+      name: user[hauptperson_attributes][sonderadressen_attributes][0][name]
       required: false
       description: Der Nachname der Person in der Sonderadresse.
       schema:
         type: string
     _sonder_strasse:
       in: query
-      name: hauptperson_attributes[sonderadressen_attributes][0][strasse]
+      name: user[hauptperson_attributes][sonderadressen_attributes][0][strasse]
       required: false
       description: Die Straße und Hausnummer der Sonderadresse.
       schema:
@@ -503,21 +503,21 @@ components:
         type: string
     _sonder_land:
       in: query
-      name: hauptperson_attributes[sonderadressen_attributes][0][land][iso]
+      name: user[hauptperson_attributes][sonderadressen_attributes][0][land][iso]
       required: false
       description: Der ISO-Ländercode für das Land der Sonderadresse. **Wichtig:** Der ISO-Code muss in Großbuchstaben angegeben werden.
       schema:
         type: string
     _sonder_plz:
       in: query
-      name: hauptperson_attributes[sonderadressen_attributes][0][plz]
+      name: user[hauptperson_attributes][sonderadressen_attributes][0][plz]
       required: false
       description: Die Postleitzahl der Sonderadresse.
       schema:
         type: string
     _sonder_ort:
       in: query
-      name: hauptperson_attributes[sonderadressen_attributes][0][ort]
+      name: user[hauptperson_attributes][sonderadressen_attributes][0][ort]
       required: false
       description: Der Ort der Sonderadresse (Stadt).
       schema:
@@ -525,7 +525,7 @@ components:
         example: Hamburg
     _sonder_email:
       in: query
-      name: hauptperson_attributes[sonderadressen_attributes][0][email]
+      name: user[hauptperson_attributes][sonderadressen_attributes][0][email]
       required: false
       description: Die E-Mail-Adresse der Person in der Sonderadresse.
       schema:
