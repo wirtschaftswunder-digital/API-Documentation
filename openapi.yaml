@@ -166,6 +166,31 @@ components:
       schema:
         type: integer
         example: 44388
+    _verpflegungsoption_id:
+      in: query
+      name: user[hauptperson_attributes][buchungen_attributes][0][verpflegungsoption_id]
+      required: true
+      description: ID der Verpflegungsoption
+      schema:
+        type: integer
+        example: 34185
+    _sportart:
+      in: query
+      name: user[hauptperson_attributes][buchungen_attributes][0][sportart]
+      required: true
+      description: Gewählte Sportart
+      schema:
+        type: string
+        enum: [Ski, Snowboard]
+        example: Ski
+    _stufe:
+      in: query
+      name: user[hauptperson_attributes][buchungen_attributes][0][stufe]
+      required: true
+      description: Level für die gewählte Wintersportart. Die möglichen Werte können aus den geschlossenen API Endpunkt für die Destination entnommen werden (data -> attributes -> wintersport -> stufen).
+      schema:
+        type: string
+        example: Stufe Rot (Fortgeschrittener 2)
   responses:
     termin-show-200:
       description: Erfolgreiche Abfrage der Termininformationen.
@@ -1589,28 +1614,9 @@ paths:
         - $ref: "#components/parameters/_abfahrt_id"
         - $ref: "#components/parameters/_rueckfahrt_id"
         - $ref: "#components/parameters/_unterbringungsoption_id"
-        - in: query
-          name: user[hauptperson_attributes][buchungen_attributes][0][verpflegungsoption_id]
-          required: true
-          description: ID der Verpflegungsoption
-          schema:
-            type: integer
-            example: 34185
-        - in: query
-          name: user[hauptperson_attributes][buchungen_attributes][0][sportart]
-          required: true
-          description: Gewählte Sportart
-          schema:
-            type: string
-            enum: [Ski, Snowboard]
-            example: Ski
-        - in: query
-          name: user[hauptperson_attributes][buchungen_attributes][0][stufe]
-          required: true
-          description: Level für die gewählte Wintersportart. Die möglichen Werte können aus den geschlossenen API Endpunkt für die Destination entnommen werden (data -> attributes -> wintersport -> stufen).
-          schema:
-            type: string
-            example: Stufe Rot (Fortgeschrittener 2)
+        - $ref: "#components/parameters/_verpflegungsoption_id"
+        - $ref: "#components/parameters/_sportart"
+        - $ref: "#components/parameters/_stufe"
         - in: query
           name: user[hauptperson_attributes][buchungen_attributes][0][golflevel]
           required: true
