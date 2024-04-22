@@ -76,6 +76,80 @@ components:
         type: integer
         format: int64
         example: 29239
+    _termin-id:
+      in: query
+      name: user[hauptperson_attributes][buchungen_attributes][0][termin_id]
+      required: true
+      description: ID des Termins, für den die Buchung erstellt werden soll
+      schema:
+        type: integer
+        example: 29222
+    _vendor:
+      in: query
+      name: user[hauptperson_attributes][buchungen_attributes][0][vendor]
+      required: true
+      description: Name des Vendors
+      schema:
+        type: string
+        example: Dev-Demo
+    _vendor-quelle:
+      in: query
+      name: user[hauptperson_attributes][buchungen_attributes][0][vendor_quelle]
+      required: true
+      description: Quelle des Vendors
+      schema:
+        type: string
+        example: Dev-Demo
+    _zbbl:
+      in: query
+      name: user[hauptperson_attributes][buchungen_attributes][0][zubuchbareleistung_ids[]]
+      required: true
+      description: IDs der zubbuchbaren Leistungen, die der Kunde hinzufügen möchte.
+      schema:
+        type: array
+        items:
+          type: integer
+          example: [227599, 227604]
+    _anfrage:
+      in: query
+      name: user[hauptperson_attributes][buchungen_attributes][0][anfrage]
+      required: true
+      description: Zusätzliche Textanfrage des Kunden.
+      schema:
+        type: string
+        example: "Mein Kind neigt dazu ihr Asthmaspray zu verlegen. Begründung: Meine Tochter ist für ihr Alter schon weit entwickelt und sehr eigenständig."
+    _rabatte_attributes_name:
+      in: query
+      name: user[hauptperson_attributes][buchungen_attributes][0][rabatte_attributes][0][name]
+      required: true
+      description: Name des Rabatts
+      schema:
+        type: string
+        example: "#ComeAgain22"
+    _rabatte_attributes_summe:
+      in: query
+      name: user[hauptperson_attributes][buchungen_attributes][0][rabatte_attributes][0][summe]
+      required: true
+      description: Höhe des Rabatts
+      schema:
+        type: integer
+        example: -80
+    _rabatte_attributes_gutschein:
+      in: query
+      name: user[hauptperson_attributes][buchungen_attributes][0][rabatte_attributes][0][gutschein]
+      required: true
+      description: Angabe ob ein Gutscheincode verwendet wurde.
+      schema:
+        type: boolean
+        example: true
+    _abfahrt:
+      in: query
+      name: user[hauptperson_attributes][buchungen_attributes][0][abfahrt_id]
+      required: true
+      description: ID der Abfahrt
+      schema:
+        type: integer
+        example: 84094781
   responses:
     termin-show-200:
       description: Erfolgreiche Abfrage der Termininformationen.
@@ -1488,71 +1562,15 @@ paths:
       summary: "Buchung erstellen"
       description: "Erstellt eine Buchung für eine Destination."
       parameters:
-        - in: query
-          name: user[hauptperson_attributes][buchungen_attributes][0][termin_id]
-          required: true
-          description: ID des Termins, für den die Buchung erstellt werden soll
-          schema:
-            type: integer
-            example: 29222
-        - in: query
-          name: user[hauptperson_attributes][buchungen_attributes][0][vendor]
-          required: true
-          description: Name des Vendors
-          schema:
-            type: string
-            example: Dev-Demo
-        - in: query
-          name: user[hauptperson_attributes][buchungen_attributes][0][vendor_quelle]
-          required: true
-          description: Quelle des Vendors
-          schema:
-            type: string
-            example: Dev-Demo
-        - in: query
-          name: user[hauptperson_attributes][buchungen_attributes][0][zubuchbareleistung_ids[]]
-          required: true
-          description: IDs der zubbuchbaren Leistungen, die der Kunde hinzufügen möchte.
-          schema:
-            type: array
-            items:
-              type: integer
-              example: [227599, 227604]
-        - in: query
-          name: user[hauptperson_attributes][buchungen_attributes][0][anfrage]
-          required: true
-          description: Zusätzliche Textanfrage des Kunden.
-          schema:
-            type: string
-            example: "Mein Kind neigt dazu ihr Asthmaspray zu verlegen. Begründung: Meine Tochter ist für ihr Alter schon weit entwickelt und sehr eigenständig."
-        - in: query
-          name: user[hauptperson_attributes][buchungen_attributes][0][rabatte_attributes][0][name]
-          required: true
-          description: Name des Rabatts
-          schema:
-            type: string
-            example: "#ComeAgain22"
-        - in: query
-          name: user[hauptperson_attributes][buchungen_attributes][0][rabatte_attributes][0][summe]
-          required: true
-          description: Höhe des Rabatts
-          schema:
-            type: integer
-            example: -80
-        - in: query
-          name: user[hauptperson_attributes][buchungen_attributes][0][rabatte_attributes][0][gutschein]
-          required: true
-          description: Angabe ob ein Gutscheincode verwendet wurde.
-          schema:
-            type: boolean
-            example: true
-        - in: query
-          name: user[hauptperson_attributes][buchungen_attributes][0][abfahrt_id]
-          required: true
-          description: ID des Abfahrt
-          schema:
-            type: integer
-            example: 84094781
+        - $ref: "#/components/parameters/_termin-id"
+        - $ref: "#/components/parameters/_vendor"
+        - $ref: "#/components/parameters/_vendor-quelle"
+        - $ref: "#components/parameters/_zbbl"
+        - $ref: "#components/parameters/_anfrage"
+        - $ref: "#components/parameters/_rabatte_attributes_name"
+        - $ref: "#components/parameters/_rabatte_attributes_summe"
+        - $ref: "#components/parameters/_rabatte_attributes_gutschein"
+        - $ref: "#components/parameters/_abfahrt"
         - in: query
           name: user[hauptperson_attributes][buchungen_attributes][0][rueckfahrt_id]
           required: true
@@ -1592,7 +1610,7 @@ paths:
         - in: query
           name: user[hauptperson_attributes][buchungen_attributes][0][golflevel]
           required: true
-          description: Golflevel der Hauptperson. Die möglichen Werte können aus den geschlossenen API Endpunkt für die Destination entnommen werden (data -> attributes -> golflevel -> optionen).
+          description: Golflevel des Reisenden. Die möglichen Werte können aus den geschlossenen API Endpunkt für die Destination entnommen werden (data -> attributes -> golflevel -> optionen).
           schema:
             type: string
             enum:
@@ -1605,21 +1623,21 @@ paths:
         - in: query
           name: user[hauptperson_attributes][buchungen_attributes][0][schwimmlevel]
           required: true
-          description: Schwimmlevel der Hauptperson. Die möglichen Werte können aus den geschlossenen API Endpunkt für die Destination entnommen werden (data -> attributes -> schwimmlevel -> optionen).
+          description: Schwimmlevel des Reisenden. Die möglichen Werte können aus den geschlossenen API Endpunkt für die Destination entnommen werden (data -> attributes -> schwimmlevel -> optionen).
           schema:
             type: string
             example: Seepferdchen (Frühschwimmer)
         - in: query
           name: user[hauptperson_attributes][buchungen_attributes][0][shirt]
           required: true
-          description: T-Shirt-Größe der Hauptperson. Die möglichen Werte können aus den geschlossenen API Endpunkt für die Destination entnommen werden (data -> attributes -> shirt -> optionen).
+          description: T-Shirt-Größe des Reisenden. Die möglichen Werte können aus den geschlossenen API Endpunkt für die Destination entnommen werden (data -> attributes -> shirt -> optionen).
           schema:
             type: string
             example: Woman S
         - in: query
           name: user[hauptperson_attributes][buchungen_attributes][0][verpflegungswunsch[]]
           required: true
-          description: Verpflegungswunsch der Hauptperson. Die möglichen Werte können aus den geschlossenen API Endpunkt für die Destination entnommen werden (data -> attributes -> verpflegungswunsch -> optionen [Array von Arrays [key, label]]).
+          description: Verpflegungswunsch des Reisenden. Die möglichen Werte können aus den geschlossenen API Endpunkt für die Destination entnommen werden (data -> attributes -> verpflegungswunsch -> optionen [Array von Arrays [key, label]]).
           schema:
             type: array
             items:
@@ -1651,21 +1669,21 @@ paths:
         - in: query
           name: hauptperson_attributes[vorname]
           required: true
-          description: Der Vorname der Hauptperson.
+          description: Der Vorname des Reisenden.
           schema:
             type: string
             example: "Max"
         - in: query
           name: hauptperson_attributes[name]
           required: true
-          description: Der Nachname der Hauptperson.
+          description: Der Nachname des Reisenden.
           schema:
             type: string
             example: "Mustermann"
         - in: query
           name: hauptperson_attributes[geburtstag]
           required: true
-          description: Das Geburtsdatum der Hauptperson.
+          description: Das Geburtsdatum des Reisenden.
           schema:
             type: string
             format: date (DD.MM.YYYY)
@@ -1673,7 +1691,7 @@ paths:
         - in: query
           name: hauptperson_attributes[anrede_id]
           required: true
-          description: Die Anrede-ID der Hauptperson. 0 = Herr, 1 = Frau.
+          description: Die Anrede-ID des Reisenden. 0 = Herr, 1 = Frau.
           schema:
             enum:
               - 0
@@ -1682,91 +1700,91 @@ paths:
         - in: query
           name: hauptperson_attributes[divers]
           required: false
-          description: Angabe, ob die Hauptperson als divers identifiziert ist.
+          description: Angabe, ob sich der Teilnehmer als divers identifiziert ist.
           schema:
             type: boolean
         - in: query
           name: hauptperson_attributes[nation_attributes][iso]
           required: true
-          description: Der ISO-Code des Nationalitätslandes der Hauptperson. **Wichtig:** Der ISO-Code muss in Großbuchstaben angegeben werden.
+          description: Der ISO-Code des Nationalitätslandes des Reisenden. **Wichtig:** Der ISO-Code muss in Großbuchstaben angegeben werden.
           schema:
             type: string
             example: DE
         - in: query
           name: hauptperson_attributes[freunde]
           required: false
-          description: Eine Liste der Freunde der Hauptperson. Diese Angaben können für Zimmerbelegungen relevant sein.
+          description: Eine Liste der Freunde des Reisenden. Diese Angaben können für Zimmerbelegungen relevant sein.
           schema:
             type: string
             example: "Laura Mustermann, Tina Tester"
         - in: query
           name: hauptperson_attributes[vorname_eltern]
           required: false
-          description: Der Vorname des Elternteils der Hauptperson.
+          description: Der Vorname des Elternteils des Reisenden.
           schema:
             type: string
         - in: query
           name: hauptperson_attributes[name_eltern]
           required: false
-          description: Der Nachname des Elternteils der Hauptperson.
+          description: Der Nachname des Elternteils des Reisenden.
           schema:
             type: string
         - in: query
           name: hauptperson_attributes[anrede_eltern_id]
           required: false
-          description: Die Anrede-ID des Elternteils der Hauptperson. 0 = Herr, 1 = Frau.
+          description: Die Anrede-ID des Elternteils des Reisenden. 0 = Herr, 1 = Frau.
           schema:
             type: integer
         - in: query
           name: hauptperson_attributes[strasse]
           required: true
-          description: Die Straße der Adresse der Hauptperson.
+          description: Die Straße der Adresse des Reisenden.
           schema:
             type: string
         - in: query
           name: hauptperson_attributes[land_attributes][iso]
           required: true
-          description: Der ISO-Code des Landes der Adresse der Hauptperson. **Wichtig:** Der ISO-Code muss in Großbuchstaben angegeben werden.
+          description: Der ISO-Code des Landes der Adresse des Reisenden. **Wichtig:** Der ISO-Code muss in Großbuchstaben angegeben werden.
           schema:
             type: string
             example: DE
         - in: query
           name: hauptperson_attributes[plz]
           required: true
-          description: Die Postleitzahl der Adresse der Hauptperson.
+          description: Die Postleitzahl der Adresse des Reisenden.
           schema:
             type: string
         - in: query
           name: hauptperson_attributes[ort]
           required: true
-          description: Die Stadt der Adresse der Hauptperson.
+          description: Die Stadt der Adresse des Reisenden.
           schema:
             type: string
             example: Berlin
         - in: query
           name: hauptperson_attributes[mobil]
           required: false
-          description: Die Mobiltelefonnummer der Hauptperson.
+          description: Die Mobiltelefonnummer des Reisenden.
           schema:
             type: string
             example: "+49123546"
         - in: query
           name: hauptperson_attributes[telefon]
           required: false
-          description: Die Telefonnummer der Hauptperson.
+          description: Die Telefonnummer des Reisenden.
           schema:
             type: string
             example: "+49987654"
         - in: query
           name: hauptperson_attributes[englischkenntnisse_jahre]
           required: false
-          description: Die Anzahl der Jahre, die die Hauptperson Englischunterricht erhält.
+          description: Die Anzahl der Jahre, die der Teilnehmer Englischunterricht erhält.
           schema:
             type: integer
         - in: query
           name: hauptperson_attributes[englischkenntnisse_bedarf]
           required: false
-          description: Der Bedarf der Hauptperson an Englischkenntnissen.
+          description: Der Bedarf des Reisenden an Englischkenntnissen.
           schema:
             type: string
             enum:
@@ -1778,7 +1796,7 @@ paths:
         - in: query
           name: hauptperson_attributes[englischkenntnisse_note]
           required: false
-          description: Die Note der Englischkenntnisse der Hauptperson.
+          description: Die Note der Englischkenntnisse des Reisenden.
           schema:
             type: string
             enum:
@@ -1794,26 +1812,26 @@ paths:
         - in: query
           name: hauptperson_attributes[schulform]
           required: false
-          description: Die Schulform der Hauptperson. Die möglichen Werte können aus den geschlossenen API Endpunkt für die Destination entnommen werden (`data.attributes.schulform_auswahl[0]`).
+          description: Die Schulform des Reisenden. Die möglichen Werte können aus den geschlossenen API Endpunkt für die Destination entnommen werden (`data.attributes.schulform_auswahl[0]`).
           schema:
             type: string
         - in: query
           name: hauptperson_attributes[schulklasse]
           required: false
-          description: Die Schulklasse der Hauptperson.
+          description: Die Schulklasse des Reisenden.
           schema:
             type: integer
         - in: query
           name: hauptperson_attributes[geburtsort]
           required: false
-          description: Der Geburtsort der Hauptperson.
+          description: Der Geburtsort des Reisenden.
           schema:
             type: string
             example: Köln
         - in: query
           name: hauptperson_attributes[ausweisnummer]
           required: false
-          description: Die Ausweisnummer der Hauptperson.
+          description: Die Ausweisnummer des Reisenden.
           schema:
             type: string
         - in: query
@@ -1923,9 +1941,8 @@ paths:
           required: false
           description: Das Format der Antwort.
           schema:
-            enum:
-              - json
             type: string
+            example: json
 
       responses:
         "201":
