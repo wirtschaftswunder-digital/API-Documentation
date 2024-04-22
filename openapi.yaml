@@ -1585,64 +1585,69 @@ paths:
         - in: query
           name: user[hauptperson_attributes][buchungen_attributes][0][stufe]
           required: true
-          description: Angenes Level für die gewählte Wintersportart.
+          description: Level für die gewählte Wintersportart. Die möglichen Werte können aus den geschlossenen API Endpunkt für die Destination entnommen werden (data -> attributes -> wintersport -> stufen).
           schema:
             type: string
             example: Stufe Rot (Fortgeschrittener 2)
-
         - in: query
           name: user[hauptperson_attributes][buchungen_attributes][0][golflevel]
           required: true
-          description: Golflevel der Hauptperson
+          description: Golflevel der Hauptperson. Die möglichen Werte können aus den geschlossenen API Endpunkt für die Destination entnommen werden (data -> attributes -> golflevel -> optionen).
           schema:
             type: string
+            enum:
+              - "Anfänger ohne Handicap"
+              - "0 - 9"
+              - "10 - 18"
+              - "19 - 36"
+              - "37+"
             example: 10 - 18
-
         - in: query
           name: user[hauptperson_attributes][buchungen_attributes][0][schwimmlevel]
           required: true
-          description: Schwimmlevel der Hauptperson
+          description: Schwimmlevel der Hauptperson. Die möglichen Werte können aus den geschlossenen API Endpunkt für die Destination entnommen werden (data -> attributes -> schwimmlevel -> optionen).
           schema:
             type: string
             example: Seepferdchen (Frühschwimmer)
-
         - in: query
           name: user[hauptperson_attributes][buchungen_attributes][0][shirt]
           required: true
-          description: T-Shirt-Größe der Hauptperson
+          description: T-Shirt-Größe der Hauptperson. Die möglichen Werte können aus den geschlossenen API Endpunkt für die Destination entnommen werden (data -> attributes -> shirt -> optionen).
           schema:
             type: string
             example: Woman S
-
         - in: query
           name: user[hauptperson_attributes][buchungen_attributes][0][verpflegungswunsch[]]
           required: true
-          description: Verpflegungswunsch der Hauptperson
+          description: Verpflegungswunsch der Hauptperson. Die möglichen Werte können aus den geschlossenen API Endpunkt für die Destination entnommen werden (data -> attributes -> verpflegungswunsch -> optionen [Array von Arrays [key, label]]).
           schema:
             type: array
             items:
               type: string
-              enum: [vegan, laktosefrei]
             example: [vegan, laktosefrei]
-
         - in: query
           name: user[hauptperson_attributes][buchungen_attributes][0][woher[]]
           required: true
-          description: Herkunftsinformationen zur Buchung
+          description: Wie ist der Kunde auf die Reise aufmerksam geworden. Die möglichen Werte können aus den geschlossenen API Endpunkt für die Destination entnommen werden (data -> attributes -> woher_auswahl).
           schema:
             type: array
             items:
               type: string
-              enum: [newsletter]
             example: [newsletter]
-
         - in: query
-          name: user[hauptperson_attributes][buchungen_attributes][0][notice_answers_attributes][0][notice_id]
-          required: true
-          description: ID der Benachrichtigung
+          name: user[hauptperson_attributes][buchungen_attributes][0][notice_answers_attributes][N][notice_id]
+          required: false
+          description: '**WICHTIG: [N] muss durch den Index der Benachrichtigung ersetzt werden!** ID der Benachrichtigung. Eine mögliche Benachrichtigung kann der Inhalt des Textfelds *Dauermedikamentation* sein. Die `notice_id` kann aus den Destinations-Daten der geschlossenen API entnommen werden (zum Beispiel aus `data.attributes.medikation.id`).'
           schema:
             type: integer
             example: 701
+        - in: query
+          name: user[hauptperson_attributes][buchungen_attributes][0][notice_answers_attributes][0][text]
+          required: false
+          description: '**WICHTIG: [N] muss durch den Index der Benachrichtigung ersetzt werden!** Text für die Benachrichtigung. Eine mögliche Benachrichtigung kann der Inhalt des Textfelds *Dauermedikamentation* sein.'
+          schema:
+            type: string
+            example: "Mein Kind neigt dazu ihr Asthmaspray zu verlegen."
 
       responses:
         '201':
