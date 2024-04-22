@@ -150,6 +150,22 @@ components:
       schema:
         type: integer
         example: 84094781
+    _rueckfahrt_id:
+      in: query
+      name: user[hauptperson_attributes][buchungen_attributes][0][rueckfahrt_id]
+      required: true
+      description: ID des Rückfahrt
+      schema:
+        type: integer
+        example: 84114059
+    _unterbringungsoption_id:
+      in: query
+      name: user[hauptperson_attributes][buchungen_attributes][0][unterbringungsoption_id]
+      required: true
+      description: ID der Unterbringungsoption
+      schema:
+        type: integer
+        example: 44388
   responses:
     termin-show-200:
       description: Erfolgreiche Abfrage der Termininformationen.
@@ -1570,21 +1586,9 @@ paths:
         - $ref: "#components/parameters/_rabatte_attributes_name"
         - $ref: "#components/parameters/_rabatte_attributes_summe"
         - $ref: "#components/parameters/_rabatte_attributes_gutschein"
-        - $ref: "#components/parameters/_abfahrt"
-        - in: query
-          name: user[hauptperson_attributes][buchungen_attributes][0][rueckfahrt_id]
-          required: true
-          description: ID des Rückfahrt
-          schema:
-            type: integer
-            example: 84114059
-        - in: query
-          name: user[hauptperson_attributes][buchungen_attributes][0][unterbringungsoption_id]
-          required: true
-          description: ID der Unterbringungsoption
-          schema:
-            type: integer
-            example: 44388
+        - $ref: "#components/parameters/_abfahrt_id"
+        - $ref: "#components/parameters/_rueckfahrt_id"
+        - $ref: "#components/parameters/_unterbringungsoption_id"
         - in: query
           name: user[hauptperson_attributes][buchungen_attributes][0][verpflegungsoption_id]
           required: true
