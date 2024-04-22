@@ -18,6 +18,11 @@ info:
 externalDocs:
   description: Dokumentation für die Integration von CADI Frontend Komponenten
   url: 'https://wirtschaftswunder-digital.github.io/CADI-Documentation/'
+tags:
+  - name: "Öffentliche API"
+    description: "API Endpunkte, die ohne Authentifizierung abgerufen von einem beliebigen Client abgerufen werden können. Die Daten sind öffentlich zugänglich und enthalten eine begrenzte Auswahl an Informationen."
+  - name: "Geschlossene API"
+    description: "API Endpunkte, die eine Authentifizierung erfordern. Die Authentifizierung erfolgt durch die Überprüfung des `Origin` Headers (der Absender der Anfrage). Nur Anfragen von registrierten Domains werden akzeptiert. Kontaktieren Sie uns bitte, falls Sie Zugriff auf die geschlossene API benötigen."
 components:
   securitySchemes:
     CORS:
