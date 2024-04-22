@@ -602,6 +602,8 @@ paths:
           $ref: '#/components/responses/termin-show-200'
       security:
         - CORS: []
+      tags:
+        - "Geschlossene API"
   /api/v1/termine/show?user=CORS&id[]={TERMIN_ID}&destination_id={DESTINATION_ID}:
     get:
       summary: Termin Details (Bulk Request)
@@ -623,6 +625,8 @@ paths:
           $ref: '#/components/responses/termin-show-200'
       security:
         - CORS: []
+      tags:
+        - "Geschlossene API"
   /api/v1/destinationen/show?user=CORS&id={DESTINATION_ID}:
     parameters:
       - in: query
@@ -1453,3 +1457,5 @@ paths:
                           https://dev.wirtschaftswunder.digital/api/v1/termine/index?destination_id=260
       security:
         - CORS: []
+      tags:
+        - "Geschlossene API"
