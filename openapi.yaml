@@ -11,13 +11,13 @@ info:
   title: CADI API Dokumentation
   license:
     name: Apache 2.0
-    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
   x-logo:
-    url: 'https://cdn.jsdelivr.net/gh/wirtschaftswunder-digital/API-Documentation@main/logo.png'
-    altText: 'CADI API Logo'
+    url: "https://cdn.jsdelivr.net/gh/wirtschaftswunder-digital/API-Documentation@main/logo.png"
+    altText: "CADI API Logo"
 externalDocs:
   description: Dokumentation für die Integration von CADI Frontend Komponenten
-  url: 'https://wirtschaftswunder-digital.github.io/CADI-Documentation/'
+  url: "https://wirtschaftswunder-digital.github.io/CADI-Documentation/"
 tags:
   - name: "Öffentliche API"
     description: "API Endpunkte, die ohne Authentifizierung abgerufen von einem beliebigen Client abgerufen werden können. Die Daten sind öffentlich zugänglich und enthalten eine begrenzte Auswahl an Informationen."
@@ -297,8 +297,8 @@ components:
 paths:
   /api/open_v1/products/index?anbieter_id={ANBIETER_ID}:
     parameters:
-      - $ref: '#/components/parameters/anbieter-id'
-      - $ref: '#/components/parameters/locale'
+      - $ref: "#/components/parameters/anbieter-id"
+      - $ref: "#/components/parameters/locale"
 
     get:
       tags:
@@ -306,7 +306,7 @@ paths:
       summary: "Destinationen (öffentlich)"
       description: "API zum laden der Destinationen eines Anbieters und ihrer Basisinformationen"
       responses:
-        '200':
+        "200":
           description: "Erfolgreiche Anfrage"
           content:
             application/json:
@@ -409,9 +409,9 @@ paths:
                   daycamp: false
   /api/open_v1/events/index?destination_id={DESTINATION_ID}&host_id={HOST_ID}:
     parameters:
-      - $ref: '#/components/parameters/destination-id'
-      - $ref: '#/components/parameters/host-id'
-      - $ref: '#/components/parameters/locale'
+      - $ref: "#/components/parameters/destination-id"
+      - $ref: "#/components/parameters/host-id"
+      - $ref: "#/components/parameters/locale"
     get:
       description: "Termine einer Destination abrufen"
       summary: "Termine einer Destination (öffentlich)"
@@ -420,7 +420,7 @@ paths:
       tags:
         - "Öffentliche API"
       responses:
-        '200':
+        "200":
           description: "Erfolgreiche Anfrage"
           content:
             application/json:
@@ -445,11 +445,11 @@ paths:
                       description: URL zur Buchungsmaske des Termins
                     start:
                       type: string
-                      format: date
+                      format: date (dd.mm.yyyy)
                       description: Startdatum im Format dd.mm.yyyy
                     end:
                       type: string
-                      format: date
+                      format: date (dd.mm.yyyy)
                       description: Enddatum im Format dd.mm.yyyy
                     nights:
                       type: integer
@@ -476,9 +476,9 @@ paths:
                         - "<= 10"
                         - "> 10"
                     availability_f:
-                      $ref: '#/components/schemas/availability-per-gender'
+                      $ref: "#/components/schemas/availability-per-gender"
                     availability_m:
-                      $ref: '#/components/schemas/availability-per-gender'
+                      $ref: "#/components/schemas/availability-per-gender"
                     waitlist:
                       type: boolean
                       description: Dieser Wert gibt an, ob der Termin für den Termin die Warteliste aktiviert wurde
@@ -551,7 +551,7 @@ paths:
                   additional_values: [null, null]
   /api/v1/reiserabatte/index?user=CORS&termin_id={TERMIN_ID}:
     parameters:
-      - $ref: '#/components/parameters/termin-id'
+      - $ref: "#/components/parameters/termin-id"
     get:
       description: Rabatte für einen Termin abrufen
       summary: Rabatte für einen Termin
@@ -560,7 +560,7 @@ paths:
       tags:
         - "Geschlossene API"
       responses:
-        '200':
+        "200":
           description: "Erfolgreiche Anfrage"
           content:
             application/json:
@@ -585,7 +585,7 @@ paths:
                               type: string
                               format: date (YYYY-MM-DD)
                               nullable: true
-                              description: Startdatum des Rabatts (falls vorhanden) 
+                              description: Startdatum des Rabatts (falls vorhanden)
                             enddatum:
                               type: string
                               format: date (YYYY-MM-DD)
@@ -617,17 +617,17 @@ paths:
           description: Die ID des Termins, dessen Informationen abgerufen werden sollen.
           schema:
             type: integer
-        - $ref: '#/components/parameters/destination-id'
-        - $ref: '#/components/parameters/locale'
+        - $ref: "#/components/parameters/destination-id"
+        - $ref: "#/components/parameters/locale"
       responses:
-        '200':
-          $ref: '#/components/responses/termin-show-200'
+        "200":
+          $ref: "#/components/responses/termin-show-200"
       security:
         - CORS: []
       tags:
         - "Geschlossene API"
-  /api/v1/termine/show?user=CORS&id[]={TERMIN_ID}&destination_id={DESTINATION_ID}:
-    get:
+  ? /api/v1/termine/show?user=CORS&id[]={TERMIN_ID}&destination_id={DESTINATION_ID}
+  : get:
       summary: Termin Details (Bulk Request)
       description: Abrufen von Informationen zu mehreren Termin in einer gesammelten Anfrage.
       parameters:
@@ -640,11 +640,11 @@ paths:
             items:
               type: integer
             example: [29239, 29240, 29241]
-        - $ref: '#/components/parameters/destination-id'
-        - $ref: '#/components/parameters/locale'
+        - $ref: "#/components/parameters/destination-id"
+        - $ref: "#/components/parameters/locale"
       responses:
-        '200':
-          $ref: '#/components/responses/termin-show-200'
+        "200":
+          $ref: "#/components/responses/termin-show-200"
       security:
         - CORS: []
       tags:
@@ -665,12 +665,12 @@ paths:
           example: true
           default: false
           type: boolean
-      - $ref: '#/components/parameters/locale'
+      - $ref: "#/components/parameters/locale"
     get:
       summary: "Destinationen Details"
       description: "Abrufen von detaillierten Informationen zu einer Destination."
       responses:
-        '200':
+        "200":
           description: "Erfolgreiche Anfrage"
           content:
             application/json:
@@ -790,7 +790,7 @@ paths:
                             description: Gibt an, ob Skitage online sind bzw. in der Travel App eine Angabe für die Anzahl der Skitage gemacht wurde. Dieser Wert wird beispielsweise von unserer Termin Tabelle verwendet.
                           wintersport:
                             type: object
-                            description: Enthält alle Informationen für die Anzeige der Formularfelder zum Thema Wintersport in der Buchungsmaske. In dieser kann, wenn eingeschaltet, abgefragt werden welche Wintersportarten der Kunde ausübt und auf welchem Level er sich befindet. 
+                            description: Enthält alle Informationen für die Anzeige der Formularfelder zum Thema Wintersport in der Buchungsmaske. In dieser kann, wenn eingeschaltet, abgefragt werden welche Wintersportarten der Kunde ausübt und auf welchem Level er sich befindet.
                             properties:
                               sportaten_titel:
                                 type: string
@@ -1203,21 +1203,21 @@ paths:
                   summary: "Beispiel 2"
                   value:
                     data:
-                      id: '260'
+                      id: "260"
                       type: destination
                       attributes:
                         id: 260
                         anlagenname: St. Peter Ording Nordsee
                         strasse: Barcelona 11
-                        plz: '1111'
+                        plz: "1111"
                         stadt: Haltern
-                        latitude: '41.3641'
-                        longitude: '2.1562'
-                        geo_url: 'https://goo.gl/maps/RjURCSPCXaitEoKb8'
+                        latitude: "41.3641"
+                        longitude: "2.1562"
+                        geo_url: "https://goo.gl/maps/RjURCSPCXaitEoKb8"
                         saisons:
                           - Sommer
                         daycamp: false
-                        titel: 'TanzCamp Haltern Niederrhein, NRW'
+                        titel: "TanzCamp Haltern Niederrhein, NRW"
                         ort: Haltern
                         zahlungsmethoden:
                           - Überweisung
@@ -1244,11 +1244,11 @@ paths:
                         tage_spalte_online: true
                         skitage_online: false
                         wintersport:
-                          sportaten_titel: 'Sportart:'
+                          sportaten_titel: "Sportart:"
                           sportarten:
                             - Ski
                             - Snowboard
-                          stufen_titel: 'Level:'
+                          stufen_titel: "Level:"
                           stufen:
                             - Stufe Weiß (Anfänger 1)
                             - Stufe Grün (Anfänger 2)
@@ -1274,7 +1274,7 @@ paths:
                             fährst alle Pisten sicher runter- egal, ob Tiefschnee oder frisch
                             präpariert.<br>
                         golflevel:
-                          titel: 'Handicap:'
+                          titel: "Handicap:"
                           info: >-
                             Bei uns sind Teilnehmer mit jedem Handicap, egal ob Profi oder Anfänger
                             herzlich willkommen! Bitte nenne uns dein Handicap, damit wir dein Kurs
@@ -1286,7 +1286,7 @@ paths:
                             - 19 - 36
                             - 37+
                         schwimmlevel:
-                          titel: 'Schwimmen:'
+                          titel: "Schwimmen:"
                           info: >-
                             Bitte teile uns dein Schwimmlevel mit. Es ist nicht erfoderlich die DLRG
                             Prüfungen absolviert zu haben, sondern es geht um eine Einschätzung des
@@ -1321,13 +1321,13 @@ paths:
                             Gegenstandes innerhalb von 3 Minuten. Ein Sprung aus 3 m Höhe. 50 m
                             Transportschwimmen.
                         shirt:
-                          titel: 'T-Shirt:'
+                          titel: "T-Shirt:"
                           optionen:
-                            - '116'
-                            - '128'
-                            - '140'
-                            - '152'
-                            - '164'
+                            - "116"
+                            - "128"
+                            - "140"
+                            - "152"
+                            - "164"
                             - Men XS
                             - Men S
                             - Men M
@@ -1341,14 +1341,14 @@ paths:
                             - Woman XL
                             - Woman XXL
                         medikation:
-                          titel: 'Dauermedikation:'
+                          titel: "Dauermedikation:"
                           info: >-
                             Bitte gib hier die Medikamente an, welche dauerhaft eingenommen werden.
                             Diese Informationen sind sehr wichtig und werden von uns besonders
                             sensibel und verantwortungsbewusst behandelt.
                           id: 701
                         krankheiten:
-                          titel: 'Krankheiten und Störungen:'
+                          titel: "Krankheiten und Störungen:"
                           info: >-
                             Bitte gib hier Krankenheiten und Störungen an. Diese Informationen sind
                             sehr wichtig und werden von uns besonders sensibel und
@@ -1356,7 +1356,7 @@ paths:
                           id: 705
                         allergien: null
                         verpflegungswunsch:
-                          titel: 'Verpflegungswunsch:'
+                          titel: "Verpflegungswunsch:"
                           optionen:
                             - - - kein_verpflegungswunsch
                                 - Keine Verpflegungswünsche
@@ -1407,7 +1407,7 @@ paths:
                         zusatzbedingung_abfragen: true
                         zusatzbedingung: >-
                           Ich habe die <a href="https://www.google.de/">Zusatzvereinbarung</a>
-                          verstanden. 
+                          verstanden.
                         englischkenntnisse_abfragen: true
                         woher_abfragen: true
                         woher_auswahl: |
@@ -1452,26 +1452,26 @@ paths:
                           - id: 236
                             name: 1 Woche
                             termin_ids:
-                              - '12911'
-                              - '12912'
-                              - '12913'
-                              - '12914'
-                              - '28938'
-                              - '29222'
-                              - '29512'
-                              - '30617'
+                              - "12911"
+                              - "12912"
+                              - "12913"
+                              - "12914"
+                              - "28938"
+                              - "29222"
+                              - "29512"
+                              - "30617"
                             reihenfolge: 1
                             destination_id: 260
                             aktiv: true
                           - id: 237
                             name: 2 Wochen
                             termin_ids:
-                              - '12910'
-                              - '30616'
+                              - "12910"
+                              - "30616"
                             reihenfolge: 2
                             destination_id: 260
                             aktiv: false
-                        original_url: 'https://www.oskar-lernt-englisch.de/sprachcamps/haltern-tanzcamp'
+                        original_url: "https://www.oskar-lernt-englisch.de/sprachcamps/haltern-tanzcamp"
                       links:
                         anbieter_url: >-
                           https://dev.wirtschaftswunder.digital/api/v1/anbieter/show?destination_id=260&anbieter_id=13
@@ -1637,42 +1637,47 @@ paths:
         - in: query
           name: user[hauptperson_attributes][buchungen_attributes][0][notice_answers_attributes][N][notice_id]
           required: false
-          description: '**WICHTIG: [N] muss durch den Index der Benachrichtigung ersetzt werden!** ID der Benachrichtigung. Eine mögliche Benachrichtigung kann der Inhalt des Textfelds *Dauermedikamentation* sein. Die `notice_id` kann aus den Destinations-Daten der geschlossenen API entnommen werden (zum Beispiel aus `data.attributes.medikation.id`).'
+          description: "**WICHTIG: [N] muss durch den Index der Benachrichtigung ersetzt werden!** ID der Benachrichtigung. Eine mögliche Benachrichtigung kann der Inhalt des Textfelds *Dauermedikamentation* sein. Die `notice_id` kann aus den Destinations-Daten der geschlossenen API entnommen werden (zum Beispiel aus `data.attributes.medikation.id`)."
           schema:
             type: integer
             example: 701
         - in: query
           name: user[hauptperson_attributes][buchungen_attributes][0][notice_answers_attributes][0][text]
           required: false
-          description: '**WICHTIG: [N] muss durch den Index der Benachrichtigung ersetzt werden!** Text für die Benachrichtigung. Eine mögliche Benachrichtigung kann der Inhalt des Textfelds *Dauermedikamentation* sein.'
+          description: "**WICHTIG: [N] muss durch den Index der Benachrichtigung ersetzt werden!** Text für die Benachrichtigung. Eine mögliche Benachrichtigung kann der Inhalt des Textfelds *Dauermedikamentation* sein."
           schema:
             type: string
             example: "Mein Kind neigt dazu ihr Asthmaspray zu verlegen."
-        # TODO: correct from here on
         - in: query
           name: hauptperson_attributes[vorname]
-          required: false
+          required: true
           description: Der Vorname der Hauptperson.
           schema:
             type: string
+            example: "Max"
         - in: query
           name: hauptperson_attributes[name]
-          required: false
+          required: true
           description: Der Nachname der Hauptperson.
           schema:
             type: string
+            example: "Mustermann"
         - in: query
           name: hauptperson_attributes[geburtstag]
-          required: false
+          required: true
           description: Das Geburtsdatum der Hauptperson.
           schema:
             type: string
-            format: date
+            format: date (DD.MM.YYYY)
+            example: "01.01.2005"
         - in: query
           name: hauptperson_attributes[anrede_id]
-          required: false
-          description: Die Anrede-ID der Hauptperson.
+          required: true
+          description: Die Anrede-ID der Hauptperson. 0 = Herr, 1 = Frau.
           schema:
+            enum:
+              - 0
+              - 1
             type: integer
         - in: query
           name: hauptperson_attributes[divers]
@@ -1682,16 +1687,18 @@ paths:
             type: boolean
         - in: query
           name: hauptperson_attributes[nation_attributes][iso]
-          required: false
-          description: Der ISO-Code des Nationalitätslandes der Hauptperson.
+          required: true
+          description: Der ISO-Code des Nationalitätslandes der Hauptperson. **Wichtig:** Der ISO-Code muss in Großbuchstaben angegeben werden.
           schema:
             type: string
+            example: DE
         - in: query
           name: hauptperson_attributes[freunde]
           required: false
-          description: Eine Liste der Freunde der Hauptperson.
+          description: Eine Liste der Freunde der Hauptperson. Diese Angaben können für Zimmerbelegungen relevant sein.
           schema:
             type: string
+            example: "Laura Mustermann, Tina Tester"
         - in: query
           name: hauptperson_attributes[vorname_eltern]
           required: false
@@ -1707,49 +1714,53 @@ paths:
         - in: query
           name: hauptperson_attributes[anrede_eltern_id]
           required: false
-          description: Die Anrede-ID des Elternteils der Hauptperson.
+          description: Die Anrede-ID des Elternteils der Hauptperson. 0 = Herr, 1 = Frau.
           schema:
             type: integer
         - in: query
           name: hauptperson_attributes[strasse]
-          required: false
+          required: true
           description: Die Straße der Adresse der Hauptperson.
           schema:
             type: string
         - in: query
           name: hauptperson_attributes[land_attributes][iso]
-          required: false
-          description: Der ISO-Code des Landes der Adresse der Hauptperson.
+          required: true
+          description: Der ISO-Code des Landes der Adresse der Hauptperson. **Wichtig:** Der ISO-Code muss in Großbuchstaben angegeben werden.
           schema:
             type: string
+            example: DE
         - in: query
           name: hauptperson_attributes[plz]
-          required: false
+          required: true
           description: Die Postleitzahl der Adresse der Hauptperson.
           schema:
             type: string
         - in: query
           name: hauptperson_attributes[ort]
-          required: false
-          description: Der Ort der Adresse der Hauptperson.
+          required: true
+          description: Die Stadt der Adresse der Hauptperson.
           schema:
             type: string
+            example: Berlin
         - in: query
           name: hauptperson_attributes[mobil]
           required: false
           description: Die Mobiltelefonnummer der Hauptperson.
           schema:
             type: string
+            example: "+49123546"
         - in: query
           name: hauptperson_attributes[telefon]
           required: false
           description: Die Telefonnummer der Hauptperson.
           schema:
             type: string
+            example: "+49987654"
         - in: query
           name: hauptperson_attributes[englischkenntnisse_jahre]
           required: false
-          description: Die Anzahl der Jahre, die die Hauptperson Englischkenntnisse hat.
+          description: Die Anzahl der Jahre, die die Hauptperson Englischunterricht erhält.
           schema:
             type: integer
         - in: query
@@ -1758,16 +1769,32 @@ paths:
           description: Der Bedarf der Hauptperson an Englischkenntnissen.
           schema:
             type: string
+            enum:
+              - "sprechen"
+              - "lesen"
+              - "schreiben"
+              - "hoeren"
+            example: "sprechen"
         - in: query
           name: hauptperson_attributes[englischkenntnisse_note]
           required: false
           description: Die Note der Englischkenntnisse der Hauptperson.
           schema:
             type: string
+            enum:
+              [
+                "sehrgut",
+                "gut",
+                "befriedigend",
+                "ausreichend",
+                "mangelhaft",
+                "ungenuegend",
+                "keine",
+              ]
         - in: query
           name: hauptperson_attributes[schulform]
           required: false
-          description: Die Schulform der Hauptperson.
+          description: Die Schulform der Hauptperson. Die möglichen Werte können aus den geschlossenen API Endpunkt für die Destination entnommen werden (`data.attributes.schulform_auswahl[0]`).
           schema:
             type: string
         - in: query
@@ -1775,13 +1802,14 @@ paths:
           required: false
           description: Die Schulklasse der Hauptperson.
           schema:
-            type: string
+            type: integer
         - in: query
           name: hauptperson_attributes[geburtsort]
           required: false
           description: Der Geburtsort der Hauptperson.
           schema:
             type: string
+            example: Köln
         - in: query
           name: hauptperson_attributes[ausweisnummer]
           required: false
@@ -1791,14 +1819,16 @@ paths:
         - in: query
           name: hauptperson_attributes[sonderadressen_attributes][0][abw_rechnungsadresse]
           required: false
-          description: Gibt an, ob die Sonderadresse als abweichende Rechnungsadresse verwendet wird.
+          description: Gibt an, ob eine abweichende Rechnungsadresse verwendet wird.
           schema:
             type: boolean
         - in: query
           name: hauptperson_attributes[sonderadressen_attributes][0][art]
           required: false
-          description: Die Art der Sonderadresse.
+          description: Die Art der Sonderadresse (wird für abweichende Rechnungsadressen verwendet).
           schema:
+            enum:
+              - Rechnungsadresse
             type: string
         - in: query
           name: hauptperson_attributes[sonderadressen_attributes][0][firma]
@@ -1809,7 +1839,7 @@ paths:
         - in: query
           name: hauptperson_attributes[sonderadressen_attributes][0][anrede_id]
           required: false
-          description: Die Anrede-ID für die Person in der Sonderadresse.
+          description: Die Anrede-ID für die Person in der Sonderadresse. 0 = Herr, 1 = Frau.
           schema:
             type: integer
         - in: query
@@ -1833,7 +1863,7 @@ paths:
         - in: query
           name: hauptperson_attributes[sonderadressen_attributes][0][land][iso]
           required: false
-          description: Der ISO-Ländercode für das Land der Sonderadresse.
+          description: Der ISO-Ländercode für das Land der Sonderadresse. **Wichtig:** Der ISO-Code muss in Großbuchstaben angegeben werden.
           schema:
             type: string
         - in: query
@@ -1845,42 +1875,46 @@ paths:
         - in: query
           name: hauptperson_attributes[sonderadressen_attributes][0][ort]
           required: false
-          description: Der Ort der Sonderadresse.
+          description: Der Ort der Sonderadresse (Stadt).
           schema:
             type: string
+            example: Hamburg
         - in: query
           name: hauptperson_attributes[sonderadressen_attributes][0][email]
           required: false
           description: Die E-Mail-Adresse der Person in der Sonderadresse.
           schema:
             type: string
+            example: "max.mustermann@example.com"
         - in: query
           name: email
-          required: false
-          description: Die E-Mail-Adresse des Benutzers.
+          required: true
+          description: Die E-Mail-Adresse für die Buchung. **Wichtig:** An diese E-Mail-Adresse wird die Buchungskopie gesendet.
           schema:
+            format: email
             type: string
         - in: query
           name: extern
-          required: false
-          description: Gibt an, ob der Benutzer extern ist.
+          required: true
+          description: Gibt an, ob der Benutzer extern ist. Dieser Parameter ist in der Regel auf `true` zu setzen.
           schema:
             type: boolean
         - in: query
           name: locale
-          required: false
-          description: Die Sprachlokalität des Benutzers.
+          required: true
+          description: Die Sprache in der die Buchung vorgenommen wurde. **Wichtig:** Der Wert sollte in Kleinbuchstaben angegeben werden.
           schema:
             type: string
+            example: de
         - in: query
           name: vendor
-          required: false
+          required: true
           description: Der Anbieter des Buchungsprodukts.
           schema:
             type: string
         - in: query
           name: no_mail
-          required: false
+          required: true
           description: Gibt an, ob E-Mails an den Benutzer gesendet werden sollen.
           schema:
             type: boolean
@@ -1889,12 +1923,12 @@ paths:
           required: false
           description: Das Format der Antwort.
           schema:
+            enum:
+              - json
             type: string
 
-
-
       responses:
-        '201':
+        "201":
           description: "Buchung erstellt"
           content:
             application/json:
