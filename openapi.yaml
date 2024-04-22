@@ -764,6 +764,7 @@ paths:
                             description: Gibt an, ob Skitage online sind bzw. in der Travel App eine Angabe für die Anzahl der Skitage gemacht wurde. Dieser Wert wird beispielsweise von unserer Termin Tabelle verwendet.
                           wintersport:
                             type: object
+                            description: Enthält alle Informationen für die Anzeige der Formularfelder zum Thema Wintersport in der Buchungsmaske. In dieser kann, wenn eingeschaltet, abgefragt werden welche Wintersportarten der Kunde ausübt und auf welchem Level er sich befindet. 
                             properties:
                               sportaten_titel:
                                 type: string
