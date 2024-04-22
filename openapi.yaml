@@ -1648,6 +1648,250 @@ paths:
           schema:
             type: string
             example: "Mein Kind neigt dazu ihr Asthmaspray zu verlegen."
+        # TODO: correct from here on
+        - in: query
+          name: hauptperson_attributes[vorname]
+          required: false
+          description: Der Vorname der Hauptperson.
+          schema:
+            type: string
+        - in: query
+          name: hauptperson_attributes[name]
+          required: false
+          description: Der Nachname der Hauptperson.
+          schema:
+            type: string
+        - in: query
+          name: hauptperson_attributes[geburtstag]
+          required: false
+          description: Das Geburtsdatum der Hauptperson.
+          schema:
+            type: string
+            format: date
+        - in: query
+          name: hauptperson_attributes[anrede_id]
+          required: false
+          description: Die Anrede-ID der Hauptperson.
+          schema:
+            type: integer
+        - in: query
+          name: hauptperson_attributes[divers]
+          required: false
+          description: Angabe, ob die Hauptperson als divers identifiziert ist.
+          schema:
+            type: boolean
+        - in: query
+          name: hauptperson_attributes[nation_attributes][iso]
+          required: false
+          description: Der ISO-Code des Nationalitätslandes der Hauptperson.
+          schema:
+            type: string
+        - in: query
+          name: hauptperson_attributes[freunde]
+          required: false
+          description: Eine Liste der Freunde der Hauptperson.
+          schema:
+            type: string
+        - in: query
+          name: hauptperson_attributes[vorname_eltern]
+          required: false
+          description: Der Vorname des Elternteils der Hauptperson.
+          schema:
+            type: string
+        - in: query
+          name: hauptperson_attributes[name_eltern]
+          required: false
+          description: Der Nachname des Elternteils der Hauptperson.
+          schema:
+            type: string
+        - in: query
+          name: hauptperson_attributes[anrede_eltern_id]
+          required: false
+          description: Die Anrede-ID des Elternteils der Hauptperson.
+          schema:
+            type: integer
+        - in: query
+          name: hauptperson_attributes[strasse]
+          required: false
+          description: Die Straße der Adresse der Hauptperson.
+          schema:
+            type: string
+        - in: query
+          name: hauptperson_attributes[land_attributes][iso]
+          required: false
+          description: Der ISO-Code des Landes der Adresse der Hauptperson.
+          schema:
+            type: string
+        - in: query
+          name: hauptperson_attributes[plz]
+          required: false
+          description: Die Postleitzahl der Adresse der Hauptperson.
+          schema:
+            type: string
+        - in: query
+          name: hauptperson_attributes[ort]
+          required: false
+          description: Der Ort der Adresse der Hauptperson.
+          schema:
+            type: string
+        - in: query
+          name: hauptperson_attributes[mobil]
+          required: false
+          description: Die Mobiltelefonnummer der Hauptperson.
+          schema:
+            type: string
+        - in: query
+          name: hauptperson_attributes[telefon]
+          required: false
+          description: Die Telefonnummer der Hauptperson.
+          schema:
+            type: string
+        - in: query
+          name: hauptperson_attributes[englischkenntnisse_jahre]
+          required: false
+          description: Die Anzahl der Jahre, die die Hauptperson Englischkenntnisse hat.
+          schema:
+            type: integer
+        - in: query
+          name: hauptperson_attributes[englischkenntnisse_bedarf]
+          required: false
+          description: Der Bedarf der Hauptperson an Englischkenntnissen.
+          schema:
+            type: string
+        - in: query
+          name: hauptperson_attributes[englischkenntnisse_note]
+          required: false
+          description: Die Note der Englischkenntnisse der Hauptperson.
+          schema:
+            type: string
+        - in: query
+          name: hauptperson_attributes[schulform]
+          required: false
+          description: Die Schulform der Hauptperson.
+          schema:
+            type: string
+        - in: query
+          name: hauptperson_attributes[schulklasse]
+          required: false
+          description: Die Schulklasse der Hauptperson.
+          schema:
+            type: string
+        - in: query
+          name: hauptperson_attributes[geburtsort]
+          required: false
+          description: Der Geburtsort der Hauptperson.
+          schema:
+            type: string
+        - in: query
+          name: hauptperson_attributes[ausweisnummer]
+          required: false
+          description: Die Ausweisnummer der Hauptperson.
+          schema:
+            type: string
+        - in: query
+          name: hauptperson_attributes[sonderadressen_attributes][0][abw_rechnungsadresse]
+          required: false
+          description: Gibt an, ob die Sonderadresse als abweichende Rechnungsadresse verwendet wird.
+          schema:
+            type: boolean
+        - in: query
+          name: hauptperson_attributes[sonderadressen_attributes][0][art]
+          required: false
+          description: Die Art der Sonderadresse.
+          schema:
+            type: string
+        - in: query
+          name: hauptperson_attributes[sonderadressen_attributes][0][firma]
+          required: false
+          description: Der Name der Firma in der Sonderadresse.
+          schema:
+            type: string
+        - in: query
+          name: hauptperson_attributes[sonderadressen_attributes][0][anrede_id]
+          required: false
+          description: Die Anrede-ID für die Person in der Sonderadresse.
+          schema:
+            type: integer
+        - in: query
+          name: hauptperson_attributes[sonderadressen_attributes][0][vorname]
+          required: false
+          description: Der Vorname der Person in der Sonderadresse.
+          schema:
+            type: string
+        - in: query
+          name: hauptperson_attributes[sonderadressen_attributes][0][name]
+          required: false
+          description: Der Nachname der Person in der Sonderadresse.
+          schema:
+            type: string
+        - in: query
+          name: hauptperson_attributes[sonderadressen_attributes][0][strasse]
+          required: false
+          description: Die Straße der Sonderadresse.
+          schema:
+            type: string
+        - in: query
+          name: hauptperson_attributes[sonderadressen_attributes][0][land][iso]
+          required: false
+          description: Der ISO-Ländercode für das Land der Sonderadresse.
+          schema:
+            type: string
+        - in: query
+          name: hauptperson_attributes[sonderadressen_attributes][0][plz]
+          required: false
+          description: Die Postleitzahl der Sonderadresse.
+          schema:
+            type: string
+        - in: query
+          name: hauptperson_attributes[sonderadressen_attributes][0][ort]
+          required: false
+          description: Der Ort der Sonderadresse.
+          schema:
+            type: string
+        - in: query
+          name: hauptperson_attributes[sonderadressen_attributes][0][email]
+          required: false
+          description: Die E-Mail-Adresse der Person in der Sonderadresse.
+          schema:
+            type: string
+        - in: query
+          name: email
+          required: false
+          description: Die E-Mail-Adresse des Benutzers.
+          schema:
+            type: string
+        - in: query
+          name: extern
+          required: false
+          description: Gibt an, ob der Benutzer extern ist.
+          schema:
+            type: boolean
+        - in: query
+          name: locale
+          required: false
+          description: Die Sprachlokalität des Benutzers.
+          schema:
+            type: string
+        - in: query
+          name: vendor
+          required: false
+          description: Der Anbieter des Buchungsprodukts.
+          schema:
+            type: string
+        - in: query
+          name: no_mail
+          required: false
+          description: Gibt an, ob E-Mails an den Benutzer gesendet werden sollen.
+          schema:
+            type: boolean
+        - in: query
+          name: format
+          required: false
+          description: Das Format der Antwort.
+          schema:
+            type: string
+
+
 
       responses:
         '201':
