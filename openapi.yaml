@@ -283,6 +283,11 @@ components:
                     data:
                       - id: "1724605"
                         type: "reiserabatt"
+  schemas:
+    availability-per-gender:
+      type: integer
+      description: Der Wert gibt an, wie viele Plätze für das jeweilige Geschlecht verfügbar sind. Falls kein Wert angegeben wurde **oder** der Wert > 10 ist, wird `null` zurückgegeben.
+      nullable: true
 
 paths:
   /api/open_v1/products/index?anbieter_id={ANBIETER_ID}:
@@ -465,6 +470,10 @@ paths:
                         - "0"
                         - "<= 10"
                         - "> 10"
+                    availability_f:
+                      $ref: '#/components/schemas/availability-per-gender'
+                    availability_m:
+                      $ref: '#/components/schemas/availability-per-gender'
                     waitlist:
                       type: boolean
                       description: Dieser Wert gibt an, ob der Termin für den Termin die Warteliste aktiviert wurde
@@ -486,6 +495,8 @@ paths:
                   price: 569
                   discount: null
                   availability: "<= 10"
+                  availability_f: 3
+                  availability_m: 5
                   waitlist: true
                   additional_values: [null, null]
                 - id: "24-151-02"
@@ -499,6 +510,8 @@ paths:
                   price: 449
                   discount: null
                   availability: "<= 10"
+                  availability_f: null
+                  availability_m: null
                   waitlist: true
                   additional_values: [null, null]
                 - id: "24-151-L1"
@@ -511,7 +524,9 @@ paths:
                   days: 12
                   price: 899
                   discount: null
-                  availability: "0"
+                  availability: "> 10"
+                  availability_f: null
+                  availability_m: 9
                   waitlist: true
                   additional_values: [null, null]
                 - id: "24-151-P1"
@@ -525,6 +540,8 @@ paths:
                   price: 1099
                   discount: null
                   availability: "0"
+                  availability_f: 0
+                  availability_m: 0
                   waitlist: false
                   additional_values: [null, null]
   /api/v1/reiserabatte/index?user=CORS&termin_id={TERMIN_ID}:
