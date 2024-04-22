@@ -17,7 +17,7 @@ info:
     altText: 'CADI API Logo'
 externalDocs:
   description: Dokumentation für die Integration von CADI Frontend Komponenten
-  url: 'https://leon-1207.github.io/CADI-Documentation/'
+  url: 'https://wirtschaftswunder-digital.github.io/CADI-Documentation/'
 components:
   securitySchemes:
     CORS:
