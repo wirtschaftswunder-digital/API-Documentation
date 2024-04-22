@@ -1485,88 +1485,79 @@ paths:
     post:
       summary: "Buchung erstellen"
       description: "Erstellt eine Buchung für eine Destination."
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                destination_id:
-                  type: integer
-                  description: ID der Destination
-                termin_id:
-                  type: integer
-                  description: ID des Termins
-                anrede:
-                  type: string
-                  description: Anrede
-                vorname:
-                  type: string
-                  description: Vorname
-                nachname:
-                  type: string
-                  description: Nachname
-                geburtsdatum:
-                  type: string
-                  description: Geburtsdatum
-                strasse:
-                  type: string
-                  description: Straße
-                plz:
-                  type: string
-                  description: Postleitzahl
-                stadt:
-                  type: string
-                  description: Stadt
-                telefon:
-                  type: string
-                  description: Telefonnummer
-                email:
-                  type: string
-                  description: E-Mail-Adresse
-                anreise:
-                  type: string
-                  description: Anreise
-                abholung:
-                  type: string
-                  description: Abholung
-                unterkunft:
-                  type: string
-                  description: Unterkunft
-                festnetz:
-                  type: string
-                  description: Festnetznummer
-                geburtsort:
-                  type: string
-                  description: Geburtsort
-                ausweisnummer:
-                  type: string
-                  description: Ausweisnummer
-                schulform:
-                  type: string
-                  description: Schulform
-                zusatzbedingung:
-                  type: string
-                  description: Zusatzbedingung
-                englischkenntnisse:
-                  type: string
-                  description: Englischkenntnisse
-                woher:
-                  type: string
-                  description: Woher
-                alter_pruefen:
-                  type: boolean
-                  description: Alter prüfen
-                buchungsbewertung:
-                  type: boolean
-                  description: Buchungsbewertung
-                googlebewertung:
-                  type: boolean
-                  description: Googlebewertung
-                rechnungsadresse:
-                  type: boolean
-                  description: Rechnungsadresse
+      parameters:
+        - in: query
+          name: user[hauptperson_attributes][buchungen_attributes][0][termin_id]
+          required: true
+          description: ID des Termins, für den die Buchung erstellt werden soll
+          schema:
+            type: integer
+            example: 29222
+        - in: query
+          name: user[hauptperson_attributes][buchungen_attributes][0][vendor]
+          required: true
+          description: Name des Vendors
+          schema:
+            type: string
+            example: Dev-Demo
+        - in: query
+          name: user[hauptperson_attributes][buchungen_attributes][0][vendor_quelle]
+          required: true
+          description: Quelle des Vendors
+          schema:
+            type: string
+            example: Dev-Demo
+        - in: query
+          name: user[hauptperson_attributes][buchungen_attributes][0][zubuchbareleistung_ids[]]
+          required: true
+          description: IDs der zubbuchbaren Leistungen, die der Kunde hinzufügen möchte.
+          schema:
+            type: array
+            items:
+              type: integer
+              example: [227599, 227604]
+        - in: query
+          name: user[hauptperson_attributes][buchungen_attributes][0][anfrage]
+          required: true
+          description: Zusätzliche Textanfrage des Kunden.
+          schema:
+            type: string
+            example: "Mein Kind neigt dazu ihr Asthmaspray zu verlegen. Begründung: Meine Tochter ist für ihr Alter schon weit entwickelt und sehr eigenständig."
+        - in: query
+          name: user[hauptperson_attributes][buchungen_attributes][0][rabatte_attributes][0][name]
+          required: true
+          description: Name des Rabatts
+          schema:
+            type: string
+            example: "#ComeAgain22"
+        - in: query
+          name: user[hauptperson_attributes][buchungen_attributes][0][rabatte_attributes][0][summe]
+          required: true
+          description: Höhe des Rabatts
+          schema:
+            type: integer
+            example: -80
+        - in: query
+          name: user[hauptperson_attributes][buchungen_attributes][0][rabatte_attributes][0][gutschein]
+          required: true
+          description: Angabe ob ein Gutscheincode verwendet wurde.
+          schema:
+            type: boolean
+            example: true
+        - in: query
+          name: user[hauptperson_attributes][buchungen_attributes][0][abfahrt_id]
+          required: true
+          description: ID des Abfahrt
+          schema:
+            type: integer
+            example: 84094781
+        - in: query
+          name: user[hauptperson_attributes][buchungen_attributes][0][rueckfahrt_id]
+          required: true
+          description: ID des Rückfahrt
+          schema:
+            type: integer
+            example: 84114059
       responses:
         '201':
           description: "Buchung erstellt"
