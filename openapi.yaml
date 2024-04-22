@@ -191,6 +191,345 @@ components:
       schema:
         type: string
         example: Stufe Rot (Fortgeschrittener 2)
+    _golflevel:
+      in: query
+      name: user[hauptperson_attributes][buchungen_attributes][0][golflevel]
+      required: true
+      description: Golflevel des Reisenden. Die möglichen Werte können aus den geschlossenen API Endpunkt für die Destination entnommen werden (data -> attributes -> golflevel -> optionen).
+      schema:
+        type: string
+        enum:
+          - "Anfänger ohne Handicap"
+          - "0 - 9"
+          - "10 - 18"
+          - "19 - 36"
+          - "37+"
+        example: 10 - 18
+    _schwimmlevel:    
+      in: query
+      name: user[hauptperson_attributes][buchungen_attributes][0][schwimmlevel]
+      required: true
+      description: Schwimmlevel des Reisenden. Die möglichen Werte können aus den geschlossenen API Endpunkt für die Destination entnommen werden (data -> attributes -> schwimmlevel -> optionen).
+      schema:
+        type: string
+        example: Seepferdchen (Frühschwimmer)
+    _shirt:
+      in: query
+      name: user[hauptperson_attributes][buchungen_attributes][0][shirt]
+      required: true
+      description: T-Shirt-Größe des Reisenden. Die möglichen Werte können aus den geschlossenen API Endpunkt für die Destination entnommen werden (data -> attributes -> shirt -> optionen).
+      schema:
+        type: string
+        example: Woman S
+    _verpflegungswunsch:
+      in: query
+      name: user[hauptperson_attributes][buchungen_attributes][0][verpflegungswunsch[]]
+      required: true
+      description: Verpflegungswunsch des Reisenden. Die möglichen Werte können aus den geschlossenen API Endpunkt für die Destination entnommen werden (data -> attributes -> verpflegungswunsch -> optionen [Array von Arrays [key, label]]).
+      schema:
+        type: array
+        items:
+          type: string
+        example: [vegan, laktosefrei]
+    _woher:
+      in: query
+      name: user[hauptperson_attributes][buchungen_attributes][0][woher[]]
+      required: true
+      description: Wie ist der Kunde auf die Reise aufmerksam geworden. Die möglichen Werte können aus den geschlossenen API Endpunkt für die Destination entnommen werden (data -> attributes -> woher_auswahl).
+      schema:
+        type: array
+        items:
+          type: string
+        example: [newsletter]
+    _notice_id:
+      in: query
+      name: user[hauptperson_attributes][buchungen_attributes][0][notice_answers_attributes][N][notice_id]
+      required: false
+      description: "**WICHTIG: [N] muss durch den Index der Benachrichtigung ersetzt werden!** ID der Benachrichtigung. Eine mögliche Benachrichtigung kann der Inhalt des Textfelds *Dauermedikamentation* sein. Die `notice_id` kann aus den Destinations-Daten der geschlossenen API entnommen werden (zum Beispiel aus `data.attributes.medikation.id`)."
+      schema:
+        type: integer
+        example: 701
+    _notice_text:
+      in: query
+      name: user[hauptperson_attributes][buchungen_attributes][0][notice_answers_attributes][0][text]
+      required: false
+      description: "**WICHTIG: [N] muss durch den Index der Benachrichtigung ersetzt werden!** Text für die Benachrichtigung. Eine mögliche Benachrichtigung kann der Inhalt des Textfelds *Dauermedikamentation* sein."
+      schema:
+        type: string
+        example: "Mein Kind neigt dazu ihr Asthmaspray zu verlegen."
+    _vorname:
+      in: query
+      name: hauptperson_attributes[vorname]
+      required: true
+      description: Der Vorname des Reisenden.
+      schema:
+        type: string
+        example: "Max"
+    _name:
+      in: query
+      name: hauptperson_attributes[name]
+      required: true
+      description: Der Nachname des Reisenden.
+      schema:
+        type: string
+        example: "Mustermann"
+    _geburtstag:
+      in: query
+      name: hauptperson_attributes[geburtstag]
+      required: true
+      description: Das Geburtsdatum des Reisenden.
+      schema:
+        type: string
+        format: date (DD.MM.YYYY)
+        example: "01.01.2005"
+    _anrede_id:
+      in: query
+      name: hauptperson_attributes[anrede_id]
+      required: true
+      description: Die Anrede-ID des Reisenden. 0 = Herr, 1 = Frau.
+      schema:
+        enum:
+          - 0
+          - 1
+        type: integer
+    _divers:
+      in: query
+      name: hauptperson_attributes[divers]
+      required: false
+      description: Angabe, ob sich der Teilnehmer als divers identifiziert ist.
+      schema:
+        type: boolean
+    _nation:
+      in: query
+      name: hauptperson_attributes[nation_attributes][iso]
+      required: true
+      description: Der ISO-Code des Nationalitätslandes des Reisenden. **Wichtig:** Der ISO-Code muss in Großbuchstaben angegeben werden.
+      schema:
+        type: string
+        example: DE
+    _freunde:
+      in: query
+      name: hauptperson_attributes[freunde]
+      required: false
+      description: Eine Liste der Freunde des Reisenden. Diese Angaben können für Zimmerbelegungen relevant sein.
+      schema:
+        type: string
+        example: "Laura Mustermann, Tina Tester"
+    _vorname_eltern:
+      in: query
+      name: hauptperson_attributes[vorname_eltern]
+      required: false
+      description: Der Vorname des Elternteils des Reisenden.
+      schema:
+        type: string
+    _name_eltern:
+      in: query
+      name: hauptperson_attributes[name_eltern]
+      required: false
+      description: Der Nachname des Elternteils des Reisenden.
+      schema:
+        type: string
+    _anrede_eltern_id:
+      in: query
+      name: hauptperson_attributes[anrede_eltern_id]
+      required: false
+      description: Die Anrede-ID des Elternteils des Reisenden. 0 = Herr, 1 = Frau.
+      schema:
+        type: integer
+    _strasse:
+      in: query
+      name: hauptperson_attributes[strasse]
+      required: true
+      description: Die Straße der Adresse des Reisenden.
+      schema:
+        type: string
+    _land:
+      in: query
+      name: hauptperson_attributes[land_attributes][iso]
+      required: true
+      description: Der ISO-Code des Landes der Adresse des Reisenden. **Wichtig:** Der ISO-Code muss in Großbuchstaben angegeben werden.
+      schema:
+        type: string
+        example: DE
+    _plz:
+      in: query
+      name: hauptperson_attributes[plz]
+      required: true
+      description: Die Postleitzahl der Adresse des Reisenden.
+      schema:
+        type: string
+    _ort:
+      in: query
+      name: hauptperson_attributes[ort]
+      required: true
+      description: Die Stadt der Adresse des Reisenden.
+      schema:
+        type: string
+        example: Berlin
+    _mobil:
+      in: query
+      name: hauptperson_attributes[mobil]
+      required: false
+      description: Die Mobiltelefonnummer des Reisenden.
+      schema:
+        type: string
+        example: "+49123546"
+    _telefon:  
+      in: query
+      name: hauptperson_attributes[telefon]
+      required: false
+      description: Die Telefonnummer des Reisenden.
+      schema:
+        type: string
+        example: "+49987654"
+    _englischkenntnisse_jahre:
+      in: query
+      name: hauptperson_attributes[englischkenntnisse_jahre]
+      required: false
+      description: Die Anzahl der Jahre, die der Teilnehmer Englischunterricht erhält.
+      schema:
+        type: integer
+    _englischkenntnisse_bedarf:
+      in: query
+      name: hauptperson_attributes[englischkenntnisse_bedarf]
+      required: false
+      description: Der Bedarf des Reisenden an Englischkenntnissen.
+      schema:
+        type: string
+        enum:
+          - "sprechen"
+          - "lesen"
+          - "schreiben"
+          - "hoeren"
+        example: "sprechen"
+    _englischkenntnisse_note:
+      in: query
+      name: hauptperson_attributes[englischkenntnisse_note]
+      required: false
+      description: Die Note der Englischkenntnisse des Reisenden.
+      schema:
+        type: string
+        enum:
+          [
+            "sehrgut",
+            "gut",
+            "befriedigend",
+            "ausreichend",
+            "mangelhaft",
+            "ungenuegend",
+            "keine",
+          ]
+    _schulform:
+      in: query
+      name: hauptperson_attributes[schulform]
+      required: false
+      description: Die Schulform des Reisenden. Die möglichen Werte können aus den geschlossenen API Endpunkt für die Destination entnommen werden (`data.attributes.schulform_auswahl[0]`).
+      schema:
+        type: string
+    _schulklasse:
+      in: query
+      name: hauptperson_attributes[schulklasse]
+      required: false
+      description: Die Schulklasse des Reisenden.
+      schema:
+        type: integer
+    _geburtsort:
+      in: query
+      name: hauptperson_attributes[geburtsort]
+      required: false
+      description: Der Geburtsort des Reisenden.
+      schema:
+        type: string
+        example: Köln
+    _ausweisnummer:
+      in: query
+      name: hauptperson_attributes[ausweisnummer]
+      required: false
+      description: Die Ausweisnummer des Reisenden.
+      schema:
+        type: string
+    _abw_rechnungsadresse:
+      in: query
+      name: hauptperson_attributes[sonderadressen_attributes][0][abw_rechnungsadresse]
+      required: false
+      description: Gibt an, ob eine abweichende Rechnungsadresse verwendet wird.
+      schema:
+        type: boolean
+    _art:
+      in: query
+      name: hauptperson_attributes[sonderadressen_attributes][0][art]
+      required: false
+      description: Die Art der Sonderadresse (wird für abweichende Rechnungsadressen verwendet).
+      schema:
+        enum:
+          - Rechnungsadresse
+        type: string
+    _firma:
+      in: query
+      name: hauptperson_attributes[sonderadressen_attributes][0][firma]
+      required: false
+      description: Der Name der Firma in der Sonderadresse.
+      schema:
+        type: string
+    _sonder_anrede_id:
+      in: query
+      name: hauptperson_attributes[sonderadressen_attributes][0][anrede_id]
+      required: false
+      description: Die Anrede-ID für die Person in der Sonderadresse. 0 = Herr, 1 = Frau.
+      schema:
+        type: integer
+    _sonder_vorname:
+      in: query
+      name: hauptperson_attributes[sonderadressen_attributes][0][vorname]
+      required: false
+      description: Der Vorname der Person in der Sonderadresse.
+      schema:
+        type: string
+    _sonder_name:
+      in: query
+      name: hauptperson_attributes[sonderadressen_attributes][0][name]
+      required: false
+      description: Der Nachname der Person in der Sonderadresse.
+      schema:
+        type: string
+    _sonder_strasse:
+      in: query
+      name: hauptperson_attributes[sonderadressen_attributes][0][strasse]
+      required: false
+      description: Die Straße der Sonderadresse.
+      schema:
+        type: string
+    _sonder_land:
+      in: query
+      name: hauptperson_attributes[sonderadressen_attributes][0][land][iso]
+      required: false
+      description: Der ISO-Ländercode für das Land der Sonderadresse. **Wichtig:** Der ISO-Code muss in Großbuchstaben angegeben werden.
+      schema:
+        type: string
+    _sonder_plz:
+      in: query
+      name: hauptperson_attributes[sonderadressen_attributes][0][plz]
+      required: false
+      description: Die Postleitzahl der Sonderadresse.
+      schema:
+        type: string
+    _sonder_ort:
+      in: query
+      name: hauptperson_attributes[sonderadressen_attributes][0][ort]
+      required: false
+      description: Der Ort der Sonderadresse (Stadt).
+      schema:
+        type: string
+        example: Hamburg
+    _sonder_email:
+      in: query
+      name: hauptperson_attributes[sonderadressen_attributes][0][email]
+      required: false
+      description: Die E-Mail-Adresse der Person in der Sonderadresse.
+      schema:
+        type: string
+        example: "max.mustermann@example.com"
+
   responses:
     termin-show-200:
       description: Erfolgreiche Abfrage der Termininformationen.
@@ -1617,305 +1956,49 @@ paths:
         - $ref: "#components/parameters/_verpflegungsoption_id"
         - $ref: "#components/parameters/_sportart"
         - $ref: "#components/parameters/_stufe"
+        - $ref: "#components/parameters/_golflevel"
+        - $ref: "#components/parameters/_schwimmlevel"
+        - $ref: "#components/parameters/_shirt"
+        - $ref: "#components/parameters/_verpflegungswunsch"
+        - $ref: "#components/parameters/_woher"
+        - $ref: "#components/parameters/_notice_id"
+        - $ref: "#components/parameters/_notice_text"
+        - $ref: "#components/parameters/_vorname"
+        - $ref: "#components/parameters/_name"
+        - $ref: "#components/parameters/_geburtstag"
+        - $ref: "#components/parameters/_anrede_id"
+        - $ref: "#components/parameters/_divers"
+        - $ref: "#components/parameters/_nation"
+        - $ref: "#components/parameters/_freunde"
+        - $ref: "#components/parameters/_vorname_eltern"
+        - $ref: "#components/parameters/_name_eltern"
+        - $ref: "#components/parameters/_anrede_eltern_id"
+        - $ref: "#components/parameters/_strasse"
+        - $ref: "#components/parameters/_land"
+        - $ref: "#components/parameters/_plz"
+        - $ref: "#components/parameters/_ort"
+        - $ref: "#components/parameters/_mobil"
+        - $ref: "#components/parameters/_telefon"
+        - $ref: "#components/parameters/_englischkenntnisse_jahre"
+        - $ref: "#components/parameters/_englischkenntnisse_bedarf"
+        - $ref: "#components/parameters/_englischkenntnisse_note"
+        - $ref: "#components/parameters/_schulform"
+        - $ref: "#components/parameters/_schulklasse"
+        - $ref: "#components/parameters/_geburtsort"
+        - $ref: "#components/parameters/_ausweisnummer"
+        - $ref: "#components/parameters/_abw_rechnungsadresse"
+        - $ref: "#components/parameters/_art"
+        - $ref: "#components/parameters/_firma"
+        - $ref: "#components/parameters/_sonder_anrede_id"
+        - $ref: "#components/parameters/_sonder_vorname"
+        - $ref: "#components/parameters/_sonder_name"
+        - $ref: "#components/parameters/_sonder_strasse"
+        - $ref: "#components/parameters/_sonder_land"
+        - $ref: "#components/parameters/_sonder_plz"
+        - $ref: "#components/parameters/_sonder_ort"
+        - $ref: "#components/parameters/_sonder_email"
         - in: query
-          name: user[hauptperson_attributes][buchungen_attributes][0][golflevel]
-          required: true
-          description: Golflevel des Reisenden. Die möglichen Werte können aus den geschlossenen API Endpunkt für die Destination entnommen werden (data -> attributes -> golflevel -> optionen).
-          schema:
-            type: string
-            enum:
-              - "Anfänger ohne Handicap"
-              - "0 - 9"
-              - "10 - 18"
-              - "19 - 36"
-              - "37+"
-            example: 10 - 18
-        - in: query
-          name: user[hauptperson_attributes][buchungen_attributes][0][schwimmlevel]
-          required: true
-          description: Schwimmlevel des Reisenden. Die möglichen Werte können aus den geschlossenen API Endpunkt für die Destination entnommen werden (data -> attributes -> schwimmlevel -> optionen).
-          schema:
-            type: string
-            example: Seepferdchen (Frühschwimmer)
-        - in: query
-          name: user[hauptperson_attributes][buchungen_attributes][0][shirt]
-          required: true
-          description: T-Shirt-Größe des Reisenden. Die möglichen Werte können aus den geschlossenen API Endpunkt für die Destination entnommen werden (data -> attributes -> shirt -> optionen).
-          schema:
-            type: string
-            example: Woman S
-        - in: query
-          name: user[hauptperson_attributes][buchungen_attributes][0][verpflegungswunsch[]]
-          required: true
-          description: Verpflegungswunsch des Reisenden. Die möglichen Werte können aus den geschlossenen API Endpunkt für die Destination entnommen werden (data -> attributes -> verpflegungswunsch -> optionen [Array von Arrays [key, label]]).
-          schema:
-            type: array
-            items:
-              type: string
-            example: [vegan, laktosefrei]
-        - in: query
-          name: user[hauptperson_attributes][buchungen_attributes][0][woher[]]
-          required: true
-          description: Wie ist der Kunde auf die Reise aufmerksam geworden. Die möglichen Werte können aus den geschlossenen API Endpunkt für die Destination entnommen werden (data -> attributes -> woher_auswahl).
-          schema:
-            type: array
-            items:
-              type: string
-            example: [newsletter]
-        - in: query
-          name: user[hauptperson_attributes][buchungen_attributes][0][notice_answers_attributes][N][notice_id]
-          required: false
-          description: "**WICHTIG: [N] muss durch den Index der Benachrichtigung ersetzt werden!** ID der Benachrichtigung. Eine mögliche Benachrichtigung kann der Inhalt des Textfelds *Dauermedikamentation* sein. Die `notice_id` kann aus den Destinations-Daten der geschlossenen API entnommen werden (zum Beispiel aus `data.attributes.medikation.id`)."
-          schema:
-            type: integer
-            example: 701
-        - in: query
-          name: user[hauptperson_attributes][buchungen_attributes][0][notice_answers_attributes][0][text]
-          required: false
-          description: "**WICHTIG: [N] muss durch den Index der Benachrichtigung ersetzt werden!** Text für die Benachrichtigung. Eine mögliche Benachrichtigung kann der Inhalt des Textfelds *Dauermedikamentation* sein."
-          schema:
-            type: string
-            example: "Mein Kind neigt dazu ihr Asthmaspray zu verlegen."
-        - in: query
-          name: hauptperson_attributes[vorname]
-          required: true
-          description: Der Vorname des Reisenden.
-          schema:
-            type: string
-            example: "Max"
-        - in: query
-          name: hauptperson_attributes[name]
-          required: true
-          description: Der Nachname des Reisenden.
-          schema:
-            type: string
-            example: "Mustermann"
-        - in: query
-          name: hauptperson_attributes[geburtstag]
-          required: true
-          description: Das Geburtsdatum des Reisenden.
-          schema:
-            type: string
-            format: date (DD.MM.YYYY)
-            example: "01.01.2005"
-        - in: query
-          name: hauptperson_attributes[anrede_id]
-          required: true
-          description: Die Anrede-ID des Reisenden. 0 = Herr, 1 = Frau.
-          schema:
-            enum:
-              - 0
-              - 1
-            type: integer
-        - in: query
-          name: hauptperson_attributes[divers]
-          required: false
-          description: Angabe, ob sich der Teilnehmer als divers identifiziert ist.
-          schema:
-            type: boolean
-        - in: query
-          name: hauptperson_attributes[nation_attributes][iso]
-          required: true
-          description: Der ISO-Code des Nationalitätslandes des Reisenden. **Wichtig:** Der ISO-Code muss in Großbuchstaben angegeben werden.
-          schema:
-            type: string
-            example: DE
-        - in: query
-          name: hauptperson_attributes[freunde]
-          required: false
-          description: Eine Liste der Freunde des Reisenden. Diese Angaben können für Zimmerbelegungen relevant sein.
-          schema:
-            type: string
-            example: "Laura Mustermann, Tina Tester"
-        - in: query
-          name: hauptperson_attributes[vorname_eltern]
-          required: false
-          description: Der Vorname des Elternteils des Reisenden.
-          schema:
-            type: string
-        - in: query
-          name: hauptperson_attributes[name_eltern]
-          required: false
-          description: Der Nachname des Elternteils des Reisenden.
-          schema:
-            type: string
-        - in: query
-          name: hauptperson_attributes[anrede_eltern_id]
-          required: false
-          description: Die Anrede-ID des Elternteils des Reisenden. 0 = Herr, 1 = Frau.
-          schema:
-            type: integer
-        - in: query
-          name: hauptperson_attributes[strasse]
-          required: true
-          description: Die Straße der Adresse des Reisenden.
-          schema:
-            type: string
-        - in: query
-          name: hauptperson_attributes[land_attributes][iso]
-          required: true
-          description: Der ISO-Code des Landes der Adresse des Reisenden. **Wichtig:** Der ISO-Code muss in Großbuchstaben angegeben werden.
-          schema:
-            type: string
-            example: DE
-        - in: query
-          name: hauptperson_attributes[plz]
-          required: true
-          description: Die Postleitzahl der Adresse des Reisenden.
-          schema:
-            type: string
-        - in: query
-          name: hauptperson_attributes[ort]
-          required: true
-          description: Die Stadt der Adresse des Reisenden.
-          schema:
-            type: string
-            example: Berlin
-        - in: query
-          name: hauptperson_attributes[mobil]
-          required: false
-          description: Die Mobiltelefonnummer des Reisenden.
-          schema:
-            type: string
-            example: "+49123546"
-        - in: query
-          name: hauptperson_attributes[telefon]
-          required: false
-          description: Die Telefonnummer des Reisenden.
-          schema:
-            type: string
-            example: "+49987654"
-        - in: query
-          name: hauptperson_attributes[englischkenntnisse_jahre]
-          required: false
-          description: Die Anzahl der Jahre, die der Teilnehmer Englischunterricht erhält.
-          schema:
-            type: integer
-        - in: query
-          name: hauptperson_attributes[englischkenntnisse_bedarf]
-          required: false
-          description: Der Bedarf des Reisenden an Englischkenntnissen.
-          schema:
-            type: string
-            enum:
-              - "sprechen"
-              - "lesen"
-              - "schreiben"
-              - "hoeren"
-            example: "sprechen"
-        - in: query
-          name: hauptperson_attributes[englischkenntnisse_note]
-          required: false
-          description: Die Note der Englischkenntnisse des Reisenden.
-          schema:
-            type: string
-            enum:
-              [
-                "sehrgut",
-                "gut",
-                "befriedigend",
-                "ausreichend",
-                "mangelhaft",
-                "ungenuegend",
-                "keine",
-              ]
-        - in: query
-          name: hauptperson_attributes[schulform]
-          required: false
-          description: Die Schulform des Reisenden. Die möglichen Werte können aus den geschlossenen API Endpunkt für die Destination entnommen werden (`data.attributes.schulform_auswahl[0]`).
-          schema:
-            type: string
-        - in: query
-          name: hauptperson_attributes[schulklasse]
-          required: false
-          description: Die Schulklasse des Reisenden.
-          schema:
-            type: integer
-        - in: query
-          name: hauptperson_attributes[geburtsort]
-          required: false
-          description: Der Geburtsort des Reisenden.
-          schema:
-            type: string
-            example: Köln
-        - in: query
-          name: hauptperson_attributes[ausweisnummer]
-          required: false
-          description: Die Ausweisnummer des Reisenden.
-          schema:
-            type: string
-        - in: query
-          name: hauptperson_attributes[sonderadressen_attributes][0][abw_rechnungsadresse]
-          required: false
-          description: Gibt an, ob eine abweichende Rechnungsadresse verwendet wird.
-          schema:
-            type: boolean
-        - in: query
-          name: hauptperson_attributes[sonderadressen_attributes][0][art]
-          required: false
-          description: Die Art der Sonderadresse (wird für abweichende Rechnungsadressen verwendet).
-          schema:
-            enum:
-              - Rechnungsadresse
-            type: string
-        - in: query
-          name: hauptperson_attributes[sonderadressen_attributes][0][firma]
-          required: false
-          description: Der Name der Firma in der Sonderadresse.
-          schema:
-            type: string
-        - in: query
-          name: hauptperson_attributes[sonderadressen_attributes][0][anrede_id]
-          required: false
-          description: Die Anrede-ID für die Person in der Sonderadresse. 0 = Herr, 1 = Frau.
-          schema:
-            type: integer
-        - in: query
-          name: hauptperson_attributes[sonderadressen_attributes][0][vorname]
-          required: false
-          description: Der Vorname der Person in der Sonderadresse.
-          schema:
-            type: string
-        - in: query
-          name: hauptperson_attributes[sonderadressen_attributes][0][name]
-          required: false
-          description: Der Nachname der Person in der Sonderadresse.
-          schema:
-            type: string
-        - in: query
-          name: hauptperson_attributes[sonderadressen_attributes][0][strasse]
-          required: false
-          description: Die Straße der Sonderadresse.
-          schema:
-            type: string
-        - in: query
-          name: hauptperson_attributes[sonderadressen_attributes][0][land][iso]
-          required: false
-          description: Der ISO-Ländercode für das Land der Sonderadresse. **Wichtig:** Der ISO-Code muss in Großbuchstaben angegeben werden.
-          schema:
-            type: string
-        - in: query
-          name: hauptperson_attributes[sonderadressen_attributes][0][plz]
-          required: false
-          description: Die Postleitzahl der Sonderadresse.
-          schema:
-            type: string
-        - in: query
-          name: hauptperson_attributes[sonderadressen_attributes][0][ort]
-          required: false
-          description: Der Ort der Sonderadresse (Stadt).
-          schema:
-            type: string
-            example: Hamburg
-        - in: query
-          name: hauptperson_attributes[sonderadressen_attributes][0][email]
-          required: false
-          description: Die E-Mail-Adresse der Person in der Sonderadresse.
-          schema:
-            type: string
-            example: "max.mustermann@example.com"
-        - in: query
-          name: email
+          name: user[email]
           required: true
           description: Die E-Mail-Adresse für die Buchung. **Wichtig:** An diese E-Mail-Adresse wird die Buchungskopie gesendet.
           schema:
