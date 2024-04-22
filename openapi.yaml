@@ -1481,3 +1481,101 @@ paths:
         - CORS: []
       tags:
         - "Geschlossene API"
+  /masken/buchungen.json:
+    post:
+      summary: "Buchung erstellen"
+      description: "Erstellt eine Buchung für eine Destination."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                destination_id:
+                  type: integer
+                  description: ID der Destination
+                termin_id:
+                  type: integer
+                  description: ID des Termins
+                anrede:
+                  type: string
+                  description: Anrede
+                vorname:
+                  type: string
+                  description: Vorname
+                nachname:
+                  type: string
+                  description: Nachname
+                geburtsdatum:
+                  type: string
+                  description: Geburtsdatum
+                strasse:
+                  type: string
+                  description: Straße
+                plz:
+                  type: string
+                  description: Postleitzahl
+                stadt:
+                  type: string
+                  description: Stadt
+                telefon:
+                  type: string
+                  description: Telefonnummer
+                email:
+                  type: string
+                  description: E-Mail-Adresse
+                anreise:
+                  type: string
+                  description: Anreise
+                abholung:
+                  type: string
+                  description: Abholung
+                unterkunft:
+                  type: string
+                  description: Unterkunft
+                festnetz:
+                  type: string
+                  description: Festnetznummer
+                geburtsort:
+                  type: string
+                  description: Geburtsort
+                ausweisnummer:
+                  type: string
+                  description: Ausweisnummer
+                schulform:
+                  type: string
+                  description: Schulform
+                zusatzbedingung:
+                  type: string
+                  description: Zusatzbedingung
+                englischkenntnisse:
+                  type: string
+                  description: Englischkenntnisse
+                woher:
+                  type: string
+                  description: Woher
+                alter_pruefen:
+                  type: boolean
+                  description: Alter prüfen
+                buchungsbewertung:
+                  type: boolean
+                  description: Buchungsbewertung
+                googlebewertung:
+                  type: boolean
+                  description: Googlebewertung
+                rechnungsadresse:
+                  type: boolean
+                  description: Rechnungsadresse
+      responses:
+        '201':
+          description: "Buchung erstellt"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  fahrt:
+                    type: string
+                    description: Fahrt ID der neu angelegten Buchung.
+                    nullable: false
