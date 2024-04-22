@@ -1483,6 +1483,8 @@ paths:
         - "Geschlossene API"
   /masken/buchungen.json:
     post:
+      tags:
+        - "Geschlossene API"
       summary: "Buchung erstellen"
       description: "Erstellt eine Buchung für eine Destination."
       parameters:
