@@ -6,8 +6,6 @@ servers:
   #    description: Sandbox server
   - url: https://my.camps.digital
     description: Production server for subdomain *my*
-stylesheets:
-  - './static/custom.css'
 info:
   version: 1.0.1
   title: CADI API Dokumentation
