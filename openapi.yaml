@@ -1950,7 +1950,12 @@ paths:
       tags:
         - "Geschlossene API"
       summary: "Buchung erstellen"
-      description: "Erstellt eine Buchung für eine Destination. **Wichtig: die Buchung wird mit einer Fahrt-ID angelegt, aber noch nicht als abgeschlossene Buchung gespeichert. Um sie als abgeschlossene Buchung zu speichern ist ein weiterer API Call notwendig.**"
+      description: >-
+        Erstellt eine Buchung für eine Destination. Die Buchung ist anschließend *noch nicht verbindlich* abgeschlossen. Um die Buchung abzuschließen, muss ein weiterer API Aufruf erfolgen.
+
+        > **Wichtig!** <br>
+        Es wird im Datenmodell zwischen Hauptbucher und Mitfahren unterschieden. Bei Einzelbuchungen können daher alle Parameter die mit `user[personen_attributes]` beginnen weggelassen werden. Diese sind nur für Mitfahrer relevant. **Bei den Mitfahren `INDEX` in `user[personen_attributes][INDEX]` stets durch den Index des Mitfahrers ersetzt werden (beginnend bei 0).** Somit starten alle Parameter, die den Hauptbucher betreffen mit `user[hauptperson_attributes]`. Alle Parameter, die den 1. Mitfahrer betreffen, beginnen mit `user[personen_attributes][0]`. Die Parameter des 2. Mitfahrers beginnen mit `user[personen_attributes][1]` usw.
+
       parameters:
         # Hauptperson
         - $ref: "#/components/parameters/_termin-id"
@@ -2010,7 +2015,7 @@ paths:
         - $ref: "#/components/parameters/_sonder_email"
         # Mitfahrer
         - in: query
-          name: user[personen_attributes][0][_destroy]
+          name: user[personen_attributes][INDEX][_destroy]
           required: false
           description: Plflichtfeld für Mitfahrer. Muss für jeden Mitfahrer gesetzt werden.
           schema:
@@ -2018,169 +2023,169 @@ paths:
               - false
             type: boolean
         - $ref: "#/components/parameters/_termin-id"
-          name: user[personen_attributes][0][buchungen_attributes][0][termin_id]
+          name: user[personen_attributes][INDEX][buchungen_attributes][0][termin_id]
           required: false
         - $ref: "#/components/parameters/_vendor"
-          name: user[personen_attributes][0][buchungen_attributes][0][vendor]
+          name: user[personen_attributes][INDEX][buchungen_attributes][0][vendor]
           required: false
         - $ref: "#/components/parameters/_vendor-quelle"
-          name: user[personen_attributes][0][buchungen_attributes][0][vendor_quelle]
+          name: user[personen_attributes][INDEX][buchungen_attributes][0][vendor_quelle]
           required: false
         - $ref: "#/components/parameters/_zbbl"
-          name: user[personen_attributes][0][buchungen_attributes][0][zubuchbareleistung_ids[]]
+          name: user[personen_attributes][INDEX][buchungen_attributes][0][zubuchbareleistung_ids[]]
           required: false
         - $ref: "#/components/parameters/_anfrage"
-          name: user[personen_attributes][0][buchungen_attributes][0][anfrage]
+          name: user[personen_attributes][INDEX][buchungen_attributes][0][anfrage]
           required: false
         - $ref: "#/components/parameters/_rabatte_attributes_name"
-          name: user[personen_attributes][0][buchungen_attributes][0][rabatte_attributes][0][name]
+          name: user[personen_attributes][INDEX][buchungen_attributes][0][rabatte_attributes][0][name]
           required: false
         - $ref: "#/components/parameters/_rabatte_attributes_summe"
-          name: user[personen_attributes][0][buchungen_attributes][0][rabatte_attributes][0][summe]
+          name: user[personen_attributes][INDEX][buchungen_attributes][0][rabatte_attributes][0][summe]
           required: false
         - $ref: "#/components/parameters/_rabatte_attributes_gutschein"
-          name: user[personen_attributes][0][buchungen_attributes][0][rabatte_attributes][0][gutschein]
+          name: user[personen_attributes][INDEX][buchungen_attributes][0][rabatte_attributes][0][gutschein]
           required: false
         - $ref: "#/components/parameters/_abfahrt_id"
-          name: user[personen_attributes][0][buchungen_attributes][0][abfahrt_id]
+          name: user[personen_attributes][INDEX][buchungen_attributes][0][abfahrt_id]
           required: false
         - $ref: "#/components/parameters/_rueckfahrt_id"
-          name: user[personen_attributes][0][buchungen_attributes][0][rueckfahrt_id]
+          name: user[personen_attributes][INDEX][buchungen_attributes][0][rueckfahrt_id]
           required: false
         - $ref: "#/components/parameters/_unterbringungsoption_id"
-          name: user[personen_attributes][0][buchungen_attributes][0][unterbringungsoption_id]
+          name: user[personen_attributes][INDEX][buchungen_attributes][0][unterbringungsoption_id]
           required: false
         - $ref: "#/components/parameters/_verpflegungsoption_id"
-          name: user[personen_attributes][0][buchungen_attributes][0][verpflegungsoption_id]
+          name: user[personen_attributes][INDEX][buchungen_attributes][0][verpflegungsoption_id]
           required: false
         - $ref: "#/components/parameters/_sportart"
-          name: user[personen_attributes][0][buchungen_attributes][0][sportart]
+          name: user[personen_attributes][INDEX][buchungen_attributes][0][sportart]
           required: false
         - $ref: "#/components/parameters/_stufe"
-          name: user[personen_attributes][0][buchungen_attributes][0][stufe]
+          name: user[personen_attributes][INDEX][buchungen_attributes][0][stufe]
           required: false
         - $ref: "#/components/parameters/_golflevel"
-          name: user[personen_attributes][0][buchungen_attributes][0][golflevel]
+          name: user[personen_attributes][INDEX][buchungen_attributes][0][golflevel]
           required: false
         - $ref: "#/components/parameters/_schwimmlevel"
-          name: user[personen_attributes][0][buchungen_attributes][0][schwimmlevel]
+          name: user[personen_attributes][INDEX][buchungen_attributes][0][schwimmlevel]
           required: false
         - $ref: "#/components/parameters/_shirt"
-          name: user[personen_attributes][0][buchungen_attributes][0][shirt]
+          name: user[personen_attributes][INDEX][buchungen_attributes][0][shirt]
           required: false
         - $ref: "#/components/parameters/_verpflegungswunsch"
-          name: user[personen_attributes][0][buchungen_attributes][0][verpflegungswunsch[]]
+          name: user[personen_attributes][INDEX][buchungen_attributes][0][verpflegungswunsch[]]
           required: false
         - $ref: "#/components/parameters/_woher"
-          name: user[personen_attributes][0][buchungen_attributes][0][woher[]]
+          name: user[personen_attributes][INDEX][buchungen_attributes][0][woher[]]
           required: false
         - $ref: "#/components/parameters/_notice_id"
-          name: user[personen_attributes][0][buchungen_attributes][0][notice_answers_attributes][0][notice_id]
+          name: user[personen_attributes][INDEX][buchungen_attributes][0][notice_answers_attributes][0][notice_id]
           required: false
         - $ref: "#/components/parameters/_notice_text"
-          name: user[personen_attributes][0][buchungen_attributes][0][notice_answers_attributes][0][text]
+          name: user[personen_attributes][INDEX][buchungen_attributes][0][notice_answers_attributes][0][text]
           required: false
         - $ref: "#/components/parameters/_vorname"
-          name: user[personen_attributes][0][vorname]
+          name: user[personen_attributes][INDEX][vorname]
           required: false
         - $ref: "#/components/parameters/_name"
-          name: user[personen_attributes][0][name]
+          name: user[personen_attributes][INDEX][name]
           required: false
         - $ref: "#/components/parameters/_geburtstag"
-          name: user[personen_attributes][0][geburtstag]
+          name: user[personen_attributes][INDEX][geburtstag]
           required: false
         - $ref: "#/components/parameters/_anrede_id"
-          name: user[personen_attributes][0][anrede_id]
+          name: user[personen_attributes][INDEX][anrede_id]
           required: false
         - $ref: "#/components/parameters/_divers"
-          name: user[personen_attributes][0][divers]
+          name: user[personen_attributes][INDEX][divers]
           required: false
         - $ref: "#/components/parameters/_nation"
-          name: user[personen_attributes][0][nation_attributes][iso]
+          name: user[personen_attributes][INDEX][nation_attributes][iso]
           required: false
         - $ref: "#/components/parameters/_freunde"
-          name: user[personen_attributes][0][freunde]
+          name: user[personen_attributes][INDEX][freunde]
           required: false
         - $ref: "#/components/parameters/_vorname_eltern"
-          name: user[personen_attributes][0][vorname_eltern]
+          name: user[personen_attributes][INDEX][vorname_eltern]
           required: false
         - $ref: "#/components/parameters/_name_eltern"
-          name: user[personen_attributes][0][name_eltern]
+          name: user[personen_attributes][INDEX][name_eltern]
           required: false
         - $ref: "#/components/parameters/_anrede_eltern_id"
-          name: user[personen_attributes][0][anrede_eltern_id]
+          name: user[personen_attributes][INDEX][anrede_eltern_id]
           required: false
         - $ref: "#/components/parameters/_strasse"
-          name: user[personen_attributes][0][strasse]
+          name: user[personen_attributes][INDEX][strasse]
           required: false
         - $ref: "#/components/parameters/_land"
-          name: user[personen_attributes][0][land_attributes][iso]
+          name: user[personen_attributes][INDEX][land_attributes][iso]
           required: false
         - $ref: "#/components/parameters/_plz"
-          name: user[personen_attributes][0][plz]
+          name: user[personen_attributes][INDEX][plz]
           required: false
         - $ref: "#/components/parameters/_ort"
-          name: user[personen_attributes][0][ort]
+          name: user[personen_attributes][INDEX][ort]
           required: false
         - $ref: "#/components/parameters/_mobil"
-          name: user[personen_attributes][0][mobil]
+          name: user[personen_attributes][INDEX][mobil]
           required: false
         - $ref: "#/components/parameters/_telefon"
-          name: user[personen_attributes][0][telefon]
+          name: user[personen_attributes][INDEX][telefon]
           required: false
         - $ref: "#/components/parameters/_englischkenntnisse_jahre"
-          name: user[personen_attributes][0][englischkenntnisse_jahre]
+          name: user[personen_attributes][INDEX][englischkenntnisse_jahre]
           required: false
         - $ref: "#/components/parameters/_englischkenntnisse_bedarf"
-          name: user[personen_attributes][0][englischkenntnisse_bedarf]
+          name: user[personen_attributes][INDEX][englischkenntnisse_bedarf]
           required: false
         - $ref: "#/components/parameters/_englischkenntnisse_note"
-          name: user[personen_attributes][0][englischkenntnisse_note]
+          name: user[personen_attributes][INDEX][englischkenntnisse_note]
           required: false
         - $ref: "#/components/parameters/_schulform"
-          name: user[personen_attributes][0][schulform]
+          name: user[personen_attributes][INDEX][schulform]
           required: false
         - $ref: "#/components/parameters/_schulklasse"
-          name: user[personen_attributes][0][schulklasse]
+          name: user[personen_attributes][INDEX][schulklasse]
           required: false
         - $ref: "#/components/parameters/_geburtsort"
-          name: user[personen_attributes][0][geburtsort]
+          name: user[personen_attributes][INDEX][geburtsort]
           required: false
         - $ref: "#/components/parameters/_ausweisnummer"
-          name: user[personen_attributes][0][ausweisnummer]
+          name: user[personen_attributes][INDEX][ausweisnummer]
           required: false
         - $ref: "#/components/parameters/_abw_rechnungsadresse"
-          name: user[personen_attributes][0][sonderadressen_attributes][0][abw_rechnungsadresse]
+          name: user[personen_attributes][INDEX][sonderadressen_attributes][0][abw_rechnungsadresse]
           required: false
         - $ref: "#/components/parameters/_art"
-          name: user[personen_attributes][0][sonderadressen_attributes][0][art]
+          name: user[personen_attributes][INDEX][sonderadressen_attributes][0][art]
           required: false
         - $ref: "#/components/parameters/_firma"
-          name: user[personen_attributes][0][sonderadressen_attributes][0][firma]
+          name: user[personen_attributes][INDEX][sonderadressen_attributes][0][firma]
           required: false
         - $ref: "#/components/parameters/_sonder_anrede_id"
-          name: user[personen_attributes][0][sonderadressen_attributes][0][anrede_id]
+          name: user[personen_attributes][INDEX][sonderadressen_attributes][0][anrede_id]
           required: false
         - $ref: "#/components/parameters/_sonder_vorname"
-          name: user[personen_attributes][0][sonderadressen_attributes][0][vorname]
+          name: user[personen_attributes][INDEX][sonderadressen_attributes][0][vorname]
           required: false
         - $ref: "#/components/parameters/_sonder_name"
-          name: user[personen_attributes][0][sonderadressen_attributes][0][name]
+          name: user[personen_attributes][INDEX][sonderadressen_attributes][0][name]
           required: false
         - $ref: "#/components/parameters/_sonder_strasse"
-          name: user[personen_attributes][0][sonderadressen_attributes][0][strasse]
+          name: user[personen_attributes][INDEX][sonderadressen_attributes][0][strasse]
           required: false
         - $ref: "#/components/parameters/_sonder_land"
-          name: user[personen_attributes][0][sonderadressen_attributes][0][land][iso]
+          name: user[personen_attributes][INDEX][sonderadressen_attributes][0][land][iso]
           required: false
         - $ref: "#/components/parameters/_sonder_plz"
-          name: user[personen_attributes][0][sonderadressen_attributes][0][plz]
+          name: user[personen_attributes][INDEX][sonderadressen_attributes][0][plz]
           required: false
         - $ref: "#/components/parameters/_sonder_ort"
-          name: user[personen_attributes][0][sonderadressen_attributes][0][ort]
+          name: user[personen_attributes][INDEX][sonderadressen_attributes][0][ort]
           required: false
         - $ref: "#/components/parameters/_sonder_email"
-          name: user[personen_attributes][0][sonderadressen_attributes][0][email]
+          name: user[personen_attributes][INDEX][sonderadressen_attributes][0][email]
           required: false
         # Sonstige (für alle TN)
         - in: query
