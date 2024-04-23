@@ -2227,9 +2227,9 @@ paths:
                     type: string
                     description: Fahrt ID der neu angelegten Buchung.
                     nullable: false
-  /payment/webservice/anzahlungssumme.json:
-    get:
-      summary: Abrufen der Anzahlungssumme
+  ? /payment/webservice/anzahlungssumme.json?hex_id={HEX_ID}&gesamtsumme={GESAMTSUMME}&personen_anzahl={PERSONEN_ANZAHL}
+  : get:
+      summary: Anzahlungssumme
       description: |
         Diese API ermöglicht es, die Anzahlungssumme und verwandte Informationen für eine Buchung abzurufen.
       parameters:
@@ -2289,3 +2289,62 @@ paths:
                   tage_nach_bestaetigung:
                     type: integer
                     description: Die Anzahl der Tage nach Bestätigung der Buchung, bevor die Zahlung fällig ist
+  ? /masken/bezahlungen/bezahlen?format=json&fahrt={FAHRT}&extern={EXTERN}&locale={LOCALE}&no_mail={NO_MAIL}&vendor={VENDOR}
+  : get:
+      summary: Buchung
+      description: |
+        Dieser API Endpunkt ermöglicht es, Buchung durchzuführen.
+      parameters:
+        - in: query
+          name: fahrt
+          required: true
+          description: Die Fahrt ID der Buchung
+          schema:
+            type: string
+        - in: query
+          name: extern
+          required: true
+          description: Gibt an, ob es sich um eine externe Buchungsmaske handelt. Dieser Wert sollte in der Regel auf `true` gesetzt werden.
+          schema:
+            type: boolean
+        - in: query
+          name: locale
+          required: true
+          description: Die Sprache in der die Buchung erfolgt. Der Wert sollte in Kleinbuchstaben angegeben werden.
+          schema:
+            example: de
+            type: string
+        - in: query
+          name: no_mail
+          required: true
+          description: Gibt an, ob auf eine E-Mail an den Kunden verzichtet werden soll.
+          schema:
+            type: boolean
+        - in: query
+          name: vendor
+          required: true
+          description: Der Vendor auf den die Buchung zurückgeführt werden soll.
+          schema:
+            type: string
+        - in: query
+          name: format
+          required: true
+          description: Das Format der Antwort. Hier ist in der Regel `json` zu verwenden.
+          schema:
+            type: string
+      tags:
+        - "Geschlossene API"
+      responses:
+        "201":
+          description: Erfolgreiche Buchung
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: string
+                    description: Statusmeldung der Bezahlung
+                  name:
+                    type: string
+                    description: Name des Hauptbuchers
