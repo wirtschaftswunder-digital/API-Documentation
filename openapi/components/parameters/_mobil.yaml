@@ -1,0 +1,7 @@
+in: query
+name: user[hauptperson_attributes][mobil]
+required: false
+description: Die Mobiltelefonnummer des Reisenden.
+schema:
+  type: string
+  example: '+49123546'

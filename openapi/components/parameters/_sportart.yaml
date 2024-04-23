@@ -1,0 +1,10 @@
+in: query
+name: user[hauptperson_attributes][buchungen_attributes][0][sportart]
+required: true
+description: Gewählte Sportart
+schema:
+  type: string
+  enum:
+    - Ski
+    - Snowboard
+  example: Ski

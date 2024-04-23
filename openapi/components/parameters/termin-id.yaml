@@ -1,0 +1,8 @@
+name: termin_id
+in: query
+description: ID des Termins
+required: true
+schema:
+  type: integer
+  format: int64
+  example: 29239

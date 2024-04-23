@@ -1,0 +1,14 @@
+in: query
+name: user[hauptperson_attributes][buchungen_attributes][0][verpflegungswunsch[]]
+required: true
+description: >-
+  Verpflegungswunsch des Reisenden. Die möglichen Werte können aus den
+  geschlossenen API Endpunkt für die Destination entnommen werden (data ->
+  attributes -> verpflegungswunsch -> optionen [Array von Arrays [key, label]]).
+schema:
+  type: array
+  items:
+    type: string
+  example:
+    - vegan
+    - laktosefrei

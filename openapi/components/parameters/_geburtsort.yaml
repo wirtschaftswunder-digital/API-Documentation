@@ -1,0 +1,7 @@
+in: query
+name: user[hauptperson_attributes][geburtsort]
+required: false
+description: Der Geburtsort des Reisenden.
+schema:
+  type: string
+  example: Köln

@@ -1,0 +1,7 @@
+in: query
+name: user[hauptperson_attributes][vorname]
+required: true
+description: Der Vorname des Reisenden.
+schema:
+  type: string
+  example: Max

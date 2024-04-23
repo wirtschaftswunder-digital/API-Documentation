@@ -1,0 +1,8 @@
+name: anbieter_id
+in: query
+description: ID des Anbieters
+required: true
+schema:
+  type: integer
+  format: int64
+  example: 1

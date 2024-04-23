@@ -1,0 +1,6 @@
+in: query
+name: user[hauptperson_attributes][sonderadressen_attributes][0][anrede_id]
+required: false
+description: Die Anrede-ID für die Person in der Sonderadresse. 0 = Herr, 1 = Frau.
+schema:
+  type: integer

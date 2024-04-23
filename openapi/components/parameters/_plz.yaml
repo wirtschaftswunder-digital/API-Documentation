@@ -1,0 +1,6 @@
+in: query
+name: user[hauptperson_attributes][plz]
+required: true
+description: Die Postleitzahl der Adresse des Reisenden.
+schema:
+  type: string

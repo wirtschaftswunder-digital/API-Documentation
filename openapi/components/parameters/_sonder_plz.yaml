@@ -1,0 +1,6 @@
+in: query
+name: user[hauptperson_attributes][sonderadressen_attributes][0][plz]
+required: false
+description: Die Postleitzahl der Sonderadresse.
+schema:
+  type: string

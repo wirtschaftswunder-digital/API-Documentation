@@ -1,0 +1,13 @@
+in: query
+name: >-
+  user[hauptperson_attributes][buchungen_attributes][0][notice_answers_attributes][N][notice_id]
+required: false
+description: >-
+  **WICHTIG: [N] muss durch den Index der Benachrichtigung ersetzt werden!** ID
+  der Benachrichtigung. Eine mögliche Benachrichtigung kann der Inhalt des
+  Textfelds *Dauermedikamentation* sein. Die `notice_id` kann aus den
+  Destinations-Daten der geschlossenen API entnommen werden (zum Beispiel aus
+  `data.attributes.medikation.id`).
+schema:
+  type: integer
+  example: 701

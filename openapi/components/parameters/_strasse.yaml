@@ -1,0 +1,7 @@
+in: query
+name: user[hauptperson_attributes][strasse]
+required: true
+description: Die Straße und Hausnummer der Adresse des Reisenden.
+schema:
+  example: Musterstraße 1
+  type: string

@@ -1,0 +1,7 @@
+in: query
+name: user[hauptperson_attributes][buchungen_attributes][0][verpflegungsoption_id]
+required: true
+description: ID der Verpflegungsoption
+schema:
+  type: integer
+  example: 34185

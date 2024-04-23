@@ -1,0 +1,9 @@
+in: query
+name: user[hauptperson_attributes][freunde]
+required: false
+description: >-
+  Eine Liste der Freunde des Reisenden. Diese Angaben können für
+  Zimmerbelegungen relevant sein.
+schema:
+  type: string
+  example: Laura Mustermann, Tina Tester

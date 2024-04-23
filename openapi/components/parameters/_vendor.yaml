@@ -1,0 +1,7 @@
+in: query
+name: user[hauptperson_attributes][buchungen_attributes][0][vendor]
+required: true
+description: Name des Vendors
+schema:
+  type: string
+  example: Dev-Demo

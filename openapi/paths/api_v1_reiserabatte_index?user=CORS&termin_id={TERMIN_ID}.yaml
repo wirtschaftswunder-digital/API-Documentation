@@ -1,0 +1,58 @@
+parameters:
+  - $ref: ../components/parameters/termin-id.yaml
+get:
+  description: Rabatte für einen Termin abrufen
+  summary: Rabatte für einen Termin
+  security:
+    - CORS: []
+  tags:
+    - Geschlossene API
+  responses:
+    '200':
+      description: Erfolgreiche Anfrage
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: ID des Rabatts
+                    type:
+                      type: string
+                      description: Typ des Rabatts
+                    attributes:
+                      type: object
+                      properties:
+                        startdatum:
+                          type: string
+                          format: date (YYYY-MM-DD)
+                          nullable: true
+                          description: Startdatum des Rabatts (falls vorhanden)
+                        enddatum:
+                          type: string
+                          format: date (YYYY-MM-DD)
+                          nullable: true
+                          description: Enddatum des Rabatts (falls vorhanden)
+                        name:
+                          type: string
+                          description: Name des Rabatts
+                        summe:
+                          type: string
+                          description: >-
+                            Rabattsumme (in Euro) mit "." als
+                            Dezimaltrennzeichen
+            example:
+              data:
+                - id: '1724605'
+                  type: reiserabatt
+                  attributes:
+                    startdatum: '2023-11-03'
+                    enddatum: null
+                    name: Frühbucher
+                    summe: '50.0'

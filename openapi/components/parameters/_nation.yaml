@@ -1,0 +1,9 @@
+in: query
+name: user[hauptperson_attributes][nation_attributes][iso]
+required: true
+description: >-
+  Der ISO-Code des Nationalitätslandes des Reisenden. **Wichtig:** Der ISO-Code
+  muss in Großbuchstaben angegeben werden.
+schema:
+  type: string
+  example: DE

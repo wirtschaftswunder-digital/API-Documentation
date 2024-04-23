@@ -1,0 +1,7 @@
+in: query
+name: >-
+  user[hauptperson_attributes][sonderadressen_attributes][0][abw_rechnungsadresse]
+required: false
+description: Gibt an, ob eine abweichende Rechnungsadresse verwendet wird.
+schema:
+  type: boolean

@@ -1,0 +1,6 @@
+in: query
+name: user[hauptperson_attributes][sonderadressen_attributes][0][firma]
+required: false
+description: Der Name der Firma in der Sonderadresse.
+schema:
+  type: string

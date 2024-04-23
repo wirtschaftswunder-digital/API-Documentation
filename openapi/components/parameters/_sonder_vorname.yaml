@@ -1,0 +1,6 @@
+in: query
+name: user[hauptperson_attributes][sonderadressen_attributes][0][vorname]
+required: false
+description: Der Vorname der Person in der Sonderadresse.
+schema:
+  type: string

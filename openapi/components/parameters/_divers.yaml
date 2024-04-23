@@ -1,0 +1,6 @@
+in: query
+name: user[hauptperson_attributes][divers]
+required: false
+description: Angabe, ob sich der Teilnehmer als divers identifiziert ist.
+schema:
+  type: boolean

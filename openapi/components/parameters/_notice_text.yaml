@@ -1,0 +1,11 @@
+in: query
+name: >-
+  user[hauptperson_attributes][buchungen_attributes][0][notice_answers_attributes][0][text]
+required: false
+description: >-
+  **WICHTIG: [N] muss durch den Index der Benachrichtigung ersetzt werden!**
+  Text für die Benachrichtigung. Eine mögliche Benachrichtigung kann der Inhalt
+  des Textfelds *Dauermedikamentation* sein.
+schema:
+  type: string
+  example: Mein Kind neigt dazu ihr Asthmaspray zu verlegen.

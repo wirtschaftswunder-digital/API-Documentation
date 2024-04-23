@@ -1,0 +1,13 @@
+in: query
+name: user[hauptperson_attributes][buchungen_attributes][0][woher[]]
+required: true
+description: >-
+  Wie ist der Kunde auf die Reise aufmerksam geworden. Die möglichen Werte
+  können aus den geschlossenen API Endpunkt für die Destination entnommen werden
+  (data -> attributes -> woher_auswahl).
+schema:
+  type: array
+  items:
+    type: string
+  example:
+    - newsletter

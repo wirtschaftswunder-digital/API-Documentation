@@ -1,0 +1,9 @@
+in: query
+name: user[hauptperson_attributes][schulform]
+required: false
+description: >-
+  Die Schulform des Reisenden. Die möglichen Werte können aus den geschlossenen
+  API Endpunkt für die Destination entnommen werden
+  (`data.attributes.schulform_auswahl[0]`).
+schema:
+  type: string

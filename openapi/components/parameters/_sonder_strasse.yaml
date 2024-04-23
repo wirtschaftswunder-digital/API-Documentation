@@ -1,0 +1,7 @@
+in: query
+name: user[hauptperson_attributes][sonderadressen_attributes][0][strasse]
+required: false
+description: Die Straße und Hausnummer der Sonderadresse.
+schema:
+  example: Teststraße 123
+  type: string

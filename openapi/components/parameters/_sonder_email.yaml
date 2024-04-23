@@ -1,0 +1,7 @@
+in: query
+name: user[hauptperson_attributes][sonderadressen_attributes][0][email]
+required: false
+description: Die E-Mail-Adresse der Person in der Sonderadresse.
+schema:
+  type: string
+  example: max.mustermann@example.com

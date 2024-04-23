@@ -1,0 +1,6 @@
+in: query
+name: user[hauptperson_attributes][vorname_eltern]
+required: false
+description: Der Vorname des Elternteils des Reisenden.
+schema:
+  type: string

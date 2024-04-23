@@ -1,0 +1,71 @@
+openapi: 3.0.0
+servers:
+  - url: https://my.camps.digital
+    description: Production server for subdomain *my*
+info:
+  version: 1.0.1
+  title: CADI API Dokumentation
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  x-logo:
+    url: >-
+      https://cdn.jsdelivr.net/gh/wirtschaftswunder-digital/API-Documentation@main/logo.png
+    altText: CADI API Logo
+externalDocs:
+  description: Dokumentation für die Integration von CADI Frontend Komponenten
+  url: https://wirtschaftswunder-digital.github.io/CADI-Documentation/
+tags:
+  - name: Öffentliche API
+    description: >-
+      API Endpunkte, die ohne Authentifizierung abgerufen von einem beliebigen
+      Client abgerufen werden können. Die Daten sind öffentlich zugänglich und
+      enthalten eine begrenzte Auswahl an Informationen.
+  - name: Geschlossene API
+    description: >-
+      API Endpunkte, die eine Authentifizierung erfordern. Die Authentifizierung
+      erfolgt durch die Überprüfung des `Origin` Headers (der Absender der
+      Anfrage). Nur Anfragen von registrierten Domains werden akzeptiert.
+      Kontaktieren Sie uns bitte, falls Sie Zugriff auf die geschlossene API
+      benötigen.
+components:
+  securitySchemes:
+    CORS:
+      type: apiKey
+      in: header
+      name: Origin
+      description: Nur Anfragen von registrierten Domains werden akzeptiert.
+paths:
+  /api/open_v1/products/index?anbieter_id={ANBIETER_ID}:
+    $ref: paths/api_open_v1_products_index?anbieter_id={ANBIETER_ID}.yaml
+  /api/open_v1/events/index?destination_id={DESTINATION_ID}&host_id={HOST_ID}:
+    $ref: >-
+      paths/api_open_v1_events_index?destination_id={DESTINATION_ID}&host_id={HOST_ID}.yaml
+  /api/v1/reiserabatte/index?user=CORS&termin_id={TERMIN_ID}:
+    $ref: paths/api_v1_reiserabatte_index?user=CORS&termin_id={TERMIN_ID}.yaml
+  /api/v1/termine/show?user=CORS&id={TERMIN_ID}&destination_id={DESTINATION_ID}:
+    $ref: >-
+      paths/api_v1_termine_show?user=CORS&id={TERMIN_ID}&destination_id={DESTINATION_ID}.yaml
+  /api/v1/termine/show?user=CORS&id[]={TERMIN_ID}&destination_id={DESTINATION_ID}:
+    $ref: >-
+      paths/api_v1_termine_show?user=CORS&id[]={TERMIN_ID}&destination_id={DESTINATION_ID}.yaml
+  /api/v1/destinationen/show?user=CORS&id={DESTINATION_ID}:
+    $ref: paths/api_v1_destinationen_show?user=CORS&id={DESTINATION_ID}.yaml
+  /masken/buchungen.json:
+    $ref: paths/masken_buchungen.json.yaml
+  /payment/webservice/anzahlungssumme.json?hex_id={FAHRT_ID}&gesamtsumme={GESAMTSUMME}&personen_anzahl={PERSONEN_ANZAHL}:
+    $ref: >-
+      paths/payment_webservice_anzahlungssumme.json?hex_id={FAHRT_ID}&gesamtsumme={GESAMTSUMME}&personen_anzahl={PERSONEN_ANZAHL}.yaml
+  /masken/bezahlungen/bezahlen?format=json&fahrt={FAHRT}&extern={EXTERN}&locale={LOCALE}&no_mail={NO_MAIL}&vendor={VENDOR}:
+    $ref: >-
+      paths/masken_bezahlungen_bezahlen?format=json&fahrt={FAHRT}&extern={EXTERN}&locale={LOCALE}&no_mail={NO_MAIL}&vendor={VENDOR}.yaml
+  /api/v1/bezahlungen/payment_information?user=CORS&fahrt={FAHRT}:
+    $ref: paths/api_v1_bezahlungen_payment_information?user=CORS&fahrt={FAHRT}.yaml
+  /masken/buchungen/email.json:
+    $ref: paths/masken_buchungen_email.json.yaml
+  /masken/buchungen/add_gutschein.json?gutschein={GUTSCHEIN_CODE}&termin_id={TERMIN_ID}:
+    $ref: >-
+      paths/masken_buchungen_add_gutschein.json?gutschein={GUTSCHEIN_CODE}&termin_id={TERMIN_ID}.yaml
+  /api/v1/bezahlungen/init?fahrt={FAHRT_ID}&success_url={SUCCESS_URL}&cancel_url={CANCEL_URL}&zahlungssumme={SUMME}&betreff={BETREFF}&bezahlmethode={ZAHLUNGSMETHODE}&user=CORS:
+    $ref: >-
+      paths/api_v1_bezahlungen_init?fahrt={FAHRT_ID}&success_url={SUCCESS_URL}&cancel_url={CANCEL_URL}&zahlungssumme={SUMME}&betreff={BETREFF}&bezahlmethode={ZAHLUNGSMETHODE}&user=CORS.yaml

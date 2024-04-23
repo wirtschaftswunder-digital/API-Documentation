@@ -1,0 +1,10 @@
+in: query
+name: user[hauptperson_attributes][buchungen_attributes][0][stufe]
+required: true
+description: >-
+  Level für die gewählte Wintersportart. Die möglichen Werte können aus den
+  geschlossenen API Endpunkt für die Destination entnommen werden (data ->
+  attributes -> wintersport -> stufen).
+schema:
+  type: string
+  example: Stufe Rot (Fortgeschrittener 2)

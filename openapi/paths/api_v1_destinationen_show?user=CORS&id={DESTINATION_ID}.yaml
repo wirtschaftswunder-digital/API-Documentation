@@ -1,0 +1,937 @@
+parameters:
+  - in: query
+    name: id
+    required: true
+    description: Die ID der Destination
+    schema:
+      type: integer
+  - name: simple
+    in: query
+    description: >-
+      Gibt an, ob nur die einfachen Daten abgerufen werden sollen. Dadurch ist
+      eine schnellere Antwortzeit möglich.
+    required: false
+    schema:
+      example: true
+      default: false
+      type: boolean
+  - $ref: ../components/parameters/locale.yaml
+get:
+  summary: Destinationen Details
+  description: Abrufen von detaillierten Informationen zu einer Destination.
+  responses:
+    '200':
+      description: Erfolgreiche Anfrage
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: ID der Destination
+                  type:
+                    type: string
+                    description: Typ der Destination
+                  attributes:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        description: ID der Destination
+                      anlagenname:
+                        type: string
+                        description: Name der Anlage
+                      strasse:
+                        type: string
+                        description: Straße der Anlage
+                      plz:
+                        type: string
+                        description: Postleitzahl der Anlage
+                      stadt:
+                        type: string
+                        description: Stadt der Anlage
+                      latitude:
+                        type: string
+                        description: Breitengrad der Anlage
+                      longitude:
+                        type: string
+                        description: Längengrad der Anlage
+                      geo_url:
+                        type: string
+                        description: URL zur online Karte mit Standort der Anlage
+                      saisons:
+                        type: array
+                        description: Saisons der Destination
+                        items:
+                          type: string
+                      daycamp:
+                        type: boolean
+                        description: Gibt an, ob es sich um ein Daycamp handelt
+                      titel:
+                        type: string
+                        description: Titel der Destination
+                      ort:
+                        type: string
+                        description: Ort der Destination
+                      zahlungsmethoden:
+                        type: array
+                        description: Akzeptierte Zahlungsmethoden
+                        items:
+                          type: string
+                      alter_von:
+                        type: integer
+                        nullable: true
+                        description: Mindestalter für die Destination
+                      ausnahme_alter_von:
+                        type: integer
+                        nullable: true
+                        description: Ausnahme für das Mindestalter
+                      alter_bis:
+                        type: integer
+                        nullable: true
+                        description: Höchstalter für die Destination
+                      ausnahme_alter_bis:
+                        type: integer
+                        nullable: true
+                        description: Ausnahme für das Höchstalter
+                      alter_restriktiv:
+                        type: boolean
+                        description: Gibt an, ob das Alter restriktiv ist
+                      hm_versicherung:
+                        type: boolean
+                        description: >-
+                          Gibt an, ob in der CADI Buchungsmaske Versicherungen
+                          über die Schnittstelle der Hanse Merkur angeboten
+                          werden
+                      anreise_filter:
+                        type: boolean
+                        description: >-
+                          Gibt an, ob ein Anreise-Filter angezeigt werden soll.
+                          Dieser Wert wird beispielsweise von unserer Termin
+                          Tabelle verwendet.
+                      ferien_filter:
+                        type: boolean
+                        description: >-
+                          Gibt an, ob ein Ferien-Filter angezeigt werden soll.
+                          Dieser Wert wird beispielsweise von unserer Termin
+                          Tabelle verwendet.
+                      reisedauer_filter:
+                        type: boolean
+                        description: >-
+                          Gibt an, ob ein Reisedauer-Filter angezeigt werden
+                          soll. Dieser Wert wird beispielsweise von unserer
+                          Termin Tabelle verwendet.
+                      zusatz_1_online:
+                        type: boolean
+                        nullable: true
+                        description: >-
+                          Gibt an, ob Zusatzinformation 1 online ist und
+                          angezeigt werden soll
+                      zusatz_2_online:
+                        type: boolean
+                        nullable: true
+                        description: >-
+                          Gibt an, ob Zusatzinformation 2 online ist und
+                          angezeigt werden soll
+                      zusatz_titel_1:
+                        type: string
+                        nullable: true
+                        description: Titel der Zusatzinformation 1
+                      zusatz_titel_2:
+                        type: string
+                        nullable: true
+                        description: Titel der Zusatzinformation 2
+                      anreise_spalte_online:
+                        type: boolean
+                        description: >-
+                          Gibt an, ob die Anreise-Spalte angezeigt werden soll.
+                          Dieser Wert wird beispielsweise von unserer Termin
+                          Tabelle verwendet.
+                      tage_spalte_online:
+                        type: boolean
+                        description: >-
+                          Gibt an, ob die Tages-Spalte angezeigt werden soll.
+                          Dieser Wert wird beispielsweise von unserer Termin
+                          Tabelle verwendet.
+                      skitage_online:
+                        type: boolean
+                        description: >-
+                          Gibt an, ob Skitage online sind bzw. in der Travel App
+                          eine Angabe für die Anzahl der Skitage gemacht wurde.
+                          Dieser Wert wird beispielsweise von unserer Termin
+                          Tabelle verwendet.
+                      wintersport:
+                        type: object
+                        description: >-
+                          Enthält alle Informationen für die Anzeige der
+                          Formularfelder zum Thema Wintersport in der
+                          Buchungsmaske. In dieser kann, wenn eingeschaltet,
+                          abgefragt werden welche Wintersportarten der Kunde
+                          ausübt und auf welchem Level er sich befindet.
+                        properties:
+                          sportaten_titel:
+                            type: string
+                            description: Titel für die Sportarten
+                          sportarten:
+                            type: array
+                            items:
+                              type: string
+                            description: Liste der verfügbaren Sportarten
+                          stufen_titel:
+                            type: string
+                            description: Titel für die Stufen
+                          stufen:
+                            type: array
+                            items:
+                              type: string
+                            description: Liste der verfügbaren Stufen
+                          stufen_info_titel:
+                            type: string
+                            description: Titel für die Informationen zu den Stufen
+                          stufen_info:
+                            type: string
+                            description: >-
+                              Informationen (Beischreibungen) zu den
+                              verschiedenen Stufen
+                      golflevel:
+                        type: object
+                        description: Informationen zum Eingabefeld zum Golf-Level
+                        properties:
+                          titel:
+                            type: string
+                            description: Der Titel des Feldes für das Golf-Level
+                          info:
+                            type: string
+                            description: >-
+                              Zusätzliche Informationen zum Golf-Level
+                              (Beischreibungen zu den Stufen)
+                          optionen:
+                            type: array
+                            description: >-
+                              Die verfügbaren Optionen für das Golf-Level
+                              (Handicap)
+                            items:
+                              type: string
+                      schwimmlevel:
+                        type: object
+                        description: Informationen zum Eingabefeld zum Schwimm-Level
+                        properties:
+                          titel:
+                            type: string
+                            description: Der Titel für das Schwimm-Level-Feld
+                          info:
+                            type: string
+                            description: >-
+                              Zusätzliche Informationen zum Schwimm-Level
+                              (Beischreibungen zu den Stufen)
+                          optionen:
+                            type: array
+                            description: Die verfügbaren Optionen für das Schwimm-Level
+                            items:
+                              type: string
+                          hilfe_titel:
+                            type: string
+                            description: >-
+                              Der Titel für die Hilfe zum Schwimm-Level (wird im
+                              Info-Tooltip der Buchungsmaske angezeigt)
+                          hilfe_info:
+                            type: string
+                            description: >-
+                              Zusätzliche Informationen zur Hilfe für das
+                              Schwimm-Level (wird im Info-Tooltip der
+                              Buchungsmaske angezeigt)
+                      shirt:
+                        type: object
+                        description: Informationen zum Eingabefeld zu den T-Shirt-Größen
+                        properties:
+                          titel:
+                            type: string
+                            description: Der Titel für die T-Shirt-Größen
+                          optionen:
+                            type: array
+                            description: Die verfügbaren Optionen für T-Shirt-Größen
+                            items:
+                              type: string
+                      medikation:
+                        type: object
+                        description: Informationen zum Eingabefeld zur Dauermedikation
+                        properties:
+                          titel:
+                            type: string
+                            description: Der Titel für die Dauermedikation
+                          info:
+                            type: string
+                            description: Zusätzliche Informationen zur Dauermedikation
+                          id:
+                            type: integer
+                            description: Die ID für die Dauermedikation
+                      krankheiten:
+                        type: object
+                        description: >-
+                          Informationen zum Eingabefeld zu Krankheiten und
+                          Störungen
+                        properties:
+                          titel:
+                            type: string
+                            description: Der Titel für Krankheiten und Störungen
+                          info:
+                            type: string
+                            description: >-
+                              Zusätzliche Informationen zu Krankheiten und
+                              Störungen
+                          id:
+                            type: integer
+                            description: Die ID für Krankheiten und Störungen
+                      verpflegungswunsch:
+                        type: object
+                        description: Informationen zu Verpflegungswünschen
+                        properties:
+                          titel:
+                            type: string
+                            description: Der Titel für Verpflegungswünsche
+                          optionen:
+                            type: array
+                            description: Die verfügbaren Optionen für Verpflegungswünsche
+                            items:
+                              type: string
+                      verpflegung_abfragen:
+                        type: boolean
+                        description: Angabe, ob Verpflegungswünsche abgefragt werden
+                      gekoppelte_an_abreise:
+                        type: boolean
+                        description: >-
+                          Angabe, ob gekoppelte An- und Abreise abgefragt
+                          werden. Falls ja, ist es bei der Buchung
+                          beispielsweise nicht möglich mit dem Bus anzureisen
+                          und mit dem Flugzeug abzureisen.
+                      divers_anzeigen:
+                        type: boolean
+                        description: >-
+                          Angabe, ob Divers als Option bei der Wahl der Anrede
+                          angezeigt werden soll.
+                      share_button_anzeigen:
+                        type: boolean
+                        description: >-
+                          Angabe, ob der Share-Button angezeigt wird (in der
+                          Buchungsmaske)
+                      bestpreis_anzeigen:
+                        type: boolean
+                        description: Angabe, ob der Bestpreis angezeigt wird
+                      termin_wechseln_erlauben:
+                        type: boolean
+                        description: >-
+                          Angabe, ob ein Terminwechsel während des
+                          Buchungsprozesses erlaubt ist
+                      mitfahrer_abfragen:
+                        type: boolean
+                        description: >-
+                          Angabe, ob Mitfahrer abgefragt werden. Falls ja,
+                          können bei der Buchung Mitfahrer hinzugefügt werden.
+                          Auf diese Weise können mehrere Personen gleichzeitig
+                          gebucht werden.
+                      bezahlungsoptionen_ausblenden:
+                        type: boolean
+                        description: Angabe, ob Bezahlungsoptionen ausgeblendet werden.
+                      eltern_abfragen:
+                        type: boolean
+                        description: >-
+                          Angabe, ob immer nach den Erziehungsberichtigten
+                          gefragt wird
+                      anreise_abfragen:
+                        type: boolean
+                        description: Angabe, ob Anreise abgefragt wird
+                      eigeneanreise_text:
+                        type: string
+                        description: Text für eigene Anreise
+                      eigeneabreise_text:
+                        type: string
+                        description: Text für eigene Abreise
+                      unterkunft_abfragen:
+                        type: boolean
+                        description: Angabe, ob Unterkunft abgefragt wird
+                      festnetz_abfragen:
+                        type: boolean
+                        description: Angabe, ob Festnetznummer abgefragt wird
+                      geburtsort_abfragen:
+                        type: boolean
+                        description: Angabe, ob Geburtsort abgefragt wird
+                      ausweisnummer_abfragen:
+                        type: boolean
+                        description: Angabe, ob Ausweisnummer abgefragt wird
+                      schulform_abfragen:
+                        type: boolean
+                        description: Angabe, ob Schulform abgefragt wird
+                      zusatzbedingung_abfragen:
+                        type: boolean
+                        description: Angabe, ob Zusatzbedingungen abgefragt werden
+                      zusatzbedingung:
+                        type: string
+                        nullable: true
+                        description: >-
+                          Zusätzliche Bedingungen. Falls vorhanden muss der
+                          Kunde vor Abschluss der Buchung bei den AGBs diesen
+                          Zusatzbedingungen zustimmen.
+                      englischkenntnisse_abfragen:
+                        type: boolean
+                        description: Angabe, ob Englischkenntnisse abgefragt werden
+                      woher_abfragen:
+                        type: boolean
+                        description: >-
+                          Angabe, ob nach der Buchung abgefragt werden soll, wie
+                          der Kunde auf die Reise aufmerksam geworden ist.
+                      alter_pruefen:
+                        type: boolean
+                        description: >-
+                          Angabe, ob Alter geprüft wird. Dem Kunden wird während
+                          der Buchung Feedback gegeben, ob das Alter für die
+                          Reise geeignet ist.
+                      buchungsbewertung_abfragen:
+                        type: boolean
+                        description: >-
+                          Angabe, ob Buchungsbewertung abgefragt wird. Falls ja,
+                          wird diese nach Abschluss der Buchung abgefragt.
+                      googlebewertung_abfragen:
+                        type: boolean
+                        description: >-
+                          Angabe, ob Google-Bewertung abgefragt wird (nach
+                          Buchungsabschluss)
+                      rechnungsadresse_abfragen:
+                        type: boolean
+                        description: Angabe, ob Rechnungsadresse abgefragt wird
+                      belegungswunsch_abfragen:
+                        type: boolean
+                        description: Angabe, ob Belegungswunsch abgefragt wird
+                      gutscheincode_abfragen:
+                        type: boolean
+                        description: Angabe, ob Gutscheincode abgefragt wird
+                      gallery_webp:
+                        type: string
+                        nullable: true
+                        description: URL für die WebP-Galerie
+                      detail_big_webp:
+                        type: string
+                        nullable: true
+                        description: URL für das WebP-Detailbild
+                      hauptsprache:
+                        type: string
+                        example: de
+                        nullable: false
+                        description: Die Hauptsprache
+                      zusatz_sprachen:
+                        type: array
+                        description: >-
+                          Die zusätzlichen Sprachen. Zum Beispiel Englisch
+                          ("en")
+                        items:
+                          type: string
+                      keyfeatures:
+                        type: array
+                        description: Die Key Features der Destination
+                        items:
+                          type: string
+                      termin_ids:
+                        type: array
+                        description: Die IDs der Termine
+                        items:
+                          type: integer
+                      individuelle_tabs_online:
+                        type: boolean
+                        description: >-
+                          Angabe, ob individuelle Tabs online sind. Diese werden
+                          zur Darstellung der CADI Termin Tabellen verwendet.
+                      individuelle_tabs:
+                        type: array
+                        description: Die individuellen Tabs
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              description: Die ID des Tabs
+                            name:
+                              type: string
+                              description: Der Name des Tabs
+                            termin_ids:
+                              type: array
+                              description: Die IDs der Termine des Tabs
+                              items:
+                                type: integer
+                            reihenfolge:
+                              type: integer
+                              description: Die Reihenfolge des Tabs
+                            destination_id:
+                              type: integer
+                              description: Die ID der Destination des Tabs
+                            aktiv:
+                              type: boolean
+                              description: Angabe, ob der Tab aktiv ist
+                      original_url:
+                        type: string
+                        nullable: false
+                        description: Die Original-URL (Reiseausschreibung) der Destination
+                  links:
+                    type: object
+                    description: Links zu weiteren API-Abfragen
+                    properties:
+                      anbieter_url:
+                        type: string
+                        description: URL zur Anbieterinformation
+                      url:
+                        type: string
+                        description: URL zur Terminübersicht der Destination
+          examples:
+            Beispiel-1:
+              summary: Beispiel 1
+              value:
+                data:
+                  id: '496'
+                  type: destination
+                  attributes:
+                    id: 496
+                    anlagenname: Club Kitzsteinhorn
+                    strasse: Gletschermoosstr. 12
+                    plz: '5700'
+                    stadt: Zell am See
+                    latitude: '47.297'
+                    longitude: '12.7911'
+                    geo_url: null
+                    saisons:
+                      - Sommer
+                    daycamp: false
+                    titel: Actioncamp Alpensommer Zell am See 8-10 Jahre
+                    ort: Zell am See
+                    zahlungsmethoden:
+                      - Rechnung
+                    alter_von: 8
+                    ausnahme_alter_von: null
+                    alter_bis: 10
+                    ausnahme_alter_bis: 1
+                    alter_restriktiv: null
+                    hm_versicherung: true
+                    anreise_filter: true
+                    ferien_filter: true
+                    reisedauer_filter: true
+                    zusatz_1_online: null
+                    zusatz_2_online: null
+                    zusatz_titel_1: null
+                    zusatz_titel_2: null
+                    anreise_spalte_online: true
+                    tage_spalte_online: true
+                    skitage_online: false
+                    wintersport: null
+                    golflevel: null
+                    schwimmlevel: null
+                    shirt: null
+                    medikation: null
+                    krankheiten: null
+                    allergien: null
+                    verpflegungswunsch: null
+                    verpflegung_abfragen: true
+                    gekoppelte_an_abreise: true
+                    divers_anzeigen: false
+                    share_button_anzeigen: true
+                    bestpreis_anzeigen: true
+                    termin_wechseln_erlauben: true
+                    mitfahrer_abfragen: true
+                    bezahlungsoptionen_ausblenden: false
+                    eltern_abfragen: true
+                    anreise_abfragen: true
+                    eigeneanreise_text: >-
+                      Zwischen 8:30 Uhr - 9:30 Uhr oder zwischen 15:00 Uhr und
+                      16:00 Uhr
+                    eigeneabreise_text: >-
+                      Ganztägig möglich, spätestens um 19 Uhr - wir bitten um
+                      kurze Abmeldung
+                    unterkunft_abfragen: true
+                    festnetz_abfragen: null
+                    geburtsort_abfragen: null
+                    ausweisnummer_abfragen: null
+                    schulform_abfragen: null
+                    schulform_auswahl:
+                      - []
+                    zusatzbedingung_abfragen: false
+                    zusatzbedingung: null
+                    englischkenntnisse_abfragen: null
+                    woher_abfragen: null
+                    woher_auswahl: null
+                    alter_pruefen: true
+                    buchungsbewertung_abfragen: null
+                    googlebewertung_abfragen: null
+                    rechnungsadresse_abfragen: null
+                    belegungswunsch_abfragen: true
+                    gutscheincode_abfragen: true
+                    gallery_webp: >-
+                      https://s3-eu-central-1.amazonaws.com/wwdig-images/reisebilder/bilds/000/009/630/gallery_webp/sommer_freunde_wandern.webp?1638356191
+                    detail_big_webp: >-
+                      https://s3-eu-central-1.amazonaws.com/wwdig-images/reisebilder/bilds/000/009/056/detail_big_webp/jugendreise-sommer-oesterreich-bananaboot.webp?1546861889
+                    hauptsprache: de
+                    zusatz_sprachen: null
+                    keyfeatures:
+                      - Hochseilgarten
+                      - Obst Flatrate
+                      - FreeFall-Rutsche
+                      - Beachsoccer und Beachvolleyball
+                    termin_ids:
+                      - 29424
+                      - 29429
+                      - 29437
+                      - 29442
+                      - 29443
+                      - 29447
+                      - 29451
+                      - 29457
+                      - 29459
+                      - 29460
+                      - 29461
+                      - 29462
+                      - 29463
+                      - 29464
+                      - 29465
+                      - 29498
+                      - 29499
+                    individuelle_tabs_online: true
+                    individuelle_tabs:
+                      - id: 215
+                        name: 1 Woche
+                        termin_ids:
+                          - '28988'
+                          - '28990'
+                          - '28992'
+                          - '28993'
+                          - '28994'
+                          - '28995'
+                          - '29424'
+                          - '29429'
+                          - '29437'
+                          - '29442'
+                          - '29443'
+                          - '29447'
+                          - '29451'
+                          - '29457'
+                          - '29498'
+                        reihenfolge: null
+                        destination_id: 496
+                        aktiv: true
+                      - id: 217
+                        name: 2 Wochen
+                        termin_ids:
+                          - '29026'
+                          - '29027'
+                          - '29032'
+                          - '29459'
+                          - '29460'
+                          - '29461'
+                          - '29462'
+                          - '29463'
+                          - '29464'
+                          - '29465'
+                          - '29499'
+                        reihenfolge: null
+                        destination_id: 496
+                        aktiv: false
+                  links:
+                    anbieter_url: >-
+                      https://my.camps.digital/api/v1/anbieter/show?destination_id=496&anbieter_id=2
+                    url: >-
+                      https://my.camps.digital/api/v1/termine/index?destination_id=496
+            Beispiel-2:
+              summary: Beispiel 2
+              value:
+                data:
+                  id: '260'
+                  type: destination
+                  attributes:
+                    id: 260
+                    anlagenname: St. Peter Ording Nordsee
+                    strasse: Barcelona 11
+                    plz: '1111'
+                    stadt: Haltern
+                    latitude: '41.3641'
+                    longitude: '2.1562'
+                    geo_url: https://goo.gl/maps/RjURCSPCXaitEoKb8
+                    saisons:
+                      - Sommer
+                    daycamp: false
+                    titel: TanzCamp Haltern Niederrhein, NRW
+                    ort: Haltern
+                    zahlungsmethoden:
+                      - Überweisung
+                      - SepaManuell
+                      - StripeCcard
+                      - StripeGiropay
+                      - StripeSofort
+                      - PaypalNativ
+                      - Rechnung
+                    alter_von: 10
+                    ausnahme_alter_von: -1
+                    alter_bis: 14
+                    ausnahme_alter_bis: 1
+                    alter_restriktiv: false
+                    hm_versicherung: true
+                    anreise_filter: true
+                    ferien_filter: true
+                    reisedauer_filter: true
+                    zusatz_1_online: false
+                    zusatz_2_online: null
+                    zusatz_titel_1: null
+                    zusatz_titel_2: null
+                    anreise_spalte_online: true
+                    tage_spalte_online: true
+                    skitage_online: false
+                    wintersport:
+                      sportaten_titel: 'Sportart:'
+                      sportarten:
+                        - Ski
+                        - Snowboard
+                      stufen_titel: 'Level:'
+                      stufen:
+                        - Stufe Weiß (Anfänger 1)
+                        - Stufe Grün (Anfänger 2)
+                        - Stufe Blau (Fortgeschrittener 1)
+                        - Stufe Rot (Fortgeschrittener 2)
+                        - Stufe Schwarz (Fortgeschritten 3)
+                        - Stufe Tiefschwarz (Profi)
+                      stufen_info_titel: Was ist mein Level?
+                      stufen_info: >-
+                        Wie ist dein Fahrkönnen?<br><br><b>Stufe Weiß (Anfänger
+                        1)</b><br>Du wirst zum ersten Mal auf Skiern bzw. einem
+                        Snowboard stehen!<br><br><b>Stufe Grün (Anfänger
+                        2)</b><br>Du hast schonmal auf Skiern bzw. einem
+                        Snowboard gestanden. Du weißt, wie man einen Lift
+                        benutzt, kannst in Pflugstellung leichte Abfahrten
+                        machen und kommst sicher zum Stehen. (Snowboard:
+                        Zick-Zack-Rutschen)<br><br><b>Stufe Blau
+                        (Fortgeschrittener 1)</b><br>Du fährst blaue Pisten
+                        sicher runter und kannst teilweise schon parallel
+                        fahren. (Snowboard: Gewicht verlagern und
+                        Driftschwünge)<br><br><b>Stufe Rot (Fortgeschrittener
+                        2)</b><br>Du fährst rote Pisten sicher runter und hast
+                        eine parallele Skiführung. (Snowboard: Kippschwung und
+                        Carven)<br><br><b>Stufe Schwarz (Fortgeschritten
+                        3)</b><br>Du fährst schwarze Pisten sicher runter und
+                        hast eine saubere Technik.<br><br><b>Stufe Tiefschwarz
+                        (Profi)</b><br>Du fährst alle Pisten sicher runter-
+                        egal, ob Tiefschnee oder frisch präpariert.<br>
+                    golflevel:
+                      titel: 'Handicap:'
+                      info: >-
+                        Bei uns sind Teilnehmer mit jedem Handicap, egal ob
+                        Profi oder Anfänger herzlich willkommen! Bitte nenne uns
+                        dein Handicap, damit wir dein Kurs richtig vorbereiten
+                        können.
+                      optionen:
+                        - Anfänger ohne Handicap
+                        - 0 - 9
+                        - 10 - 18
+                        - 19 - 36
+                        - 37+
+                    schwimmlevel:
+                      titel: 'Schwimmen:'
+                      info: >-
+                        Bitte teile uns dein Schwimmlevel mit. Es ist nicht
+                        erfoderlich die DLRG Prüfungen absolviert zu haben,
+                        sondern es geht um eine Einschätzung des Levels gemäß
+                        der DLRG Richtlinie.
+                      optionen:
+                        - Nichtschwimmer
+                        - Seepferdchen (Frühschwimmer)
+                        - Bronze (Freischwimmer)
+                        - Silber (Guter Schwimmer)
+                        - Gold (Sehr guter Schwimmer)
+                      hilfe_titel: Was ist dein Schwimmlevel?
+                      hilfe_info: >-
+                        Wie schätzt du dein Schwimmlevel nach DLRG Richtlinien
+                        ein?<br><br><b>Seepferdchen
+                        (Frühschwimmer)</b><br>Sprung vom Beckenrand mit
+                        anschließendem 25 m Schwimmen in einer Schwimmart in
+                        Bauch- oder Rückenlage. Heraufholen eines Gegenstandes
+                        mit den Händen aus schultertiefem
+                        Wasser.<br><br><b>Bronze (Freischwimmer)</b><br>Einmal
+                        ca. 2 m Tieftauchen von der Wasseroberfläche mit
+                        Heraufholen eines Gegenstandes. Ein Sprung von 1
+                        m-Brett, ein Sprung kopfwärts vom Beckenrand und 15
+                        Minuten Schwimmen. In dieser Zeit sind mindestens 200 m
+                        zurückzulegen.<br><br><b>Silber (Guter
+                        Schwimmer)</b><br>Sprung kopfwärts vom Beckenrand und 20
+                        Minuten Schwimmen, in dieser Zeit sind mindestens 400 m
+                        zurückzulegen. 10 m Streckentauchen mit Abstoßen vom
+                        Beckenrand im Wasser. Zweimal ca. 2 m Tieftauchen von
+                        der Wasseroberfläche mit Heraufholen je eines
+                        Gegenstandes. Sprung aus 3 m Höhe oder zwei verschiedene
+                        Sprünge aus 1 m Höhe. <br><br><b>Gold (Sehr guter
+                        Schwimmer)</b><br>Sprung kopfwärts vom Beckenrand und 30
+                        Minuten Schwimmen, in dieser Zeit sind mindestens 800 m
+                        zurückzulegen. Startsprung und 25 m Kraulschwimmen, 50 m
+                        Rückenschwimmen mit Grätschschwung ohne Armtätigkeit
+                        oder Rückenkraulschwimmen. 10 m Streckentauchen. Dreimal
+                        2 m Tieftauchen mit Heraufholen je eines Gegenstandes
+                        innerhalb von 3 Minuten. Ein Sprung aus 3 m Höhe. 50 m
+                        Transportschwimmen.
+                    shirt:
+                      titel: 'T-Shirt:'
+                      optionen:
+                        - '116'
+                        - '128'
+                        - '140'
+                        - '152'
+                        - '164'
+                        - Men XS
+                        - Men S
+                        - Men M
+                        - Men L
+                        - Men XL
+                        - Men XXL
+                        - Woman XS
+                        - Woman S
+                        - Woman M
+                        - Woman L
+                        - Woman XL
+                        - Woman XXL
+                    medikation:
+                      titel: 'Dauermedikation:'
+                      info: >-
+                        Bitte gib hier die Medikamente an, welche dauerhaft
+                        eingenommen werden. Diese Informationen sind sehr
+                        wichtig und werden von uns besonders sensibel und
+                        verantwortungsbewusst behandelt.
+                      id: 701
+                    krankheiten:
+                      titel: 'Krankheiten und Störungen:'
+                      info: >-
+                        Bitte gib hier Krankenheiten und Störungen an. Diese
+                        Informationen sind sehr wichtig und werden von uns
+                        besonders sensibel und verantwortungsbewusst behandelt.
+                      id: 705
+                    allergien: null
+                    verpflegungswunsch:
+                      titel: 'Verpflegungswunsch:'
+                      optionen:
+                        - - - kein_verpflegungswunsch
+                            - Keine Verpflegungswünsche
+                          - - vegetarisch
+                            - Vegetarisch
+                          - - vegan
+                            - Vegan
+                          - - laktosefrei
+                            - Laktosefrei
+                          - - keine_milchprodukte
+                            - Keine Milchprodukte
+                          - - glutenfrei
+                            - Glutenfrei
+                          - - fructose
+                            - Fructose
+                          - - nussfrei
+                            - Nussfrei
+                          - - kein_schweinefleisch
+                            - Kein Schweinefleisch
+                    verpflegung_abfragen: true
+                    gekoppelte_an_abreise: true
+                    divers_anzeigen: false
+                    share_button_anzeigen: true
+                    bestpreis_anzeigen: true
+                    termin_wechseln_erlauben: true
+                    mitfahrer_abfragen: true
+                    bezahlungsoptionen_ausblenden: false
+                    eltern_abfragen: true
+                    anreise_abfragen: true
+                    eigeneanreise_text: Bitte um 14 Uhr anreisen
+                    eigeneabreise_text: Bitte um 10 Uhr abholen
+                    unterkunft_abfragen: true
+                    festnetz_abfragen: false
+                    geburtsort_abfragen: true
+                    ausweisnummer_abfragen: true
+                    schulform_abfragen: true
+                    schulform_auswahl:
+                      - - - grundschule
+                          - Grundschule
+                        - - realschule
+                          - Realschule
+                        - - gymnasium
+                          - Gymnasium
+                        - - internationale
+                          - Internationale Schule
+                        - - sonstige
+                          - Sonstige
+                    zusatzbedingung_abfragen: true
+                    zusatzbedingung: >-
+                      Ich habe die <a
+                      href="https://www.google.de/">Zusatzvereinbarung</a>
+                      verstanden.
+                    englischkenntnisse_abfragen: true
+                    woher_abfragen: true
+                    woher_auswahl: |
+                      ---
+                      - bestandkunde
+                      - newsletter
+                      - empfehlung
+                      - googel_werbeanzeige
+                      - google_suchtreffer
+                      - instagram
+                      - facebook
+                      - printwerbung
+                      - sonstiges
+                    alter_pruefen: true
+                    buchungsbewertung_abfragen: true
+                    googlebewertung_abfragen: true
+                    rechnungsadresse_abfragen: true
+                    belegungswunsch_abfragen: true
+                    gutscheincode_abfragen: true
+                    gallery_webp: >-
+                      https://s3-eu-central-1.amazonaws.com/wwdig-images/reisebilder/bilds/000/009/754/gallery_webp/Englischcamps_camps_for_friends_2019_%2813%29.webp?1669131249
+                    detail_big_webp: >-
+                      https://s3-eu-central-1.amazonaws.com/wwdig-images/reisebilder/bilds/000/009/163/detail_big_webp/Klettern_01.webp?1553529308
+                    hauptsprache: de
+                    zusatz_sprachen:
+                      - en
+                    keyfeatures:
+                      - Fußballtunier
+                      - Eigener Pool
+                      - Beachsoccer
+                      - 25 Std. Training
+                      - Camptrikot
+                      - Barcelona Citytour Option
+                      - Ski
+                    termin_ids:
+                      - 29222
+                      - 29512
+                      - 30616
+                      - 30617
+                    individuelle_tabs_online: true
+                    individuelle_tabs:
+                      - id: 236
+                        name: 1 Woche
+                        termin_ids:
+                          - '12911'
+                          - '12912'
+                          - '12913'
+                          - '12914'
+                          - '28938'
+                          - '29222'
+                          - '29512'
+                          - '30617'
+                        reihenfolge: 1
+                        destination_id: 260
+                        aktiv: true
+                      - id: 237
+                        name: 2 Wochen
+                        termin_ids:
+                          - '12910'
+                          - '30616'
+                        reihenfolge: 2
+                        destination_id: 260
+                        aktiv: false
+                    original_url: >-
+                      https://www.oskar-lernt-englisch.de/sprachcamps/haltern-tanzcamp
+                  links:
+                    anbieter_url: >-
+                      https://dev.wirtschaftswunder.digital/api/v1/anbieter/show?destination_id=260&anbieter_id=13
+                    url: >-
+                      https://dev.wirtschaftswunder.digital/api/v1/termine/index?destination_id=260
+  security:
+    - CORS: []
+  tags:
+    - Geschlossene API

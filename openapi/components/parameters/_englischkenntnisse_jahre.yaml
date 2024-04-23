@@ -1,0 +1,6 @@
+in: query
+name: user[hauptperson_attributes][englischkenntnisse_jahre]
+required: false
+description: Die Anzahl der Jahre, die der Teilnehmer Englischunterricht erhält.
+schema:
+  type: integer

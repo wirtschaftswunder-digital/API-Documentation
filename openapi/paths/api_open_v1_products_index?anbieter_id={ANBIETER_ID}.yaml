@@ -1,0 +1,136 @@
+parameters:
+  - $ref: ../components/parameters/anbieter-id.yaml
+  - $ref: ../components/parameters/locale.yaml
+get:
+  tags:
+    - Öffentliche API
+  summary: Destinationen (öffentlich)
+  description: API zum laden der Destinationen eines Anbieters und ihrer Basisinformationen
+  responses:
+    '200':
+      description: Erfolgreiche Anfrage
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  description: ID der Destination
+                title:
+                  type: string
+                  description: Titel der Destination
+                saisons:
+                  type: array
+                  items:
+                    type: string
+                  description: Saisons der Destination
+                  example:
+                    - Sommer
+                    - Herbst
+                min_age:
+                  type: integer
+                  description: Mindestalter
+                exception_min_age:
+                  type: integer
+                  description: Maximal erlaubte Unterschreitung des Mindestalters
+                max_age:
+                  type: integer
+                  description: Höchstalter
+                exception_max_age:
+                  type: integer
+                  description: Maximal erlaubte Überschreitung des Höchstalters
+                restrictive_age:
+                  type: boolean
+                  description: >-
+                    Gibt an ob bei der Buchung nur Teilnehmer mit einem Alter
+                    innerhalb des definierten Bereichs erlaubt werden
+                location:
+                  type: string
+                  description: Standort der Destination
+                img_url:
+                  type: string
+                  format: uri
+                  description: >-
+                    URL des Titelbildes, welches für die Destination festgelegt
+                    wurde
+                description:
+                  type: string
+                  description: Beschreibung der Destination
+                product_page_url:
+                  type: string
+                  format: uri
+                  description: URL der Produktseite
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  description: Tags der Destination
+                event_count:
+                  type: integer
+                  description: Anzahl der Termine, die online gestellt sind
+                additional_values:
+                  type: array
+                  items:
+                    nullable: true
+                    type: string
+                  description: In CADI angegebene zusätzliche Werte
+                daycamp:
+                  type: boolean
+                  description: >-
+                    Dieser Wert gibt an, ob angeben wurde, dass es sich bei der
+                    Destination um ein Daycamp handelt
+          example:
+            - id: 163
+              title: Actioncamp Alpensommer Zell am See 11-13 Jahre
+              saisons:
+                - Sommer
+              min_age: 11
+              exception_min_age: -1
+              max_age: 13
+              exception_max_age: 1
+              restrictive_age: null
+              location: Zell am See
+              img_url: >-
+                https://s3-eu-central-1.amazonaws.com/wwdig-images/reisebilder/bilds/000/009/046/gallery/sommerferien-jugendreise-oesterreich.jpg?1546858001
+              description: >-
+                Erlebe eine spannende Woche voller Action und Abenteur in den
+                Bergen. Der Club Kitzsteinhorn ist das Paradies für 11-13 Jahre
+                ★
+              product_page_url: >-
+                https://www.jugendreisen.com/jugendreisen/oesterreich/zell-am-see/163-my-actioncamp-alpensommer-zell-am-see-11-13-jahre
+              tags:
+                - Action & Abenteuer
+              event_count: 17
+              additional_values:
+                - ''
+                - ''
+              daycamp: false
+            - id: 239
+              title: Skifreizeit Alpenwinter Zell am See 11-13 Jahre
+              saisons:
+                - Winter
+              min_age: 11
+              exception_min_age: -1
+              max_age: 13
+              exception_max_age: 1
+              restrictive_age: null
+              location: Zell am See
+              img_url: >-
+                https://s3-eu-central-1.amazonaws.com/wwdig-images/reisebilder/bilds/000/003/545/gallery/geilste-skijugendreise.jpg?1537777276
+              description: >-
+                Zeig mal was du schon kannst - wow - kannst du das auch! Wir
+                bleiben zusammen und erkunden gemeinsam, so sind wir mutig und
+                stark! ♥
+              product_page_url: >-
+                https://www.jugendreisen.com/jugendreisen/oesterreich/zell-am-see/239-my-skifreizeit-alpenwinter-zell-am-see-11-13-jahre
+              tags:
+                - Ski & Snow
+              event_count: 4
+              additional_values:
+                - null
+                - null
+              daycamp: false

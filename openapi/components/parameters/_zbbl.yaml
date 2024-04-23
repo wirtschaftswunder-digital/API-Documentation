@@ -1,0 +1,12 @@
+in: query
+name: >-
+  user[hauptperson_attributes][buchungen_attributes][0][zubuchbareleistung_ids[]]
+required: true
+description: IDs der zubbuchbaren Leistungen, die der Kunde hinzufügen möchte.
+schema:
+  type: array
+  items:
+    type: integer
+    example:
+      - 227599
+      - 227604

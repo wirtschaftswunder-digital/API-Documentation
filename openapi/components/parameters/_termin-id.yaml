@@ -1,0 +1,7 @@
+in: query
+name: user[hauptperson_attributes][buchungen_attributes][0][termin_id]
+required: true
+description: ID des Termins, für den die Buchung erstellt werden soll
+schema:
+  type: integer
+  example: 29222

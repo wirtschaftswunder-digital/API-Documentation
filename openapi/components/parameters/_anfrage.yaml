@@ -1,0 +1,9 @@
+in: query
+name: user[hauptperson_attributes][buchungen_attributes][0][anfrage]
+required: true
+description: Zusätzliche Textanfrage des Kunden.
+schema:
+  type: string
+  example: >-
+    Mein Kind neigt dazu ihr Asthmaspray zu verlegen. Begründung: Meine Tochter
+    ist für ihr Alter schon weit entwickelt und sehr eigenständig.

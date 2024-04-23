@@ -1,0 +1,7 @@
+in: query
+name: user[hauptperson_attributes][ort]
+required: true
+description: Die Stadt der Adresse des Reisenden.
+schema:
+  type: string
+  example: Berlin

@@ -1,0 +1,7 @@
+in: query
+name: user[hauptperson_attributes][buchungen_attributes][0][abfahrt_id]
+required: true
+description: ID der Abfahrt
+schema:
+  type: integer
+  example: 84094781

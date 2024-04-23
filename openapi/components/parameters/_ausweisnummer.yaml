@@ -1,0 +1,6 @@
+in: query
+name: user[hauptperson_attributes][ausweisnummer]
+required: false
+description: Die Ausweisnummer des Reisenden.
+schema:
+  type: string

@@ -1,0 +1,8 @@
+in: query
+name: >-
+  user[hauptperson_attributes][buchungen_attributes][0][rabatte_attributes][0][gutschein]
+required: true
+description: Angabe ob ein Gutscheincode verwendet wurde.
+schema:
+  type: boolean
+  example: true

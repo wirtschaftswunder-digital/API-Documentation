@@ -1,0 +1,12 @@
+in: query
+name: user[hauptperson_attributes][englischkenntnisse_bedarf]
+required: false
+description: Der Bedarf des Reisenden an Englischkenntnissen.
+schema:
+  type: string
+  enum:
+    - sprechen
+    - lesen
+    - schreiben
+    - hoeren
+  example: sprechen

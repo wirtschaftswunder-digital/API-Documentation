@@ -1,0 +1,8 @@
+in: query
+name: user[hauptperson_attributes][sonderadressen_attributes][0][land][iso]
+required: false
+description: >-
+  Der ISO-Ländercode für das Land der Sonderadresse. **Wichtig:** Der ISO-Code
+  muss in Großbuchstaben angegeben werden.
+schema:
+  type: string

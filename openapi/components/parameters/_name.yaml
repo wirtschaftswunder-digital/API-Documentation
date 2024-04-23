@@ -1,0 +1,7 @@
+in: query
+name: user[hauptperson_attributes][name]
+required: true
+description: Der Nachname des Reisenden.
+schema:
+  type: string
+  example: Mustermann

@@ -1,0 +1,161 @@
+parameters:
+  - $ref: ../components/parameters/destination-id.yaml
+  - $ref: ../components/parameters/host-id.yaml
+  - $ref: ../components/parameters/locale.yaml
+get:
+  description: Termine einer Destination abrufen
+  summary: Termine einer Destination (öffentlich)
+  security:
+    - {}
+  tags:
+    - Öffentliche API
+  responses:
+    '200':
+      description: Erfolgreiche Anfrage
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: >-
+                    Termin-ID die dem Kunden angezeigt wird (kann in CADI
+                    geändert werden)
+                termin_id:
+                  type: integer
+                  description: >-
+                    Interne Termin-ID (wird in der Datenbank verwendet und dem
+                    Kunden nicht angezeigt)
+                destination_id:
+                  type: integer
+                  description: ID der Destination
+                booking_url:
+                  type: string
+                  nullable: true
+                  format: uri
+                  description: URL zur Buchungsmaske des Termins
+                start:
+                  type: string
+                  format: date (dd.mm.yyyy)
+                  description: Startdatum im Format dd.mm.yyyy
+                end:
+                  type: string
+                  format: date (dd.mm.yyyy)
+                  description: Enddatum im Format dd.mm.yyyy
+                nights:
+                  type: integer
+                  nullable: true
+                  description: Anzahl an Nächten (falls in CADI angegeben)
+                days:
+                  type: integer
+                  nullable: false
+                  description: Anzahl an Tagen
+                price:
+                  type: integer
+                  nullable: false
+                  description: Grundpreis für den Termin (vor Rabatt)
+                discount:
+                  type: string
+                  description: >-
+                    Rabatt für den Termin (in Euro) mit "." als
+                    Dezimaltrennzeichen
+                  example: '100.0'
+                  nullable: true
+                availability:
+                  type: string
+                  description: Verfügbarkeit an Plätzen im Termin
+                  enum:
+                    - '0'
+                    - <= 10
+                    - '> 10'
+                availability_f:
+                  $ref: ../components/schemas/availability-per-gender.yaml
+                availability_m:
+                  $ref: ../components/schemas/availability-per-gender.yaml
+                waitlist:
+                  type: boolean
+                  description: >-
+                    Dieser Wert gibt an, ob der Termin für den Termin die
+                    Warteliste aktiviert wurde
+                additional_values:
+                  type: array
+                  items:
+                    nullable: true
+                    type: string
+                  description: In CADI angegebene zusätzliche Werte
+          example:
+            - id: 24-151-01
+              termin_id: 29239
+              destination_id: 151
+              booking_url: >-
+                https://foxsummit.de/buchungsmaske-fox?vendor=Fox&destination_id=151&termin_id=29239&host=57&extern=true&locale=de
+              start: 27.12.2023
+              end: 03.01.2024
+              nights: 5
+              days: 8
+              price: 569
+              discount: null
+              availability: <= 10
+              availability_f: 3
+              availability_m: 5
+              waitlist: true
+              additional_values:
+                - null
+                - null
+            - id: 24-151-02
+              termin_id: 29240
+              destination_id: 151
+              booking_url: >-
+                https://foxsummit.de/buchungsmaske-fox?vendor=Fox&destination_id=151&termin_id=29240&host=57&extern=true&locale=de
+              start: 01.01.2024
+              end: 07.01.2024
+              nights: 4
+              days: 7
+              price: 449
+              discount: null
+              availability: <= 10
+              availability_f: null
+              availability_m: null
+              waitlist: true
+              additional_values:
+                - null
+                - null
+            - id: 24-151-L1
+              termin_id: 29241
+              destination_id: 151
+              booking_url: >-
+                https://foxsummit.de/buchungsmaske-fox?vendor=Fox&destination_id=151&termin_id=29241&host=57&extern=true&locale=de
+              start: 27.12.2023
+              end: 07.01.2024
+              nights: 9
+              days: 12
+              price: 899
+              discount: null
+              availability: '> 10'
+              availability_f: null
+              availability_m: 9
+              waitlist: true
+              additional_values:
+                - null
+                - null
+            - id: 24-151-P1
+              termin_id: 29242
+              destination_id: 151
+              booking_url: >-
+                https://foxsummit.de/buchungsmaske-fox?vendor=Fox&destination_id=151&termin_id=29242&host=57&extern=true&locale=de
+              start: 26.12.2023
+              end: 02.01.2024
+              nights: 7
+              days: 8
+              price: 1099
+              discount: null
+              availability: '0'
+              availability_f: 0
+              availability_m: 0
+              waitlist: false
+              additional_values:
+                - null
+                - null

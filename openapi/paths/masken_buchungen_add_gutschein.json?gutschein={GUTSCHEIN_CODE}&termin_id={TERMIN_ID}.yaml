@@ -1,0 +1,45 @@
+get:
+  tags:
+    - Öffentliche API
+  summary: Gutschein prüfen
+  description: Ermöglicht das Abrufen des Wert eines Gutscheins.
+  parameters:
+    - in: query
+      name: gutschein
+      required: true
+      description: Der Gutscheincode, der hinzugefügt werden soll.
+      schema:
+        type: string
+    - $ref: ../components/parameters/termin-id.yaml
+      name: termin_id
+      description: Die ID des Termins, zu dem der Gutschein hinzugefügt werden soll.
+  responses:
+    '200':
+      description: Erfolgreich Anfrage (Gutschein kann aber ungültig sein)
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              rabatt:
+                type: string
+                description: >-
+                  Der Rabatt Wert des Gutscheins in Euro. **Achtung:** Dieser
+                  Wert ist negativ und muss zur Gesamtsumme *addiert* werden.
+                example: '-80.0'
+                nullable: true
+              callback:
+                type: string
+                description: Ein optionaler Callback oder Hinweis
+                nullable: true
+          examples:
+            no_discount:
+              summary: Ungültiger Gutschein
+              value:
+                rabatt: null
+                callback: null
+            discount:
+              summary: Gültiger Gutschein
+              value:
+                rabatt: '-80.0'
+                callback: null

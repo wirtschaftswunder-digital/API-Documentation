@@ -1,0 +1,58 @@
+get:
+  summary: Buchung
+  description: |
+    Dieser API Endpunkt ermöglicht es, Buchung durchzuführen.
+  parameters:
+    - $ref: ../components/parameters/fahrt-id.yaml
+      name: fahrt
+    - in: query
+      name: extern
+      required: true
+      description: >-
+        Gibt an, ob es sich um eine externe Buchungsmaske handelt. Dieser Wert
+        sollte in der Regel auf `true` gesetzt werden.
+      schema:
+        type: boolean
+    - in: query
+      name: locale
+      required: true
+      description: >-
+        Die Sprache in der die Buchung erfolgt. Der Wert sollte in
+        Kleinbuchstaben angegeben werden.
+      schema:
+        example: de
+        type: string
+    - in: query
+      name: no_mail
+      required: true
+      description: Gibt an, ob auf eine E-Mail an den Kunden verzichtet werden soll.
+      schema:
+        type: boolean
+    - in: query
+      name: vendor
+      required: true
+      description: Der Vendor auf den die Buchung zurückgeführt werden soll.
+      schema:
+        type: string
+    - in: query
+      name: format
+      required: true
+      description: Das Format der Antwort. Hier ist in der Regel `json` zu verwenden.
+      schema:
+        type: string
+  tags:
+    - Geschlossene API
+  responses:
+    '201':
+      description: Erfolgreiche Buchung
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              response:
+                type: string
+                description: Statusmeldung der Bezahlung
+              name:
+                type: string
+                description: Name des Hauptbuchers

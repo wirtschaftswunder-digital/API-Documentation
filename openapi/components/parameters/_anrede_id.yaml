@@ -1,0 +1,9 @@
+in: query
+name: user[hauptperson_attributes][anrede_id]
+required: true
+description: Die Anrede-ID des Reisenden. 0 = Herr, 1 = Frau.
+schema:
+  enum:
+    - 0
+    - 1
+  type: integer

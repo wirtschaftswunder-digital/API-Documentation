@@ -1,0 +1,10 @@
+in: query
+name: user[hauptperson_attributes][buchungen_attributes][0][shirt]
+required: true
+description: >-
+  T-Shirt-Größe des Reisenden. Die möglichen Werte können aus den geschlossenen
+  API Endpunkt für die Destination entnommen werden (data -> attributes -> shirt
+  -> optionen).
+schema:
+  type: string
+  example: Woman S

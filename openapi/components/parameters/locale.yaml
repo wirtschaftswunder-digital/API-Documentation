@@ -1,0 +1,8 @@
+name: locale
+in: query
+description: Sprache der Daten
+required: false
+schema:
+  type: string
+  example: en
+  default: de

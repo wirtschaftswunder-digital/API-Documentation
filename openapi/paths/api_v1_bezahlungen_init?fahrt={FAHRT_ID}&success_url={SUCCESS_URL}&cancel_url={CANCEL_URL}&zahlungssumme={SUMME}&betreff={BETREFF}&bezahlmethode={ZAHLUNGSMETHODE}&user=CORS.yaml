@@ -1,0 +1,75 @@
+get:
+  summary: Initiierung einer Bezahlung über Stripe Checkout
+  description: >-
+    Über diesen API Endpunkt kann eine Bezahlung über Stripe Checkout
+    durchgeführt werden.
+  parameters:
+    - $ref: ../components/parameters/fahrt-id.yaml
+      name: fahrt
+    - in: query
+      name: success_url
+      required: true
+      description: >-
+        Die URL, zu der der Benutzer nach einer erfolgreichen Bezahlung
+        weitergeleitet werden soll.
+      schema:
+        type: string
+    - in: query
+      name: cancel_url
+      required: true
+      description: >-
+        Die URL, zu der der Benutzer bei Abbruch oder Fehlschlagen der Bezahlung
+        weitergeleitet werden soll.
+      schema:
+        type: string
+    - in: query
+      name: zahlungssumme
+      required: true
+      description: Die Gesamtsumme der Bezahlung **in Euro**.
+      schema:
+        example: 799
+        type: integer
+    - in: query
+      name: betreff
+      required: true
+      description: >-
+        Der Betreff oder die Beschreibung der Bezahlung. Hier ist der Titel der
+        Reise / des Angebots zu wählen.
+      schema:
+        type: string
+    - in: query
+      name: bezahlmethode
+      required: true
+      description: >-
+        Die Bezahlmethode, die verwendet werden soll (z.B. "card" für
+        Kreditkarte).
+      schema:
+        example: card
+        type: string
+  tags:
+    - Geschlossene API
+  security:
+    - CORS: []
+  responses:
+    '200':
+      description: Erfolgreiche Initialisierung der Bezahlung
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                description: Gibt an, ob die Bezahlung erfolgreich initialisiert wurde.
+              anbieter_stripe_key:
+                type: string
+                description: >-
+                  Der öffentliche Stripe API-Schlüssel des Anbieters (public API
+                  key).
+              session:
+                type: object
+                description: >-
+                  Die Stripe Checkout Session. Weitere Details können der
+                  offiziellen [Stripe
+                  Dokumentation](https://docs.stripe.com/api/checkout/sessions/object)
+                  entnommen werden.

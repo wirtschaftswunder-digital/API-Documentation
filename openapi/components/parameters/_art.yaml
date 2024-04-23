@@ -1,0 +1,8 @@
+in: query
+name: user[hauptperson_attributes][sonderadressen_attributes][0][art]
+required: false
+description: Die Art der Sonderadresse (wird für abweichende Rechnungsadressen verwendet).
+schema:
+  enum:
+    - Rechnungsadresse
+  type: string

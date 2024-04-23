@@ -1,0 +1,6 @@
+in: query
+name: user[hauptperson_attributes][anrede_eltern_id]
+required: false
+description: Die Anrede-ID des Elternteils des Reisenden. 0 = Herr, 1 = Frau.
+schema:
+  type: integer

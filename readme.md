@@ -33,7 +33,7 @@ yarn install
 To preview the documentation locally, run:
 
 ```bash
-yarn run preview
+yarn preview
 ```
 
 This will open a preview of the documentation in your default web browser.
@@ -43,7 +43,10 @@ This will open a preview of the documentation in your default web browser.
 To deploy the documentation to GitHub Pages, run:
 
 ```bash
-yarn run deploy
+yarn deploy
 ```
 
-This command will first build the documentation and then deploy it to the `gh-pages` branch, making it accessible via GitHub Pages.
+This command will:
+1. Bundle the docs to a single file
+2. Build the documentation as a HTML file
+3. Deploy it to the `gh-pages` branch, making it accessible via GitHub Pages. 

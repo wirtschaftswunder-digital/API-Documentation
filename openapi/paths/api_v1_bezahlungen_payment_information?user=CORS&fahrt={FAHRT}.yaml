@@ -1,0 +1,69 @@
+get:
+  summary: Abrufen von offenen zu überweisenden Summen
+  description: >
+    Diese API ermöglicht es, Informationen über offene zu überweisende Summen
+    abzurufen.
+  parameters:
+    - $ref: ../components/parameters/fahrt-id.yaml
+      name: fahrt
+  tags:
+    - Geschlossene API
+  responses:
+    '200':
+      description: Erfolgreich abgerufene Zahlungsinformationen
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                description: Gibt an, ob die Anfrage erfolgreich war
+              restbetrag:
+                type: string
+                description: Der Restbetrag, der zu überweisen ist.
+                example: '799.0'
+              buchungsnummer:
+                type: string
+                description: >-
+                  Die Buchungsnummer (falls verfügbar). *Falls nicht verfügbar,
+                  wird ein leerer `String` Wert zurückgegeben.*
+              vorname:
+                type: string
+                description: Der Vorname des Hauptbuchers
+              nachname:
+                type: string
+                description: Der Nachname des Hauptbuchers
+              anrede:
+                type: string
+                enum:
+                  - Herr
+                  - Frau
+                description: Die Anrede des Hauptbuchers
+              anbieter:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    description: Der Name des Anbieters
+                  email:
+                    type: string
+                    description: Die E-Mail-Adresse des Anbieters
+                  iban:
+                    type: string
+                    description: Die IBAN des Anbieters
+                  bic:
+                    type: string
+                    description: Der BIC des Anbieters
+          example:
+            success: true
+            restbetrag: '799.0'
+            buchungsnummer: ''
+            vorname: Tim
+            nachname: Tester
+            anrede: Herr
+            anbieter:
+              name: Demo-Anbieter
+              email: demo@jugendreisen.digital
+              iban: DE27300501101007743592
+              bic: DUSSDEDDXXX

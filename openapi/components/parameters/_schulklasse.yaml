@@ -1,0 +1,6 @@
+in: query
+name: user[hauptperson_attributes][schulklasse]
+required: false
+description: Die Schulklasse des Reisenden.
+schema:
+  type: integer

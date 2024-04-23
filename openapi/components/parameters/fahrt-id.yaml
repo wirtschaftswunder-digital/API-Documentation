@@ -1,0 +1,7 @@
+in: query
+name: fahrt
+required: true
+description: Die ID der Fahrt der Buchung
+schema:
+  example: 3978a99b253d4706f6e6508d
+  type: string

@@ -1,0 +1,6 @@
+type: integer
+description: >-
+  Der Wert gibt an, wie viele Plätze für das jeweilige Geschlecht verfügbar
+  sind. Falls kein Wert angegeben wurde **oder** der Wert > 10 ist, wird `null`
+  zurückgegeben.
+nullable: true

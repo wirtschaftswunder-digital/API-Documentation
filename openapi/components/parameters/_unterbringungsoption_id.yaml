@@ -1,0 +1,7 @@
+in: query
+name: user[hauptperson_attributes][buchungen_attributes][0][unterbringungsoption_id]
+required: true
+description: ID der Unterbringungsoption
+schema:
+  type: integer
+  example: 44388

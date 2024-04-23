@@ -1,0 +1,19 @@
+get:
+  summary: Termin Details
+  description: Abrufen von detaillierten Informationen zu einem Termin.
+  parameters:
+    - in: query
+      name: id
+      required: true
+      description: Die ID des Termins, dessen Informationen abgerufen werden sollen.
+      schema:
+        type: integer
+    - $ref: ../components/parameters/destination-id.yaml
+    - $ref: ../components/parameters/locale.yaml
+  responses:
+    '200':
+      $ref: ../components/responses/termin-show-200.yaml
+  security:
+    - CORS: []
+  tags:
+    - Geschlossene API

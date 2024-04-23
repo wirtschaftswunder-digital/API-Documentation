@@ -1,0 +1,25 @@
+get:
+  summary: Termin Details (Bulk Request)
+  description: Abrufen von Informationen zu mehreren Termin in einer gesammelten Anfrage.
+  parameters:
+    - in: query
+      name: id[]
+      required: true
+      description: Liste aller Termin IDs, deren Informationen abgerufen werden sollen.
+      schema:
+        type: array
+        items:
+          type: integer
+        example:
+          - 29239
+          - 29240
+          - 29241
+    - $ref: ../components/parameters/destination-id.yaml
+    - $ref: ../components/parameters/locale.yaml
+  responses:
+    '200':
+      $ref: ../components/responses/termin-show-200.yaml
+  security:
+    - CORS: []
+  tags:
+    - Geschlossene API

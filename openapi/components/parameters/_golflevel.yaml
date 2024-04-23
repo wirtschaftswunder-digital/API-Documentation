@@ -1,0 +1,16 @@
+in: query
+name: user[hauptperson_attributes][buchungen_attributes][0][golflevel]
+required: true
+description: >-
+  Golflevel des Reisenden. Die möglichen Werte können aus den geschlossenen API
+  Endpunkt für die Destination entnommen werden (data -> attributes -> golflevel
+  -> optionen).
+schema:
+  type: string
+  enum:
+    - Anfänger ohne Handicap
+    - 0 - 9
+    - 10 - 18
+    - 19 - 36
+    - 37+
+  example: 10 - 18

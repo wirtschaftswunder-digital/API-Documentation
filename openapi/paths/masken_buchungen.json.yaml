@@ -1,0 +1,317 @@
+post:
+  tags:
+    - Geschlossene API
+  summary: Buchung erstellen
+  description: >-
+    Erstellt eine Buchung für eine Destination. Die Buchung ist anschließend
+    *noch nicht verbindlich* abgeschlossen. Um die Buchung abzuschließen, muss
+    ein weiterer API Aufruf erfolgen.
+
+    > **Wichtig!** <br> Es wird im Datenmodell zwischen Hauptbucher und
+    Mitfahren unterschieden. Bei Einzelbuchungen können daher alle Parameter die
+    mit `user[personen_attributes]` beginnen weggelassen werden. Diese sind nur
+    für Mitfahrer relevant. **Bei den Mitfahren `INDEX` in
+    `user[personen_attributes][INDEX]` stets durch den Index des Mitfahrers
+    ersetzt werden (beginnend bei 0).** Somit starten alle Parameter, die den
+    Hauptbucher betreffen mit `user[hauptperson_attributes]`. Alle Parameter,
+    die den 1. Mitfahrer betreffen, beginnen mit `user[personen_attributes][0]`.
+    Die Parameter des 2. Mitfahrers beginnen mit `user[personen_attributes][1]`
+    usw.
+  parameters:
+    - $ref: ../components/parameters/_termin-id.yaml
+    - $ref: ../components/parameters/_vendor.yaml
+    - $ref: ../components/parameters/_vendor-quelle.yaml
+    - $ref: ../components/parameters/_zbbl.yaml
+    - $ref: ../components/parameters/_anfrage.yaml
+    - $ref: ../components/parameters/_rabatte_attributes_name.yaml
+    - $ref: ../components/parameters/_rabatte_attributes_summe.yaml
+    - $ref: ../components/parameters/_rabatte_attributes_gutschein.yaml
+    - $ref: ../components/parameters/_abfahrt_id.yaml
+    - $ref: ../components/parameters/_rueckfahrt_id.yaml
+    - $ref: ../components/parameters/_unterbringungsoption_id.yaml
+    - $ref: ../components/parameters/_verpflegungsoption_id.yaml
+    - $ref: ../components/parameters/_sportart.yaml
+    - $ref: ../components/parameters/_stufe.yaml
+    - $ref: ../components/parameters/_golflevel.yaml
+    - $ref: ../components/parameters/_schwimmlevel.yaml
+    - $ref: ../components/parameters/_shirt.yaml
+    - $ref: ../components/parameters/_verpflegungswunsch.yaml
+    - $ref: ../components/parameters/_woher.yaml
+    - $ref: ../components/parameters/_notice_id.yaml
+    - $ref: ../components/parameters/_notice_text.yaml
+    - $ref: ../components/parameters/_vorname.yaml
+    - $ref: ../components/parameters/_name.yaml
+    - $ref: ../components/parameters/_geburtstag.yaml
+    - $ref: ../components/parameters/_anrede_id.yaml
+    - $ref: ../components/parameters/_divers.yaml
+    - $ref: ../components/parameters/_nation.yaml
+    - $ref: ../components/parameters/_freunde.yaml
+    - $ref: ../components/parameters/_vorname_eltern.yaml
+    - $ref: ../components/parameters/_name_eltern.yaml
+    - $ref: ../components/parameters/_anrede_eltern_id.yaml
+    - $ref: ../components/parameters/_strasse.yaml
+    - $ref: ../components/parameters/_land.yaml
+    - $ref: ../components/parameters/_plz.yaml
+    - $ref: ../components/parameters/_ort.yaml
+    - $ref: ../components/parameters/_mobil.yaml
+    - $ref: ../components/parameters/_telefon.yaml
+    - $ref: ../components/parameters/_englischkenntnisse_jahre.yaml
+    - $ref: ../components/parameters/_englischkenntnisse_bedarf.yaml
+    - $ref: ../components/parameters/_englischkenntnisse_note.yaml
+    - $ref: ../components/parameters/_schulform.yaml
+    - $ref: ../components/parameters/_schulklasse.yaml
+    - $ref: ../components/parameters/_geburtsort.yaml
+    - $ref: ../components/parameters/_ausweisnummer.yaml
+    - $ref: ../components/parameters/_abw_rechnungsadresse.yaml
+    - $ref: ../components/parameters/_art.yaml
+    - $ref: ../components/parameters/_firma.yaml
+    - $ref: ../components/parameters/_sonder_anrede_id.yaml
+    - $ref: ../components/parameters/_sonder_vorname.yaml
+    - $ref: ../components/parameters/_sonder_name.yaml
+    - $ref: ../components/parameters/_sonder_strasse.yaml
+    - $ref: ../components/parameters/_sonder_land.yaml
+    - $ref: ../components/parameters/_sonder_plz.yaml
+    - $ref: ../components/parameters/_sonder_ort.yaml
+    - $ref: ../components/parameters/_sonder_email.yaml
+    - in: query
+      name: user[personen_attributes][INDEX][_destroy]
+      required: false
+      description: Plflichtfeld für Mitfahrer. Muss für jeden Mitfahrer gesetzt werden.
+      schema:
+        enum:
+          - false
+        type: boolean
+    - $ref: ../components/parameters/_termin-id.yaml
+      name: user[personen_attributes][INDEX][buchungen_attributes][0][termin_id]
+      required: false
+    - $ref: ../components/parameters/_vendor.yaml
+      name: user[personen_attributes][INDEX][buchungen_attributes][0][vendor]
+      required: false
+    - $ref: ../components/parameters/_vendor-quelle.yaml
+      name: user[personen_attributes][INDEX][buchungen_attributes][0][vendor_quelle]
+      required: false
+    - $ref: ../components/parameters/_zbbl.yaml
+      name: >-
+        user[personen_attributes][INDEX][buchungen_attributes][0][zubuchbareleistung_ids[]]
+      required: false
+    - $ref: ../components/parameters/_anfrage.yaml
+      name: user[personen_attributes][INDEX][buchungen_attributes][0][anfrage]
+      required: false
+    - $ref: ../components/parameters/_rabatte_attributes_name.yaml
+      name: >-
+        user[personen_attributes][INDEX][buchungen_attributes][0][rabatte_attributes][0][name]
+      required: false
+    - $ref: ../components/parameters/_rabatte_attributes_summe.yaml
+      name: >-
+        user[personen_attributes][INDEX][buchungen_attributes][0][rabatte_attributes][0][summe]
+      required: false
+    - $ref: ../components/parameters/_rabatte_attributes_gutschein.yaml
+      name: >-
+        user[personen_attributes][INDEX][buchungen_attributes][0][rabatte_attributes][0][gutschein]
+      required: false
+    - $ref: ../components/parameters/_abfahrt_id.yaml
+      name: user[personen_attributes][INDEX][buchungen_attributes][0][abfahrt_id]
+      required: false
+    - $ref: ../components/parameters/_rueckfahrt_id.yaml
+      name: user[personen_attributes][INDEX][buchungen_attributes][0][rueckfahrt_id]
+      required: false
+    - $ref: ../components/parameters/_unterbringungsoption_id.yaml
+      name: >-
+        user[personen_attributes][INDEX][buchungen_attributes][0][unterbringungsoption_id]
+      required: false
+    - $ref: ../components/parameters/_verpflegungsoption_id.yaml
+      name: >-
+        user[personen_attributes][INDEX][buchungen_attributes][0][verpflegungsoption_id]
+      required: false
+    - $ref: ../components/parameters/_sportart.yaml
+      name: user[personen_attributes][INDEX][buchungen_attributes][0][sportart]
+      required: false
+    - $ref: ../components/parameters/_stufe.yaml
+      name: user[personen_attributes][INDEX][buchungen_attributes][0][stufe]
+      required: false
+    - $ref: ../components/parameters/_golflevel.yaml
+      name: user[personen_attributes][INDEX][buchungen_attributes][0][golflevel]
+      required: false
+    - $ref: ../components/parameters/_schwimmlevel.yaml
+      name: user[personen_attributes][INDEX][buchungen_attributes][0][schwimmlevel]
+      required: false
+    - $ref: ../components/parameters/_shirt.yaml
+      name: user[personen_attributes][INDEX][buchungen_attributes][0][shirt]
+      required: false
+    - $ref: ../components/parameters/_verpflegungswunsch.yaml
+      name: >-
+        user[personen_attributes][INDEX][buchungen_attributes][0][verpflegungswunsch[]]
+      required: false
+    - $ref: ../components/parameters/_woher.yaml
+      name: user[personen_attributes][INDEX][buchungen_attributes][0][woher[]]
+      required: false
+    - $ref: ../components/parameters/_notice_id.yaml
+      name: >-
+        user[personen_attributes][INDEX][buchungen_attributes][0][notice_answers_attributes][0][notice_id]
+      required: false
+    - $ref: ../components/parameters/_notice_text.yaml
+      name: >-
+        user[personen_attributes][INDEX][buchungen_attributes][0][notice_answers_attributes][0][text]
+      required: false
+    - $ref: ../components/parameters/_vorname.yaml
+      name: user[personen_attributes][INDEX][vorname]
+      required: false
+    - $ref: ../components/parameters/_name.yaml
+      name: user[personen_attributes][INDEX][name]
+      required: false
+    - $ref: ../components/parameters/_geburtstag.yaml
+      name: user[personen_attributes][INDEX][geburtstag]
+      required: false
+    - $ref: ../components/parameters/_anrede_id.yaml
+      name: user[personen_attributes][INDEX][anrede_id]
+      required: false
+    - $ref: ../components/parameters/_divers.yaml
+      name: user[personen_attributes][INDEX][divers]
+      required: false
+    - $ref: ../components/parameters/_nation.yaml
+      name: user[personen_attributes][INDEX][nation_attributes][iso]
+      required: false
+    - $ref: ../components/parameters/_freunde.yaml
+      name: user[personen_attributes][INDEX][freunde]
+      required: false
+    - $ref: ../components/parameters/_vorname_eltern.yaml
+      name: user[personen_attributes][INDEX][vorname_eltern]
+      required: false
+    - $ref: ../components/parameters/_name_eltern.yaml
+      name: user[personen_attributes][INDEX][name_eltern]
+      required: false
+    - $ref: ../components/parameters/_anrede_eltern_id.yaml
+      name: user[personen_attributes][INDEX][anrede_eltern_id]
+      required: false
+    - $ref: ../components/parameters/_strasse.yaml
+      name: user[personen_attributes][INDEX][strasse]
+      required: false
+    - $ref: ../components/parameters/_land.yaml
+      name: user[personen_attributes][INDEX][land_attributes][iso]
+      required: false
+    - $ref: ../components/parameters/_plz.yaml
+      name: user[personen_attributes][INDEX][plz]
+      required: false
+    - $ref: ../components/parameters/_ort.yaml
+      name: user[personen_attributes][INDEX][ort]
+      required: false
+    - $ref: ../components/parameters/_mobil.yaml
+      name: user[personen_attributes][INDEX][mobil]
+      required: false
+    - $ref: ../components/parameters/_telefon.yaml
+      name: user[personen_attributes][INDEX][telefon]
+      required: false
+    - $ref: ../components/parameters/_englischkenntnisse_jahre.yaml
+      name: user[personen_attributes][INDEX][englischkenntnisse_jahre]
+      required: false
+    - $ref: ../components/parameters/_englischkenntnisse_bedarf.yaml
+      name: user[personen_attributes][INDEX][englischkenntnisse_bedarf]
+      required: false
+    - $ref: ../components/parameters/_englischkenntnisse_note.yaml
+      name: user[personen_attributes][INDEX][englischkenntnisse_note]
+      required: false
+    - $ref: ../components/parameters/_schulform.yaml
+      name: user[personen_attributes][INDEX][schulform]
+      required: false
+    - $ref: ../components/parameters/_schulklasse.yaml
+      name: user[personen_attributes][INDEX][schulklasse]
+      required: false
+    - $ref: ../components/parameters/_geburtsort.yaml
+      name: user[personen_attributes][INDEX][geburtsort]
+      required: false
+    - $ref: ../components/parameters/_ausweisnummer.yaml
+      name: user[personen_attributes][INDEX][ausweisnummer]
+      required: false
+    - $ref: ../components/parameters/_abw_rechnungsadresse.yaml
+      name: >-
+        user[personen_attributes][INDEX][sonderadressen_attributes][0][abw_rechnungsadresse]
+      required: false
+    - $ref: ../components/parameters/_art.yaml
+      name: user[personen_attributes][INDEX][sonderadressen_attributes][0][art]
+      required: false
+    - $ref: ../components/parameters/_firma.yaml
+      name: user[personen_attributes][INDEX][sonderadressen_attributes][0][firma]
+      required: false
+    - $ref: ../components/parameters/_sonder_anrede_id.yaml
+      name: >-
+        user[personen_attributes][INDEX][sonderadressen_attributes][0][anrede_id]
+      required: false
+    - $ref: ../components/parameters/_sonder_vorname.yaml
+      name: user[personen_attributes][INDEX][sonderadressen_attributes][0][vorname]
+      required: false
+    - $ref: ../components/parameters/_sonder_name.yaml
+      name: user[personen_attributes][INDEX][sonderadressen_attributes][0][name]
+      required: false
+    - $ref: ../components/parameters/_sonder_strasse.yaml
+      name: user[personen_attributes][INDEX][sonderadressen_attributes][0][strasse]
+      required: false
+    - $ref: ../components/parameters/_sonder_land.yaml
+      name: >-
+        user[personen_attributes][INDEX][sonderadressen_attributes][0][land][iso]
+      required: false
+    - $ref: ../components/parameters/_sonder_plz.yaml
+      name: user[personen_attributes][INDEX][sonderadressen_attributes][0][plz]
+      required: false
+    - $ref: ../components/parameters/_sonder_ort.yaml
+      name: user[personen_attributes][INDEX][sonderadressen_attributes][0][ort]
+      required: false
+    - $ref: ../components/parameters/_sonder_email.yaml
+      name: user[personen_attributes][INDEX][sonderadressen_attributes][0][email]
+      required: false
+    - in: query
+      name: user[email]
+      required: true
+      description: >-
+        Die E-Mail-Adresse für die Buchung. **Wichtig:** An diese E-Mail-Adresse
+        wird die Buchungskopie gesendet.
+      schema:
+        format: email
+        type: string
+    - in: query
+      name: extern
+      required: true
+      description: >-
+        Gibt an, ob der Benutzer extern ist. Dieser Parameter ist in der Regel
+        auf `true` zu setzen.
+      schema:
+        type: boolean
+    - in: query
+      name: locale
+      required: true
+      description: >-
+        Die Sprache in der die Buchung vorgenommen wurde. **Wichtig:** Der Wert
+        sollte in Kleinbuchstaben angegeben werden.
+      schema:
+        type: string
+        example: de
+    - in: query
+      name: vendor
+      required: true
+      description: Der Anbieter des Buchungsprodukts.
+      schema:
+        type: string
+    - in: query
+      name: no_mail
+      required: true
+      description: Gibt an, ob E-Mails an den Benutzer gesendet werden sollen.
+      schema:
+        type: boolean
+    - in: query
+      name: format
+      required: false
+      description: Das Format der Antwort.
+      schema:
+        type: string
+        example: json
+  responses:
+    '201':
+      description: Fahrt ID generieren
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              fahrt:
+                type: string
+                description: Fahrt ID der neu angelegten Buchung.
+                nullable: false

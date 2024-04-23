@@ -1,0 +1,7 @@
+in: query
+name: user[hauptperson_attributes][buchungen_attributes][0][rueckfahrt_id]
+required: true
+description: ID des Rückfahrt
+schema:
+  type: integer
+  example: 84114059

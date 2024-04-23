@@ -1,0 +1,8 @@
+in: query
+name: >-
+  user[hauptperson_attributes][buchungen_attributes][0][rabatte_attributes][0][summe]
+required: true
+description: Höhe des Rabatts
+schema:
+  type: integer
+  example: -80

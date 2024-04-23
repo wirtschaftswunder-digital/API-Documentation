@@ -1,0 +1,7 @@
+in: query
+name: user[hauptperson_attributes][sonderadressen_attributes][0][ort]
+required: false
+description: Der Ort der Sonderadresse (Stadt).
+schema:
+  type: string
+  example: Hamburg

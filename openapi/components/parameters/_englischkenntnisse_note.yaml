@@ -1,0 +1,14 @@
+in: query
+name: user[hauptperson_attributes][englischkenntnisse_note]
+required: false
+description: Die Note der Englischkenntnisse des Reisenden.
+schema:
+  type: string
+  enum:
+    - sehrgut
+    - gut
+    - befriedigend
+    - ausreichend
+    - mangelhaft
+    - ungenuegend
+    - keine

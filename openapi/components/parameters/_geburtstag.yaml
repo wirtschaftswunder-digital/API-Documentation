@@ -1,0 +1,8 @@
+in: query
+name: user[hauptperson_attributes][geburtstag]
+required: true
+description: Das Geburtsdatum des Reisenden.
+schema:
+  type: string
+  format: date (DD.MM.YYYY)
+  example: 01.01.2005
