@@ -2460,7 +2460,7 @@ paths:
                   callback:
                     type: object
                     nullable: true
-                    description: "*DEPRECATED*"
+                    deprecated: true
                 example:
                   message: saved
                   callback: null
