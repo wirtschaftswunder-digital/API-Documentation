@@ -531,6 +531,14 @@ components:
       schema:
         type: string
         example: "max.mustermann@example.com"
+    fahrt-id:
+      in: query
+      name: fahrt
+      required: true
+      description: Die ID der Fahrt der Buchung
+      schema:
+        example: 3978a99b253d4706f6e6508d
+        type: string
 
   responses:
     termin-show-200:
@@ -2227,18 +2235,14 @@ paths:
                     type: string
                     description: Fahrt ID der neu angelegten Buchung.
                     nullable: false
-  ? /payment/webservice/anzahlungssumme.json?hex_id={HEX_ID}&gesamtsumme={GESAMTSUMME}&personen_anzahl={PERSONEN_ANZAHL}
+  ? /payment/webservice/anzahlungssumme.json?hex_id={FAHRT_ID}&gesamtsumme={GESAMTSUMME}&personen_anzahl={PERSONEN_ANZAHL}
   : get:
       summary: Anzahlungssumme
       description: |
         Diese API ermöglicht es, die Anzahlungssumme und verwandte Informationen für eine Buchung abzurufen.
       parameters:
-        - in: query
+        - $ref: "#/components/parameters/fahrt-id"
           name: hex_id
-          required: true
-          description: Die Fahrt ID der Buchung
-          schema:
-            type: string
         - in: query
           name: gesamtsumme
           required: true
@@ -2295,12 +2299,8 @@ paths:
       description: |
         Dieser API Endpunkt ermöglicht es, Buchung durchzuführen.
       parameters:
-        - in: query
+        - $ref: "#/components/parameters/fahrt-id"
           name: fahrt
-          required: true
-          description: Die Fahrt ID der Buchung
-          schema:
-            type: string
         - in: query
           name: extern
           required: true
@@ -2348,3 +2348,70 @@ paths:
                   name:
                     type: string
                     description: Name des Hauptbuchers
+  /api/v1/bezahlungen/payment_information?user=CORS&fahrt={FAHRT}:
+    get:
+      summary: Abrufen von offenen zu überweisenden Summen
+      description: |
+        Diese API ermöglicht es, Informationen über offene zu überweisende Summen abzurufen.
+      parameters:
+        - $ref: "#/components/parameters/fahrt-id"
+          name: fahrt
+      tags:
+        - "Geschlossene API"
+      responses:
+        "200":
+          description: Erfolgreich abgerufene Zahlungsinformationen
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Gibt an, ob die Anfrage erfolgreich war
+                  restbetrag:
+                    type: string
+                    description: Der Restbetrag, der zu überweisen ist.
+                    example: "799.0"
+                  buchungsnummer:
+                    type: string
+                    description: Die Buchungsnummer (falls verfügbar). *Falls nicht verfügbar, wird ein leerer `String` Wert zurückgegeben.*
+                  vorname:
+                    type: string
+                    description: Der Vorname des Hauptbuchers
+                  nachname:
+                    type: string
+                    description: Der Nachname des Hauptbuchers
+                  anrede:
+                    type: string
+                    enum:
+                      - Herr
+                      - Frau
+                    description: Die Anrede des Hauptbuchers
+                  anbieter:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        description: Der Name des Anbieters
+                      email:
+                        type: string
+                        description: Die E-Mail-Adresse des Anbieters
+                      iban:
+                        type: string
+                        description: Die IBAN des Anbieters
+                      bic:
+                        type: string
+                        description: Der BIC des Anbieters
+              example:
+                success: true
+                restbetrag: "799.0"
+                buchungsnummer: ""
+                vorname: Tim
+                nachname: Tester
+                anrede: Herr
+                anbieter:
+                  name: Demo-Anbieter
+                  email: demo@jugendreisen.digital
+                  iban: DE27300501101007743592
+                  bic: DUSSDEDDXXX
