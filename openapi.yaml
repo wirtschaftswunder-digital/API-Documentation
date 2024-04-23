@@ -2415,3 +2415,47 @@ paths:
                   email: demo@jugendreisen.digital
                   iban: DE27300501101007743592
                   bic: DUSSDEDDXXX
+  /masken/buchungen/email.json:
+    put:
+      summary: E-Mail Adresse ändern
+      description: Ermöglicht die Aktualisierung der E-Mail-Adresse im Buchungsvorgang vor Abschluss der Buchung.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  description: Die neue E-Mail-Adresse des Hauptbuchers
+                  example: test@ww.digital
+                email_eltern:
+                  type: string
+                  description: Die neue E-Mail-Adresse der Eltern
+                  example: test@ww.digital
+                fahrt:
+                  type: string
+                  description: Die ID der Fahrt
+                  example: "0ad4f33bd6df22fa10483a28"
+      tags:
+        - "Geschlossene API"
+      responses:
+        "200":
+          description: E-Mail erfolgreich aktualisiert
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Statusmeldung
+                  callback:
+                    type: object
+                    nullable: true
+                    description: "*DEPRECATED*"
+                example:
+                  message: saved
+                  callback: null
