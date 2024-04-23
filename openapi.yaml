@@ -205,7 +205,7 @@ components:
           - "19 - 36"
           - "37+"
         example: 10 - 18
-    _schwimmlevel:    
+    _schwimmlevel:
       in: query
       name: user[hauptperson_attributes][buchungen_attributes][0][schwimmlevel]
       required: true
@@ -375,7 +375,7 @@ components:
       schema:
         type: string
         example: "+49123546"
-    _telefon:  
+    _telefon:
       in: query
       name: user[hauptperson_attributes][telefon]
       required: false
@@ -1944,7 +1944,7 @@ paths:
       summary: "Buchung erstellen"
       description: "Erstellt eine Buchung für eine Destination. **Wichtig: die Buchung wird mit einer Fahrt-ID angelegt, aber noch nicht als abgeschlossene Buchung gespeichert. Um sie als abgeschlossene Buchung zu speichern ist ein weiterer API Call notwendig.**"
       parameters:
-        # Hauptperson 
+        # Hauptperson
         - $ref: "#/components/parameters/_termin-id"
         - $ref: "#/components/parameters/_vendor"
         - $ref: "#/components/parameters/_vendor-quelle"
@@ -2217,7 +2217,7 @@ paths:
 
       responses:
         "201":
-          description: "Buchung erstellt"
+          description: "Fahrt ID generieren"
           content:
             application/json:
               schema:
@@ -2227,3 +2227,65 @@ paths:
                     type: string
                     description: Fahrt ID der neu angelegten Buchung.
                     nullable: false
+  /payment/webservice/anzahlungssumme.json:
+    get:
+      summary: Abrufen der Anzahlungssumme
+      description: |
+        Diese API ermöglicht es, die Anzahlungssumme und verwandte Informationen für eine Buchung abzurufen.
+      parameters:
+        - in: query
+          name: hex_id
+          required: true
+          description: Die Fahrt ID der Buchung
+          schema:
+            type: string
+        - in: query
+          name: gesamtsumme
+          required: true
+          description: Die Gesamtsumme der Buchung
+          schema:
+            type: integer
+        - in: query
+          name: personen_anzahl
+          required: true
+          description: Die Anzahl der Personen in der Buchung
+          schema:
+            type: integer
+      tags:
+        - "Geschlossene API"
+      responses:
+        "200":
+          description: Erfolgreiche Abfrage der Anzahlungssumme
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  anzahlungsfaelligkeit:
+                    type: integer
+                    description: Der Zeitpunkt, an dem die Anzahlung fällig ist (0 bedeutet sofort)
+                  anzahlungssumme:
+                    type: integer
+                    description: Die Höhe der Anzahlungssumme
+                  fixed_anzahlungsfaelligkeit:
+                    type: boolean
+                    description: Gibt an, ob die Anzahlungsfrist fixiert ist
+                  purchase_vorlauf_tage:
+                    type: integer
+                    description: Die Anzahl der Tage vor dem Kauf, bevor die Zahlung fällig ist
+                  restzahlungsfaelligkeit:
+                    type: string
+                    format: date
+                    description: Das Datum, an dem die Restzahlung fällig ist
+                  restzahlungssumme:
+                    type: integer
+                    description: Die Höhe der Restzahlungssumme
+                  saldo_ausgeglichen:
+                    type: boolean
+                    description: Gibt an, ob der Saldo ausgeglichen ist
+                  summedirektzubezahlen:
+                    type: integer
+                    description: Die Gesamtsumme, die direkt bezahlt werden muss
+                  tage_nach_bestaetigung:
+                    type: integer
+                    description: Die Anzahl der Tage nach Bestätigung der Buchung, bevor die Zahlung fällig ist
