@@ -2503,17 +2503,13 @@ paths:
                   value:
                     rabatt: "-80.0"
                     callback: null
-  /api/v1/bezahlungen/init?fahrt={FAHRT_ID}&success_url={SUCCESS_URL}&cancel_url={CANCEL_URL}&zahlungssumme={SUMME}&betreff={BETREFF}&bezahlmethode={ZAHLUNGSMETHODE}&user=CORS:
-    get:
+  ? /api/v1/bezahlungen/init?fahrt={FAHRT_ID}&success_url={SUCCESS_URL}&cancel_url={CANCEL_URL}&zahlungssumme={SUMME}&betreff={BETREFF}&bezahlmethode={ZAHLUNGSMETHODE}&user=CORS
+  : get:
       summary: Initiierung einer Bezahlung über Stripe Checkout
       description: Über diesen API Endpunkt kann eine Bezahlung über Stripe Checkout durchgeführt werden.
       parameters:
-        - in: query
+        - $ref: "#/components/parameters/fahrt-id"
           name: fahrt
-          required: true
-          description: Die ID der Fahrt, für die die Bezahlung durchgeführt werden soll.
-          schema:
-            type: string
         - in: query
           name: success_url
           required: true
@@ -2529,13 +2525,14 @@ paths:
         - in: query
           name: zahlungssumme
           required: true
-          description: Die Gesamtsumme der Bezahlung in der kleinsten Währungseinheit (z.B. Cent).
+          description: Die Gesamtsumme der Bezahlung **in Euro**.
           schema:
+            example: 799
             type: integer
         - in: query
           name: betreff
           required: true
-          description: Der Betreff oder die Beschreibung der Bezahlung.
+          description: Der Betreff oder die Beschreibung der Bezahlung. Hier ist der Titel der Reise / des Angebots zu wählen.
           schema:
             type: string
         - in: query
@@ -2543,13 +2540,12 @@ paths:
           required: true
           description: Die Bezahlmethode, die verwendet werden soll (z.B. "card" für Kreditkarte).
           schema:
+            example: card
             type: string
-        - in: query
-          name: user
-          required: true
-          description: Der Benutzer, der die Bezahlung initiiert.
-          schema:
-            type: string
+      tags:
+        - "Geschlossene API"
+      security:
+        - CORS: []
       responses:
         "200":
           description: Erfolgreiche Initialisierung der Bezahlung
@@ -2563,10 +2559,7 @@ paths:
                     description: Gibt an, ob die Bezahlung erfolgreich initialisiert wurde.
                   anbieter_stripe_key:
                     type: string
-                    description: Der Stripe API-Schlüssel des Anbieters.
+                    description: Der öffentliche Stripe API-Schlüssel des Anbieters (public API key).
                   session:
                     type: object
-                    description: Die Stripe Checkout Session. 
-
-                   
-
+                    description: Die Stripe Checkout Session. Weitere Details können der offiziellen [Stripe Dokumentation](https://docs.stripe.com/api/checkout/sessions/object) entnommen werden.
