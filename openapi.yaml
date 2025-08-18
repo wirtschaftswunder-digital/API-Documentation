@@ -2059,11 +2059,12 @@ components:
       in: query
       name: user[hauptperson_attributes][anrede_id]
       required: true
-      description: Die Anrede-ID des Reisenden. 0 = Herr, 1 = Frau.
+      description: Die Anrede-ID des Reisenden. 1 = Herr, 2 = Frau, 3 = Divers
       schema:
         enum:
-          - 0
           - 1
+          - 2
+          - 3
         type: integer
     _divers:
       in: query
