@@ -23,6 +23,38 @@ get:
         example: de
         type: string
     - in: query
+      name: explicit_consent_answers_attributes
+      description: |
+        Liste der Antworten, auf `explicit_consents`.
+        Entspricht dem Rails-Parameter-Format. Beispiel:
+        `explicit_consent_answers_attributes[0][permission]=true`.
+        
+        Jede Antwort besteht aus:
+        - `explicit_consent_config_id`: ID der Frage
+        - `permission`: Zustimmung oder Ablehnung (`true`/`false`)
+        - `locked`: Gibt an, dass die Auswahl nicht mehr änderbar ist
+      required: true
+      style: deepObject
+      schema:
+        type: array
+        items:
+          type: object
+          required:
+            - explicit_consent_config_id
+            - permission
+            - locked
+          properties:
+            explicit_consent_config_id:
+              type: integer
+              example: 1
+            permission:
+              type: boolean
+              example: true
+            locked:
+              description: Sollte auf `true` gesetzt werden, wenn `permission` `true` ist und die Auswahl nicht mehr änderbar sein soll.
+              type: boolean
+              example: true
+    - in: query
       name: no_mail
       required: true
       description: Gibt an, ob auf eine E-Mail an den Kunden verzichtet werden soll.

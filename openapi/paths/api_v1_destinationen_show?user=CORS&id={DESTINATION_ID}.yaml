@@ -20,7 +20,7 @@ get:
   summary: Destinationen Details
   description: Abrufen von detaillierten Informationen zu einer Destination.
   responses:
-    '200':
+    "200":
       description: Erfolgreiche Anfrage
       content:
         application/json:
@@ -473,6 +473,58 @@ get:
                         type: string
                         nullable: false
                         description: Die Original-URL (Reiseausschreibung) der Destination
+                      explicit_consents:
+                        type: array
+                        description:: Liste mit Einwilligungen, die explizit abgefragt werden müssen. Dabei soll es nicht opt-in sein, sondern eine verpflichtende Auswahl von "Ja" oder "Nein". Bei der Buchung sollen nur Einwilligungen abgefragt werden, bei denen ask_before_booking auf true gesetzt ist.
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              description: Die ID der Frage
+                            key:
+                              type: string
+                              description: >
+                                Eindeutiger Schlüssel der Einwilligung.
+                                Beispiel: "photo_permission"
+                            ask_before_booking:
+                              type: boolean
+                              description: >
+                                Wenn true, muss die Frage im Buchungsprozess zwingend
+                                beantwortet werden.
+                            show_info_positive:
+                              type: boolean
+                              description: >
+                                Wenn true, wird nach positiver Auswahl ein Hinweistext
+                                (`message_positive`) angezeigt.
+                            show_info_negative:
+                              type: boolean
+                              description: >
+                                Wenn true, wird nach negativer Auswahl ein Hinweistext
+                                (`message_negative`) angezeigt.
+                            title:
+                              type: string
+                              description: >
+                                Hauptfrage, HTML ist erlaubt (z.B. DSGVO-Links).
+                            label_positive:
+                              type: string
+                              description: Text für die JA-Option.
+                            label_negative:
+                              type: string
+                              description: Text für die NEIN-Option.
+                            validation_message:
+                              type: string
+                              description: Fehlermeldung bei fehlender Auswahl.
+                            message_positive:
+                              type: string
+                              description: >
+                                Information, die nach Auswahl von "Ja" angezeigt wird
+                                (nur wenn show_info_positive = true).
+                            message_negative:
+                              type: string
+                              description: >
+                                Information, die nach Auswahl von "Nein" angezeigt wird
+                                (nur wenn show_info_negative = true).
                   links:
                     type: object
                     description: Links zu weiteren API-Abfragen
@@ -488,16 +540,16 @@ get:
               summary: Beispiel 1
               value:
                 data:
-                  id: '496'
+                  id: "496"
                   type: destination
                   attributes:
                     id: 496
                     anlagenname: Club Kitzsteinhorn
                     strasse: Gletschermoosstr. 12
-                    plz: '5700'
+                    plz: "5700"
                     stadt: Zell am See
-                    latitude: '47.297'
-                    longitude: '12.7911'
+                    latitude: "47.297"
+                    longitude: "12.7911"
                     geo_url: null
                     saisons:
                       - Sommer
@@ -598,38 +650,38 @@ get:
                       - id: 215
                         name: 1 Woche
                         termin_ids:
-                          - '28988'
-                          - '28990'
-                          - '28992'
-                          - '28993'
-                          - '28994'
-                          - '28995'
-                          - '29424'
-                          - '29429'
-                          - '29437'
-                          - '29442'
-                          - '29443'
-                          - '29447'
-                          - '29451'
-                          - '29457'
-                          - '29498'
+                          - "28988"
+                          - "28990"
+                          - "28992"
+                          - "28993"
+                          - "28994"
+                          - "28995"
+                          - "29424"
+                          - "29429"
+                          - "29437"
+                          - "29442"
+                          - "29443"
+                          - "29447"
+                          - "29451"
+                          - "29457"
+                          - "29498"
                         reihenfolge: null
                         destination_id: 496
                         aktiv: true
                       - id: 217
                         name: 2 Wochen
                         termin_ids:
-                          - '29026'
-                          - '29027'
-                          - '29032'
-                          - '29459'
-                          - '29460'
-                          - '29461'
-                          - '29462'
-                          - '29463'
-                          - '29464'
-                          - '29465'
-                          - '29499'
+                          - "29026"
+                          - "29027"
+                          - "29032"
+                          - "29459"
+                          - "29460"
+                          - "29461"
+                          - "29462"
+                          - "29463"
+                          - "29464"
+                          - "29465"
+                          - "29499"
                         reihenfolge: null
                         destination_id: 496
                         aktiv: false
@@ -642,16 +694,16 @@ get:
               summary: Beispiel 2
               value:
                 data:
-                  id: '260'
+                  id: "260"
                   type: destination
                   attributes:
                     id: 260
                     anlagenname: St. Peter Ording Nordsee
                     strasse: Barcelona 11
-                    plz: '1111'
+                    plz: "1111"
                     stadt: Haltern
-                    latitude: '41.3641'
-                    longitude: '2.1562'
+                    latitude: "41.3641"
+                    longitude: "2.1562"
                     geo_url: https://goo.gl/maps/RjURCSPCXaitEoKb8
                     saisons:
                       - Sommer
@@ -683,11 +735,11 @@ get:
                     tage_spalte_online: true
                     skitage_online: false
                     wintersport:
-                      sportaten_titel: 'Sportart:'
+                      sportaten_titel: "Sportart:"
                       sportarten:
                         - Ski
                         - Snowboard
-                      stufen_titel: 'Level:'
+                      stufen_titel: "Level:"
                       stufen:
                         - Stufe Weiß (Anfänger 1)
                         - Stufe Grün (Anfänger 2)
@@ -717,7 +769,7 @@ get:
                         (Profi)</b><br>Du fährst alle Pisten sicher runter-
                         egal, ob Tiefschnee oder frisch präpariert.<br>
                     golflevel:
-                      titel: 'Handicap:'
+                      titel: "Handicap:"
                       info: >-
                         Bei uns sind Teilnehmer mit jedem Handicap, egal ob
                         Profi oder Anfänger herzlich willkommen! Bitte nenne uns
@@ -730,7 +782,7 @@ get:
                         - 19 - 36
                         - 37+
                     schwimmlevel:
-                      titel: 'Schwimmen:'
+                      titel: "Schwimmen:"
                       info: >-
                         Bitte teile uns dein Schwimmlevel mit. Es ist nicht
                         erfoderlich die DLRG Prüfungen absolviert zu haben,
@@ -772,13 +824,13 @@ get:
                         innerhalb von 3 Minuten. Ein Sprung aus 3 m Höhe. 50 m
                         Transportschwimmen.
                     shirt:
-                      titel: 'T-Shirt:'
+                      titel: "T-Shirt:"
                       optionen:
-                        - '116'
-                        - '128'
-                        - '140'
-                        - '152'
-                        - '164'
+                        - "116"
+                        - "128"
+                        - "140"
+                        - "152"
+                        - "164"
                         - Men XS
                         - Men S
                         - Men M
@@ -792,7 +844,7 @@ get:
                         - Woman XL
                         - Woman XXL
                     medikation:
-                      titel: 'Dauermedikation:'
+                      titel: "Dauermedikation:"
                       info: >-
                         Bitte gib hier die Medikamente an, welche dauerhaft
                         eingenommen werden. Diese Informationen sind sehr
@@ -800,7 +852,7 @@ get:
                         verantwortungsbewusst behandelt.
                       id: 701
                     krankheiten:
-                      titel: 'Krankheiten und Störungen:'
+                      titel: "Krankheiten und Störungen:"
                       info: >-
                         Bitte gib hier Krankenheiten und Störungen an. Diese
                         Informationen sind sehr wichtig und werden von uns
@@ -808,7 +860,7 @@ get:
                       id: 705
                     allergien: null
                     verpflegungswunsch:
-                      titel: 'Verpflegungswunsch:'
+                      titel: "Verpflegungswunsch:"
                       optionen:
                         - - - kein_verpflegungswunsch
                             - Keine Verpflegungswünsche
@@ -905,22 +957,22 @@ get:
                       - id: 236
                         name: 1 Woche
                         termin_ids:
-                          - '12911'
-                          - '12912'
-                          - '12913'
-                          - '12914'
-                          - '28938'
-                          - '29222'
-                          - '29512'
-                          - '30617'
+                          - "12911"
+                          - "12912"
+                          - "12913"
+                          - "12914"
+                          - "28938"
+                          - "29222"
+                          - "29512"
+                          - "30617"
                         reihenfolge: 1
                         destination_id: 260
                         aktiv: true
                       - id: 237
                         name: 2 Wochen
                         termin_ids:
-                          - '12910'
-                          - '30616'
+                          - "12910"
+                          - "30616"
                         reihenfolge: 2
                         destination_id: 260
                         aktiv: false
