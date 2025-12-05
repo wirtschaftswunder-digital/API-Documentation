@@ -788,6 +788,52 @@ paths:
                             type: string
                             nullable: false
                             description: Die Original-URL (Reiseausschreibung) der Destination
+                          explicit_consents:
+                            type: array
+                            'description:': Liste mit Einwilligungen, die explizit abgefragt werden müssen. Dabei soll es nicht opt-in sein, sondern eine verpflichtende Auswahl von "Ja" oder "Nein". Bei der Buchung sollen nur Einwilligungen abgefragt werden, bei denen ask_before_booking auf true gesetzt ist.
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                  description: Die ID der Frage
+                                key:
+                                  type: string
+                                  description: |
+                                    Eindeutiger Schlüssel der Einwilligung. Beispiel: "photo_permission"
+                                ask_before_booking:
+                                  type: boolean
+                                  description: |
+                                    Wenn true, muss die Frage im Buchungsprozess zwingend beantwortet werden.
+                                show_info_positive:
+                                  type: boolean
+                                  description: |
+                                    Wenn true, wird nach positiver Auswahl ein Hinweistext (`message_positive`) angezeigt.
+                                show_info_negative:
+                                  type: boolean
+                                  description: |
+                                    Wenn true, wird nach negativer Auswahl ein Hinweistext (`message_negative`) angezeigt.
+                                title:
+                                  type: string
+                                  description: |
+                                    Hauptfrage, HTML ist erlaubt (z.B. DSGVO-Links).
+                                label_positive:
+                                  type: string
+                                  description: Text für die JA-Option.
+                                label_negative:
+                                  type: string
+                                  description: Text für die NEIN-Option.
+                                validation_message:
+                                  type: string
+                                  description: Fehlermeldung bei fehlender Auswahl.
+                                message_positive:
+                                  type: string
+                                  description: |
+                                    Information, die nach Auswahl von "Ja" angezeigt wird (nur wenn show_info_positive = true).
+                                message_negative:
+                                  type: string
+                                  description: |
+                                    Information, die nach Auswahl von "Nein" angezeigt wird (nur wenn show_info_negative = true).
                       links:
                         type: object
                         description: Links zu weiteren API-Abfragen
@@ -1540,6 +1586,38 @@ paths:
           schema:
             example: de
             type: string
+        - in: query
+          name: explicit_consent_answers_attributes
+          description: |
+            Liste der Antworten, auf `explicit_consents`.
+            Entspricht dem Rails-Parameter-Format. Beispiel:
+            `explicit_consent_answers_attributes[0][permission]=true`.
+
+            Jede Antwort besteht aus:
+            - `explicit_consent_config_id`: ID der Frage
+            - `permission`: Zustimmung oder Ablehnung (`true`/`false`)
+            - `locked`: Gibt an, dass die Auswahl nicht mehr änderbar ist
+          required: true
+          style: deepObject
+          schema:
+            type: array
+            items:
+              type: object
+              required:
+                - explicit_consent_config_id
+                - permission
+                - locked
+              properties:
+                explicit_consent_config_id:
+                  type: integer
+                  example: 1
+                permission:
+                  type: boolean
+                  example: true
+                locked:
+                  description: Sollte auf `true` gesetzt werden, wenn `permission` `true` ist und die Auswahl nicht mehr änderbar sein soll.
+                  type: boolean
+                  example: true
         - in: query
           name: no_mail
           required: true
